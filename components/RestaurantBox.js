@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import Colors from '../constants/Colors';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 const AVERAGE_STARS_COUNT = 2; // between 5 and 0, recommended: 2 or 2.5
 

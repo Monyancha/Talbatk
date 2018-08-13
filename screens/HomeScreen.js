@@ -11,7 +11,7 @@ import RestaurantBox from '../components/RestaurantBox';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Header from '../components/Header';
 
 var styles = StyleSheet.create({

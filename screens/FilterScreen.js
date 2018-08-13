@@ -11,7 +11,7 @@ import {
 import { Button } from 'react-native-elements';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import SelectInput from 'react-native-select-input-ios';
 
 export default class FilterScreen extends React.Component {

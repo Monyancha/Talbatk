@@ -19,7 +19,7 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Table, Row, Rows } from 'react-native-table-component';
-import { Ionicons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Colors from '../../constants/Colors';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import OrderDetailBox from '../../components/OrderDetailBox';

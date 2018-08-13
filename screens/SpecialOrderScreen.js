@@ -10,7 +10,7 @@ import {
 	AsyncStorage,
 	KeyboardAvoidingView
 } from 'react-native';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
 const { width, height } = Dimensions.get('window');

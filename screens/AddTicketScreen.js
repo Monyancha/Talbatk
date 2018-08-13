@@ -4,7 +4,7 @@ import Colors from '../constants/Colors';
 import { GiftedChat } from 'react-native-gifted-chat'
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class SingleTicketScreen extends React.Component {
 	state = {

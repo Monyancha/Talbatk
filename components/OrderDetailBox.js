@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, Image } from 'react-native';
 import Colors from '../constants/Colors';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 export default class OrderDetailBox extends Component {
 	render() {

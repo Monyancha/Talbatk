@@ -3,7 +3,7 @@
 //         StyleSheet, TextInput, View, Text, Image,
 //         Platform, TouchableOpacity, Linking } from "react-native";
 //
-// import { Ionicons } from '@expo/vector-icons';
+// import Ionicons from 'react-native-vector-icons/Ionicons';
 // import { NavigationActions } from 'react-navigation';
 // import Colors from '../constants/Colors';
 //
