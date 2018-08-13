@@ -3,7 +3,6 @@ import {
 	ScrollView,
 	DeviceEventEmitter,
 	Modal,
-	Button,
 	StyleSheet,
 	Text,
 	FlatList,
@@ -13,26 +12,18 @@ import {
 	Image,
 	AsyncStorage,
 	I18nManager,
-	Platform,
 	TextInput,
 	KeyboardAvoidingView
 } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
 import Colors from '../constants/Colors';
 import TicketBox from '../components/TicketBox';
-import OrderDetailBox from '../components/OrderDetailBox';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { MaterialCommunityIcons,Ionicons } from '@expo/vector-icons';
-import { TextField } from 'react-native-material-textfield';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import {
 	Table,
-	TableWrapper,
 	Row,
-	Rows,
-	Col,
-	Cols,
-	Cell
+	Rows
 } from 'react-native-table-component';
 
 const Center = ({ children }) => (
@@ -83,99 +74,97 @@ export default class Meals extends React.Component {
 	}
 	CheckIfBannedThenOrder = () => {
 		this.setState({
-			ordering:true
+			ordering: true
 		})
 		AsyncStorage.getItem('login').then(logged => {
 			if (logged == 1) {
-				AsyncStorage.getItem('userid').then((userid)=>{
-					if(userid){
+				AsyncStorage.getItem('userid').then((userid) => {
+					if (userid) {
 						fetch(Server.dest + '/api/is-user-banned?user_id=' + userid).
 							then((res) => res.json()).then((resJson) => {
-					            if(resJson.response == 0)
-								{
-									AsyncStorage.getItem('userid').then((userid)=>{
-									AsyncStorage.getItem('token').then(token => {
-										fetch(Server.dest + '/api/add-user-token?user_id='+userid+
-								            '&token='+token, {headers: {'Cache-Control': 'no-cache'}}).
-											then((res) => res.json()).then((resJson) => {
-												//console.log("reJson"+resJson.response);
-												//console.log("token"+token);
-												//console.log("userid"+userid);
-											})
+								if (resJson.response == 0) {
+									AsyncStorage.getItem('userid').then((userid) => {
+										AsyncStorage.getItem('token').then(token => {
+											fetch(Server.dest + '/api/add-user-token?user_id=' + userid +
+												'&token=' + token, { headers: { 'Cache-Control': 'no-cache' } }).
+												then((res) => res.json()).then((resJson) => {
+													//console.log("reJson"+resJson.response);
+													//console.log("token"+token);
+													//console.log("userid"+userid);
+												})
 										})
 									})
-									fetch(Server.dest + '/api/store-info?store_id='+this.state.store_id).then((res)=>res.json()).then((restaurants)=>{
-									if(this.state.after_cost >= restaurants.response.min_delivery_cost){
-										if(restaurants.response.status == 1){
-											this.make_order();
+									fetch(Server.dest + '/api/store-info?store_id=' + this.state.store_id).then((res) => res.json()).then((restaurants) => {
+										if (this.state.after_cost >= restaurants.response.min_delivery_cost) {
+											if (restaurants.response.status == 1) {
+												this.make_order();
+											}
+											else {
+												alert('هذا المحل مغلق الان')
+											}
 										}
-										else{
-											alert('هذا المحل مغلق الان')
+										else {
+											alert('لا يمكن تنفيذ طلبك إلا بعد وصول طلبك للحد الأدنى للطلب');
 										}
+									})
 								}
-								else{
-									alert('لا يمكن تنفيذ طلبك إلا بعد وصول طلبك للحد الأدنى للطلب');
-								}
-								})
-								}
-					            else
-					            {
+								else {
 									alert('نعتذر و نقدر لك تعاونك ، و يؤسفنا حظر حسابك لعدة أسباب ، راجع إدارة التطبيق لإلغاء الحظر');
 								}
 							}
 							)
-							}
+					}
 					else {
 						alert('يجب عليك تسجيل الدخول اولا');
-						}
+					}
 				}
-			)
+				)
 			}
 		}
-	)
-}
+		)
+	}
 
 	make_order = () => {
 
-					AsyncStorage.getItem('userid').then((userid)=>{
-					AsyncStorage.getItem('location').then(location => {
-						AsyncStorage.getItem('hint').then(hint => {
-							fetch(
-								Server.dest +
-									'/api/make-order?ids=' +
-									this.state.ids +
-									'&store_id=' +
-									this.state.store_id +
-									'&user_id=' +
-									userid +
-									'&cost=' +
-									this.state.after_cost +
-									'&address=' +
-									location +
-									'&address_hint=' +
-									hint +
-									'&info=a'+
-									'&note='+
-									this.state.note
-									+'&discounted='+
-									this.state.discounted
-									, {headers: {'Cache-Control': 'no-cache'}})
-								.then(res => res.json())
-								.then(meals => {
-									AsyncStorage.setItem('cart', '').then(() => {
-										AsyncStorage.setItem('CartResturantId','').then(()=>{
-										AsyncStorage.setItem('hot_request','1').then(()=>{
-											this.props.navigation.navigate('Main');
-											this.closeModal();
-										})
-									})
+		AsyncStorage.getItem('userid').then((userid) => {
+			AsyncStorage.getItem('location').then(location => {
+				AsyncStorage.getItem('hint').then(hint => {
+					fetch(
+						Server.dest +
+						'/api/make-order?ids=' +
+						this.state.ids +
+						'&store_id=' +
+						this.state.store_id +
+						'&user_id=' +
+						userid +
+						'&cost=' +
+						this.state.after_cost +
+						'&address=' +
+						location +
+						'&address_hint=' +
+						hint +
+						'&info=a' +
+						'&note=' +
+						this.state.note
+						+ '&discounted=' +
+						this.state.discounted
+						, { headers: { 'Cache-Control': 'no-cache' } })
+						.then(res => res.json())
+						.then(meals => {
+							AsyncStorage.setItem('cart', '').then(() => {
+								AsyncStorage.setItem('CartResturantId', '').then(() => {
+									AsyncStorage.setItem('hot_request', '1').then(() => {
+										this.props.navigation.navigate('Main');
+										this.closeModal();
 									})
 								})
+							})
 						})
-					})
 				})
+			})
+		})
 
-			}
+	}
 
 
 
@@ -208,31 +197,31 @@ export default class Meals extends React.Component {
 							before_cost: data.before,
 							after_cost: data.after,
 							store_id: data.store_id,
-              deliveryTime:data.deliveryTime
+							deliveryTime: data.deliveryTime
 						});
 					});
 			});
 	};
-clear_cart = ()=>{
-	AsyncStorage.setItem('cart','').then(()=>{
-		AsyncStorage.setItem('CartResturantId','').then(()=>{
-			alert(' تم إفراع سلة الشراء و بانتظار طلباتك القادمة من المحلات الأخرى')
-			this.props.navigation.navigate('Main');
+	clear_cart = () => {
+		AsyncStorage.setItem('cart', '').then(() => {
+			AsyncStorage.setItem('CartResturantId', '').then(() => {
+				alert(' تم إفراع سلة الشراء و بانتظار طلباتك القادمة من المحلات الأخرى')
+				this.props.navigation.navigate('Main');
+			})
 		})
-	})
-}
+	}
 	openModal() {
 		this.setState({ modalVisible: true });
 	}
-	navigate_location(){
+	navigate_location() {
 
 		AsyncStorage.removeItem('location')
-		AsyncStorage.setItem('LocationToCart','1')
+		AsyncStorage.setItem('LocationToCart', '1')
 		this.closeModal();
 		let that = this;
-			setTimeout(function(){
-				that.props.navigation.navigate('LocationSetting');
-			},1000)
+		setTimeout(function () {
+			that.props.navigation.navigate('LocationSetting');
+		}, 1000)
 
 	}
 	closeModal() {
@@ -249,58 +238,58 @@ clear_cart = ()=>{
 			meals: [],
 			before_cost: 0,
 			after_cost: 0,
-			discounted:0,
-			after_discout:0,
+			discounted: 0,
+			after_discout: 0,
 			store_id: 0,
 			modalVisible: false,
-			note:'',
-			coupon:'',
-			ordering:false,
+			note: '',
+			coupon: '',
+			ordering: false,
 		};
 
 	}
-store_note = (note) =>{
-	this.setState({
-		note:note
-	})
-}
-render_buynow(){
-	if(this.state.ordering == false){
-		return 	<Text style={{fontSize: 18,color: 'white'}}>شراء الان </Text>
+	store_note = (note) => {
+		this.setState({
+			note: note
+		})
 	}
-	else {
-	return	<LoadingIndicator size="large" color="#fff" />
+	render_buynow() {
+		if (this.state.ordering == false) {
+			return <Text style={{ fontSize: 18, color: 'white' }}>شراء الان </Text>
+		}
+		else {
+			return <LoadingIndicator size="large" color="#fff" />
+		}
+
 	}
+	coupon() {
+		AsyncStorage.getItem('CartResturantId').then((store_id) => {
 
-}
-coupon(){
-	AsyncStorage.getItem('CartResturantId').then((store_id)=>{
+			fetch(Server.dest + '/api/check-coupon?code=' + this.state.coupon + '&store_id=' + store_id)
+				.then(res => res.json())
+				.then(data => {
+					if (data.response == 1) {
 
-		fetch(Server.dest + '/api/check-coupon?code=' + this.state.coupon+'&store_id='+store_id)
-			.then(res => res.json())
-			.then(data => {
-				if(data.response == 1){
-
-					var discounted = (this.state.after_cost-this.state.before_cost)*(data.percent/100);
-					var after_discout = this.state.after_cost-discounted;
-					this.setState({
-						after_discout,
-						discounted
-					})
-				}
-				else {
-					alert('الكود غير متاح حاليا')
-				}
-			})
-	})
-}
+						var discounted = (this.state.after_cost - this.state.before_cost) * (data.percent / 100);
+						var after_discout = this.state.after_cost - discounted;
+						this.setState({
+							after_discout,
+							discounted
+						})
+					}
+					else {
+						alert('الكود غير متاح حاليا')
+					}
+				})
+		})
+	}
 	render() {
 		const tableHead = ['السعر', 'التصنيف'];
 		const tableData = [
-			['' + Math.round((this.state.after_cost-this.state.before_cost)*100) / 100 , 'سعر الطلب'],
+			['' + Math.round((this.state.after_cost - this.state.before_cost) * 100) / 100, 'سعر الطلب'],
 			['' + this.state.before_cost, 'رسوم التوصيل'],
 			['' + this.state.discounted, 'الخصم'],
-			['' + Math.round((this.state.after_cost-this.state.discounted)*100) / 100, 'السعر الاجمالى مع الضريبه']
+			['' + Math.round((this.state.after_cost - this.state.discounted) * 100) / 100, 'السعر الاجمالى مع الضريبه']
 
 		];
 		const { params } = this.props.navigation.state;
@@ -313,36 +302,40 @@ coupon(){
 
 
 				<View>
-				<Modal
-										visible={this.state.modalVisible}
-										animationType={'slide'}
-										onRequestClose={() => this.closeModal()}
-									>
+					<Modal
+						visible={this.state.modalVisible}
+						animationType={'slide'}
+						onRequestClose={() => this.closeModal()}
+					>
 
-										<View style={styles.modalContainer}>
-											<View style={styles.innerContainer}>
-												<Text style={{ fontFamily: 'myfont', fontSize: 25 }}>
-												تأكيد عملية الشراء
+						<View style={styles.modalContainer}>
+							<View style={styles.innerContainer}>
+								<Text style={{ fontFamily: 'myfont', fontSize: 25 }}>
+									تأكيد عملية الشراء
 												</Text>
-												<View style={styles.buttons}>
+								<View style={styles.buttons}>
 
-													<TouchableOpacity style={styles.button}
-													            onPress={() => this.closeModal()}>
-														<Text style={{fontSize: 18,
-														color: 'white'}} >رجوع</Text>
-													</TouchableOpacity>
-													<TouchableOpacity style={styles.button}
-																			onPress={() => this.navigate_location()}>
-														<Text style={{fontSize: 18,
-														color: 'white'}} >تغير عنوان التوصيل</Text>
-													</TouchableOpacity>
-													<TouchableOpacity style={styles.button} onPress={() => this.CheckIfBannedThenOrder()}>
-														{this.render_buynow()}
-													</TouchableOpacity>
-												</View>
-											</View>
-										</View>
-									</Modal>
+									<TouchableOpacity style={styles.button}
+										onPress={() => this.closeModal()}>
+										<Text style={{
+											fontSize: 18,
+											color: 'white'
+										}} >رجوع</Text>
+									</TouchableOpacity>
+									<TouchableOpacity style={styles.button}
+										onPress={() => this.navigate_location()}>
+										<Text style={{
+											fontSize: 18,
+											color: 'white'
+										}} >تغير عنوان التوصيل</Text>
+									</TouchableOpacity>
+									<TouchableOpacity style={styles.button} onPress={() => this.CheckIfBannedThenOrder()}>
+										{this.render_buynow()}
+									</TouchableOpacity>
+								</View>
+							</View>
+						</View>
+					</Modal>
 
 					<View
 						style={{
@@ -354,7 +347,7 @@ coupon(){
 								flex: 1,
 								height: '100%',
 								width: Dimensions.get('window').width,
-								marginTop:15
+								marginTop: 15
 							}}
 							resizeMode="cover"
 							source={require('../assets/images/splash.jpg')}
@@ -378,50 +371,50 @@ coupon(){
 						)}
 						ListFooterComponent={
 							<KeyboardAvoidingView
-									behavior='padding'
-									keyboardVerticalOffset={70}
-									style={{ flex:1 }}
-									contentContainerStyle= {{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', width: Dimensions.get('window').width }}>
+								behavior='padding'
+								keyboardVerticalOffset={70}
+								style={{ flex: 1 }}
+								contentContainerStyle={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', width: Dimensions.get('window').width }}>
 
-							<ScrollView>
-							<View style={styles.singleInputContainer}>
-							<View style={{ paddingRight: 10, paddingLeft: 10 }}>
+								<ScrollView>
+									<View style={styles.singleInputContainer}>
+										<View style={{ paddingRight: 10, paddingLeft: 10 }}>
 
-								<Table
-									borderStyle={{
-										borderWidth: 0.5,
-										borderColor: Colors.fadedMainColor
-									}}
-								>
-									<Row
-										data={tableHead}
-										style={styles.head}
-										textStyle={styles.text}
-									/>
-									<Rows
-										data={tableData}
-										style={styles.row}
-										textStyle={styles.text2}
-									/>
-								</Table>
-
-
+											<Table
+												borderStyle={{
+													borderWidth: 0.5,
+													borderColor: Colors.fadedMainColor
+												}}
+											>
+												<Row
+													data={tableHead}
+													style={styles.head}
+													textStyle={styles.text}
+												/>
+												<Rows
+													data={tableData}
+													style={styles.row}
+													textStyle={styles.text2}
+												/>
+											</Table>
 
 
-										<TextInput
+
+
+											<TextInput
 												underlineColorAndroid='transparent'
 												placeholder='ملاحظات للطلب (المزيد من الصوص)'
 												placeholderTextColor='#CCCCCC'
 												style={styles.textInput}
 												value={this.state.note}
-												onChangeText={(text)=>{this.store_note(text)}}
-												/>
-												<View style={{flexDirection:'row'}}>
+												onChangeText={(text) => { this.store_note(text) }}
+											/>
+											<View style={{ flexDirection: 'row' }}>
 
 
 												<TouchableOpacity
 													onPress={() => {
-														 this.coupon();
+														this.coupon();
 														// alert(this.state.notee)
 													}}
 													style={{
@@ -432,7 +425,7 @@ coupon(){
 														marginTop: 10,
 														flexDirection: 'row',
 														borderWidth: 5,
-														backgroundColor:Colors.mainColor,
+														backgroundColor: Colors.mainColor,
 
 														borderColor: Colors.mainColor,
 
@@ -441,8 +434,8 @@ coupon(){
 													<Text
 														style={{
 															fontFamily: 'myfont',
-															textAlign:'center',
-															color:Colors.secondaryColor
+															textAlign: 'center',
+															color: Colors.secondaryColor
 														}}
 													>
 														تطبيق
@@ -451,109 +444,109 @@ coupon(){
 												</TouchableOpacity>
 
 												<TextInput
-														underlineColorAndroid='transparent'
-														placeholder='كود خصم'
-														placeholderTextColor='#CCCCCC'
-														style={{
-															flex: .8,
-															color: Colors.mainColor,
-															justifyContent: 'flex-start',
-															alignSelf: 'flex-start',
-															textAlign: 'right',
-															fontFamily: 'myfont',
-															padding: 9,
-															marginVertical:20,
-															borderRadius: 4,
-															backgroundColor: 'transparent',
-															borderBottomColor: Colors.fadedMainColor,
-															borderBottomWidth: 0.7,
+													underlineColorAndroid='transparent'
+													placeholder='كود خصم'
+													placeholderTextColor='#CCCCCC'
+													style={{
+														flex: .8,
+														color: Colors.mainColor,
+														justifyContent: 'flex-start',
+														alignSelf: 'flex-start',
+														textAlign: 'right',
+														fontFamily: 'myfont',
+														padding: 9,
+														marginVertical: 20,
+														borderRadius: 4,
+														backgroundColor: 'transparent',
+														borderBottomColor: Colors.fadedMainColor,
+														borderBottomWidth: 0.7,
 
-														}}
-														value={this.state.coupon}
-														onChangeText={(text)=>{this.setState({coupon:text})}}
-														/>
+													}}
+													value={this.state.coupon}
+													onChangeText={(text) => { this.setState({ coupon: text }) }}
+												/>
 
-														</View>
+											</View>
 
 
-								</View>
-								<View style={{flexDirection:'row',paddingBottom:90}}>
-								<TouchableOpacity
-									onPress={() => {
-										 this.openModal();
-										// alert(this.state.notee)
-									}}
-									style={{
-										flex: 1,
-										justifyContent: 'center',
-										alignSelf: 'center',
-										padding: 10,
-										marginTop: 10,
-										flexDirection: 'row',
-										borderWidth: 5,
-										borderColor: '#e9e9ef'
-									}}
-								>
-									<Text
-										style={{
-											fontFamily: 'myfont'
-										}}
-									>
-										تنفيذ الطلب
+										</View>
+										<View style={{ flexDirection: 'row', paddingBottom: 90 }}>
+											<TouchableOpacity
+												onPress={() => {
+													this.openModal();
+													// alert(this.state.notee)
+												}}
+												style={{
+													flex: 1,
+													justifyContent: 'center',
+													alignSelf: 'center',
+													padding: 10,
+													marginTop: 10,
+													flexDirection: 'row',
+													borderWidth: 5,
+													borderColor: '#e9e9ef'
+												}}
+											>
+												<Text
+													style={{
+														fontFamily: 'myfont'
+													}}
+												>
+													تنفيذ الطلب
 									</Text>
-									<MaterialCommunityIcons
-										name="plus-circle"
-										size={30}
-										color={Colors.secondaryColor}
-										style={{ paddingLeft: 5 }}
-									/>
-								</TouchableOpacity>
+												<MaterialCommunityIcons
+													name="plus-circle"
+													size={30}
+													color={Colors.secondaryColor}
+													style={{ paddingLeft: 5 }}
+												/>
+											</TouchableOpacity>
 
-								<TouchableOpacity
-									onPress={() => {
-										this.clear_cart();
-									}}
-									style={{
-										flex: 1,
-										justifyContent: 'center',
-										alignSelf: 'center',
-										padding: 10,
-										marginTop: 10,
-										flexDirection: 'row',
-										borderWidth: 5,
-										borderColor: '#e9e9ef'
-									}}
-								>
-									<Text
-										style={{
-											fontFamily: 'myfont'
-										}}
-									>
-										الغاء الطلب
+											<TouchableOpacity
+												onPress={() => {
+													this.clear_cart();
+												}}
+												style={{
+													flex: 1,
+													justifyContent: 'center',
+													alignSelf: 'center',
+													padding: 10,
+													marginTop: 10,
+													flexDirection: 'row',
+													borderWidth: 5,
+													borderColor: '#e9e9ef'
+												}}
+											>
+												<Text
+													style={{
+														fontFamily: 'myfont'
+													}}
+												>
+													الغاء الطلب
 									</Text>
-									<MaterialCommunityIcons
-										name="minus-circle"
-										size={30}
-										color={Colors.secondaryColor}
-										style={{ paddingLeft: 5 }}
-									/>
-								</TouchableOpacity>
-								</View>
-							</View>
+												<MaterialCommunityIcons
+													name="minus-circle"
+													size={30}
+													color={Colors.secondaryColor}
+													style={{ paddingLeft: 5 }}
+												/>
+											</TouchableOpacity>
+										</View>
+									</View>
 
-							</ScrollView>
+								</ScrollView>
 							</KeyboardAvoidingView>
 
 						}
 						renderItem={({ item }) => (
 
-								<TicketBox
-									name={item.name}
-									status="-1"
-									desc={item.desc}
-									price={item.price}
-									count={item.count}
-								/>
+							<TicketBox
+								name={item.name}
+								status="-1"
+								desc={item.desc}
+								price={item.price}
+								count={item.count}
+							/>
 						)}
 					/>
 
@@ -585,27 +578,27 @@ const styles = StyleSheet.create({
 		color: Colors.secondaryColor
 	},
 	textInput: {
-			flex: 1,
-			color: Colors.mainColor,
-			textAlign: 'right',
-			fontFamily: 'myfont',
-			padding: 9,
-			marginVertical:20,
-			borderRadius: 4,
-			backgroundColor: 'transparent',
-			borderBottomColor: Colors.fadedMainColor,
-			borderBottomWidth: 0.7
+		flex: 1,
+		color: Colors.mainColor,
+		textAlign: 'right',
+		fontFamily: 'myfont',
+		padding: 9,
+		marginVertical: 20,
+		borderRadius: 4,
+		backgroundColor: 'transparent',
+		borderBottomColor: Colors.fadedMainColor,
+		borderBottomWidth: 0.7
 	},
 	inputIcon: {
-			backgroundColor: 'transparent',
-			marginLeft: 9
+		backgroundColor: 'transparent',
+		marginLeft: 9
 	},
 	inputsContainer: {
-			flex: 0.8,
-			flexDirection: 'column',
-			justifyContent: 'center',
-			alignItems: 'center',
-			width: '90%',
+		flex: 0.8,
+		flexDirection: 'column',
+		justifyContent: 'center',
+		alignItems: 'center',
+		width: '90%',
 	},
 	text2: {
 		fontFamily: 'myfont',
@@ -634,7 +627,7 @@ const styles = StyleSheet.create({
 		padding: 20,
 
 		marginLeft: 5,
-		borderRadius:15,
+		borderRadius: 15,
 
 	},
 	buttons: {

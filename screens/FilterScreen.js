@@ -4,38 +4,18 @@ import {
 	KeyboardAvoidingView,
 	AsyncStorage,
 	StyleSheet,
-	TextInput,
 	View,
-	Text,
 	Image,
-	Platform,
-	TouchableOpacity,
-	Linking,
-	Picker
+	Platform
 } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
 import { Button } from 'react-native-elements';
 import Colors from '../constants/Colors';
-import TicketBox from '../components/TicketBox';
 import Server from '../constants/server';
-import LoadingIndicator from '../components/LoadingIndicator';
 import { Ionicons } from '@expo/vector-icons';
 import SelectInput from 'react-native-select-input-ios';
 
-const Center = ({ children }) => (
-	<View
-		style={{
-			alignItems: 'center',
-			justifyContent: 'center',
-			flex: 1,
-			backgroundColor: '#ffffff'
-		}}
-	>
-		{children}
-	</View>
-);
 export default class FilterScreen extends React.Component {
-	static navigationOptions = ({ navigation }) => ({
+	static navigationOptions = () => ({
 		title: 'التصنيف',
 		headerTintColor: Colors.smoothGray,
 		fontFamily: 'myfont',
@@ -53,41 +33,41 @@ export default class FilterScreen extends React.Component {
 	});
 
 	getPrice() {
-    return [
-      { value: 50, label: '50'      },
-      { value: 100, label: '100'     },
-      { value: 150, label: '150'     },
-      { value: 200, label: '200' },
+		return [
+			{ value: 50, label: '50' },
+			{ value: 100, label: '100' },
+			{ value: 150, label: '150' },
+			{ value: 200, label: '200' },
 			{ value: 250, label: '250' },
 			{ value: 300, label: '300' },
 			{ value: 350, label: '350' },
 			{ value: 400, label: '400' },
 			{ value: 450, label: '450' },
-    ];
-  }
+		];
+	}
 
 	getTime() {
-    return [
-      { value: 5, label:  '5'  },
-      { value: 10, label: '10' },
-      { value: 15, label: '15' },
-      { value: 20, label: '20' },
+		return [
+			{ value: 5, label: '5' },
+			{ value: 10, label: '10' },
+			{ value: 15, label: '15' },
+			{ value: 20, label: '20' },
 			{ value: 25, label: '25' },
 			{ value: 30, label: '30' },
 			{ value: 35, label: '35' },
 			{ value: 40, label: '40' },
 			{ value: 45, label: '45' },
-    ];
-  }
+		];
+	}
 
 	getSort() {
-    return [
-      { value: 3, label:  'التوصيل الارخص اولا'  },
-      { value: 2, label: 'التوصيل الاسرع اولا' },
-      { value: 1, label: 'التقييم الاعلى اولا' },
-      { value: 0, label: 'المطاعم الاقرب اولا' },
-    ];
-  }
+		return [
+			{ value: 3, label: 'التوصيل الارخص اولا' },
+			{ value: 2, label: 'التوصيل الاسرع اولا' },
+			{ value: 1, label: 'التقييم الاعلى اولا' },
+			{ value: 0, label: 'المطاعم الاقرب اولا' },
+		];
+	}
 
 
 
@@ -114,8 +94,6 @@ export default class FilterScreen extends React.Component {
 	}
 
 	render() {
-		const { params } = this.props.navigation.state;
-		const { navigate } = this.props.navigation;
 
 		return (
 			<View
@@ -153,18 +131,18 @@ export default class FilterScreen extends React.Component {
 				>
 					<View style={styles.inputsContainer}>
 						<View style={styles.singleInputContainer}>
-						<SelectInput
-              value={this.state.maxcost || 50}
-              options={this.getPrice()}
-              onCancelEditing={() => console.log('onCancel')}
-              onSubmitEditing={(value) =>
+							<SelectInput
+								value={this.state.maxcost || 50}
+								options={this.getPrice()}
+								onCancelEditing={() => console.log('onCancel')}
+								onSubmitEditing={(value) =>
 
-								this.setState({ maxcost: value }, () => {
-									AsyncStorage.setItem('maxcost', ''+value);
-								})
-							}
-							style={{ flex: 1 }}
-            />
+									this.setState({ maxcost: value }, () => {
+										AsyncStorage.setItem('maxcost', '' + value);
+									})
+								}
+								style={{ flex: 1 }}
+							/>
 
 
 
@@ -177,17 +155,17 @@ export default class FilterScreen extends React.Component {
 						</View>
 
 						<View style={styles.singleInputContainer}>
-						<SelectInput
-              value={this.state.maxtime || 15}
-              options={this.getTime()}
-              onCancelEditing={() => console.log('onCancel')}
-              onSubmitEditing={(value) =>
-								this.setState({ maxtime: value }, () => {
-									AsyncStorage.setItem('maxtime', ''+value);
-											})
-							}
-							style={{ flex: 1 }}
-            />
+							<SelectInput
+								value={this.state.maxtime || 15}
+								options={this.getTime()}
+								onCancelEditing={() => console.log('onCancel')}
+								onSubmitEditing={(value) =>
+									this.setState({ maxtime: value }, () => {
+										AsyncStorage.setItem('maxtime', '' + value);
+									})
+								}
+								style={{ flex: 1 }}
+							/>
 
 
 
@@ -200,19 +178,19 @@ export default class FilterScreen extends React.Component {
 						</View>
 
 						<View style={styles.singleInputContainer}>
-						<SelectInput
-              value={this.state.sortby}
-              options={this.getSort()}
-              onCancelEditing={() => console.log('onCancel')}
-              onSubmitEditing={(value) =>
-								this.setState({sortby: value }, () => {
-									AsyncStorage.setItem('sortby', ''+value);
+							<SelectInput
+								value={this.state.sortby}
+								options={this.getSort()}
+								onCancelEditing={() => console.log('onCancel')}
+								onSubmitEditing={(value) =>
+									this.setState({ sortby: value }, () => {
+										AsyncStorage.setItem('sortby', '' + value);
 
 
-											})
-							}
-							style={{ flex: 1 }}
-            />
+									})
+								}
+								style={{ flex: 1 }}
+							/>
 
 
 							<Ionicons

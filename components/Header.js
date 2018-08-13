@@ -8,12 +8,10 @@ import {
 	AsyncStorage,
 	TouchableOpacity
 } from 'react-native';
-import { Ionicons,MaterialCommunityIcons,SimpleLineIcons } from '@expo/vector-icons';
+import { Ionicons, SimpleLineIcons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
-import { Font } from 'expo';
 import Server from '../constants/server';
 
-const fontCol = 'white';
 const iconCol = 'rgba(255,255,255,0.8)';
 const bgCol = Colors.mainColor;
 
@@ -21,10 +19,10 @@ export default class Header extends React.Component {
 	componentDidMount() {
 		fetch(
 			Server.dest +
-				'/api/special_orders_status'
-		)	.then(res => res.json())
+			'/api/special_orders_status'
+		).then(res => res.json())
 			.then(status => {
-				this.setState({SpecialOrderStatus:status.status})
+				this.setState({ SpecialOrderStatus: status.status })
 			})
 		this.setState({ fontLoaded: '1' });
 
@@ -43,7 +41,7 @@ export default class Header extends React.Component {
 			searchText: '',
 			fontLoaded: '0',
 			location: ' ',
-			SpecialOrderStatus:0
+			SpecialOrderStatus: 0
 		};
 	}
 
@@ -57,8 +55,8 @@ export default class Header extends React.Component {
 	trimName = str => {
 		return str.length > 35 ? str.substring(0, 32) + '...' : str;
 	};
-	SpecialOrderNavigate = () =>{
-		if(this.state.SpecialOrderStatus == 0){
+	SpecialOrderNavigate = () => {
+		if (this.state.SpecialOrderStatus == 0) {
 			alert('الخدمه متوقفه الان')
 		}
 		else {
@@ -111,7 +109,7 @@ export default class Header extends React.Component {
 						returnKeyType={'search'}
 						underlineColorAndroid="transparent"
 						onChangeText={text => this.setState({ searchText: text })}
-						onSubmitEditing={event => this.doSearch()}
+						onSubmitEditing={() => this.doSearch()}
 					/>
 				</View>
 			);
@@ -146,25 +144,25 @@ export default class Header extends React.Component {
 					<View
 						style={{ flex: 1, flexDirection: 'row', justifyContent: 'center' }}
 					>
-					<TouchableOpacity style={{
-						flex: 1,
-						justifyContent: 'flex-end',
-						padding: 10,
-						flexDirection: 'row',
-					}} onPress={() => this.SpecialOrderNavigate()}>
+						<TouchableOpacity style={{
+							flex: 1,
+							justifyContent: 'flex-end',
+							padding: 10,
+							flexDirection: 'row',
+						}} onPress={() => this.SpecialOrderNavigate()}>
 
 							<Text
 								style={{
 									fontFamily: 'myfont',
-									fontSize:18,
-									fontWeight:'bold',
-									textAlign:'right',
-									color:'white',
-									justifyContent:'center',
-									marginTop:5
+									fontSize: 18,
+									fontWeight: 'bold',
+									textAlign: 'right',
+									color: 'white',
+									justifyContent: 'center',
+									marginTop: 5
 								}}
 							>
-							مندوب طلباتك
+								مندوب طلباتك
 							</Text>
 							<SimpleLineIcons
 								name="envelope-letter"
@@ -172,7 +170,7 @@ export default class Header extends React.Component {
 								color='white'
 								style={{ paddingLeft: 5 }}
 							/>
-					</TouchableOpacity>
+						</TouchableOpacity>
 					</View>
 				</View>
 

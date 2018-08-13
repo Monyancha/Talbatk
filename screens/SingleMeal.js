@@ -1,33 +1,47 @@
 import React from 'react';
 import {
-	ScrollView,
-	KeyboardAvoidingView,
-	TextInput,
 	StyleSheet,
 	Text,
 	FlatList,
-	TouchableOpacity,
 	View,
 	AsyncStorage,
 	Modal
 } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
 import Colors from '../constants/Colors';
 import MealBox from '../components/MealBox';
 import { Button } from 'react-native-elements';
 import RestaurantBox from '../components/RestaurantBox';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
-// import { NavigationActions } from 'react-navigation';
 import { Ionicons } from '@expo/vector-icons';
 
 export default class SingleMeal extends React.Component {
 	addcart = () => {
 		var meal = this.state.Meal[0];
 		var num = this.state.num || 1;
-	AsyncStorage.getItem('CartResturantId').then((CartResturantId)=>{
-		if(CartResturantId || CartResturantId == ''){ // if resturant id saved
-			if(CartResturantId == this.props.navigation.state.params.restaurant_id){ //if resturant in cart is the same one here
+		AsyncStorage.getItem('CartResturantId').then((CartResturantId) => {
+			if (CartResturantId || CartResturantId == '') { // if resturant id saved
+				if (CartResturantId == this.props.navigation.state.params.restaurant_id) { //if resturant in cart is the same one here
+					AsyncStorage.getItem('cart').then(cart => {
+						AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
+							if (num > 1) {
+								this.setState({
+									num: num - 1
+								});
+								this.addcart();
+							} else {
+								this.setState({ modalVisible: true });
+							}
+						});
+					});
+					AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.restaurant_id)
+				} //end if resturant in cart is the same one here
+				else {
+					alert('لديك طلبات ب السله لمحل تجاري اخر الرجاء تنفيذ الطلب او الغاءه اولا')
+				}
+			} // end if resturant id saved
+			else {
+				AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.restaurant_id)
 				AsyncStorage.getItem('cart').then(cart => {
 					AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
 						if (num > 1) {
@@ -40,34 +54,14 @@ export default class SingleMeal extends React.Component {
 						}
 					});
 				});
-				AsyncStorage.setItem('CartResturantId',''+this.props.navigation.state.params.restaurant_id)
-			} //end if resturant in cart is the same one here
-			else {
-				alert('لديك طلبات ب السله لمحل تجاري اخر الرجاء تنفيذ الطلب او الغاءه اولا')
 			}
-		} // end if resturant id saved
-		else{
-			AsyncStorage.setItem('CartResturantId',''+this.props.navigation.state.params.restaurant_id)
-			AsyncStorage.getItem('cart').then(cart => {
-				AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
-					if (num > 1) {
-						this.setState({
-							num: num - 1
-						});
-						this.addcart();
-					} else {
-						this.setState({ modalVisible: true });
-					}
-				});
-			});
-		}
 
-	})
+		})
 
 
 	};
 
-	static navigationOptions = ({ navigation }) => ({
+	static navigationOptions = () => ({
 		title: 'المنتج',
 		headerTintColor: Colors.smoothGray,
 		fontFamily: 'myfont',
@@ -91,25 +85,25 @@ export default class SingleMeal extends React.Component {
 			Restaurant: [],
 			Meal: [],
 			num: 1,
-			modalVisible:false
+			modalVisible: false
 		};
 	}
-	cart = ()=>{
+	cart = () => {
 		this.props.navigation.navigate('السله');
 		this.setState({ modalVisible: false });
 	}
 	componentDidMount() {
 		fetch(
 			Server.dest +
-				'/api/store-info?store_id=' +
-				this.props.navigation.state.params.restaurant_id
+			'/api/store-info?store_id=' +
+			this.props.navigation.state.params.restaurant_id
 		)
 			.then(res => res.json())
 			.then(restaurants => {
 				fetch(
 					Server.dest +
-						'/api/product-info?product_id=' +
-						this.props.navigation.state.params.meal_id
+					'/api/product-info?product_id=' +
+					this.props.navigation.state.params.meal_id
 				)
 					.then(res => res.json())
 					.then(meals => {
@@ -123,7 +117,6 @@ export default class SingleMeal extends React.Component {
 			});
 	}
 	render() {
-		const { params } = this.props.navigation.state;
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
@@ -131,39 +124,39 @@ export default class SingleMeal extends React.Component {
 
 
 			<View>
-			<Modal
-				visible={this.state.modalVisible}
-				animationType={'slide'}
-				onRequestClose={() => this.closeModal()}
-			>
-				<View style={styles.modalContainer}>
-					<View style={styles.innerContainer}>
-						<Text style={{ fontFamily: 'myfont', fontSize: 25 }}>
-							تم إضافة المنتج للسلة
+				<Modal
+					visible={this.state.modalVisible}
+					animationType={'slide'}
+					onRequestClose={() => this.closeModal()}
+				>
+					<View style={styles.modalContainer}>
+						<View style={styles.innerContainer}>
+							<Text style={{ fontFamily: 'myfont', fontSize: 25 }}>
+								تم إضافة المنتج للسلة
 						</Text>
-						<View style={styles.buttons}>
+							<View style={styles.buttons}>
 
-							<Button onPress={() => 	this.setState({ modalVisible: false })}
-							color='white'
-							backgroundColor={Colors.mainColor}
-							containerViewStyle={{borderRadius:15}}
-							borderRadius={15}
-							buttonStyle={{ padding: 15 }}
-							textStyle={{ fontFamily: 'myfont' }}
-							title="اكمل التسوق"/>
-							<Button onPress={() => this.cart() }
-							color='white'
-							backgroundColor={Colors.mainColor}
-							containerViewStyle={{borderRadius:15}}
-							borderRadius={15}
-							buttonStyle={{ padding: 15 }}
-							textStyle={{ fontFamily: 'myfont' }}
-							title="الذهاب للسلة"/>
+								<Button onPress={() => this.setState({ modalVisible: false })}
+									color='white'
+									backgroundColor={Colors.mainColor}
+									containerViewStyle={{ borderRadius: 15 }}
+									borderRadius={15}
+									buttonStyle={{ padding: 15 }}
+									textStyle={{ fontFamily: 'myfont' }}
+									title="اكمل التسوق" />
+								<Button onPress={() => this.cart()}
+									color='white'
+									backgroundColor={Colors.mainColor}
+									containerViewStyle={{ borderRadius: 15 }}
+									borderRadius={15}
+									buttonStyle={{ padding: 15 }}
+									textStyle={{ fontFamily: 'myfont' }}
+									title="الذهاب للسلة" />
 
+							</View>
 						</View>
 					</View>
-				</View>
-			</Modal>
+				</Modal>
 				<FlatList
 					automaticallyAdjustContentInsets={false}
 					style={{
@@ -265,8 +258,8 @@ export default class SingleMeal extends React.Component {
 								containerViewStyle={{ borderRadius: 15 }}
 								borderRadius={15}
 								buttonStyle={{ padding: 10 }}
-								textStyle={{ fontFamily: 'myfont',fontSize:15 }}
-								title={ "اضف الى السله " + Math.round((this.state.num * this.state.Meal[0].price)*100) / 100  + " ريال سعودي" }
+								textStyle={{ fontFamily: 'myfont', fontSize: 15 }}
+								title={"اضف الى السله " + Math.round((this.state.num * this.state.Meal[0].price) * 100) / 100 + " ريال سعودي"}
 							/>
 						</View>
 					)}

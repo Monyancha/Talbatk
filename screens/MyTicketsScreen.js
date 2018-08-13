@@ -1,7 +1,5 @@
 import React from 'react';
 import {
-	ScrollView,
-	StyleSheet,
 	Text,
 	FlatList,
 	TouchableOpacity,
@@ -10,33 +8,21 @@ import {
 	Image,
 	AsyncStorage
 } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
 import Colors from '../constants/Colors';
 import TicketBox from '../components/TicketBox';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-const Center = ({ children }) => (
-	<View
-		style={{
-			alignItems: 'center',
-			justifyContent: 'center',
-			flex: 1,
-			backgroundColor: '#ffffff'
-		}}
-	>
-		{children}
-	</View>
-);
+
 export default class Meals extends React.Component {
 	static navigationOptions = ({ navigation }) => ({
 		title: 'التذاكر',
-    headerLeft: <MaterialCommunityIcons
-      name="arrow-left"
-      size={30}
-      color='white'
-      style={{ paddingLeft: 5 }}
-                            onPress={ () => { navigation.navigate('Main') }} />,
+		headerLeft: <MaterialCommunityIcons
+			name="arrow-left"
+			size={30}
+			color='white'
+			style={{ paddingLeft: 5 }}
+			onPress={() => { navigation.navigate('Main') }} />,
 		headerTintColor: Colors.smoothGray,
 		fontFamily: 'myfont',
 		headerStyle: {
@@ -70,10 +56,9 @@ export default class Meals extends React.Component {
 			Tickets: [{}]
 		};
 	}
-	_keyExtractor = (item, index) => item.ticket_id;
+	_keyExtractor = (item) => item.ticket_id;
 
 	render() {
-		const { params } = this.props.navigation.state;
 		const { navigate } = this.props.navigation;
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;

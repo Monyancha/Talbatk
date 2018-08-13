@@ -1,5 +1,5 @@
 export default {
-    regions:[
+	regions: [
 		"الرياض",
 		"مكة المكرمة",
 		"المدينة المنورة",

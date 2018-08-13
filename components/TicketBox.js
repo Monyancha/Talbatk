@@ -5,24 +5,24 @@ import Colors from '../constants/Colors';
 
 export default class TicketBox extends Component {
 	statusIcon = (value) => {
-		if(value == 0){
+		if (value == 0) {
 			return "alert-outline"
 		}
-		else{
+		else {
 			return "check-circle"
 		}
 	}
-	statusText = (value) =>{
-		if(value == 1){
+	statusText = (value) => {
+		if (value == 1) {
 			return "لم يتم الرد بعد"
 		}
-		else if(value == -1){
+		else if (value == -1) {
 			return "مضافه"
 		}
-		else if(value == 2){
+		else if (value == 2) {
 			return "تم الرد"
 		}
-		else if(value == 1){
+		else if (value == 1) {
 			return "تم اغلاق التذكره"
 		}
 	}
@@ -44,7 +44,7 @@ export default class TicketBox extends Component {
 						fontSize: 17,
 						padding: 5,
 						fontWeight: 'bold',
-						textAlign:'right'
+						textAlign: 'right'
 					}}>
 					{this.props.name}
 				</Text>
@@ -55,7 +55,7 @@ export default class TicketBox extends Component {
 						fontSize: 12,
 						padding: 0,
 						color: 'gray',
-						textAlign:'right'
+						textAlign: 'right'
 					}}>
 					{this.props.desc}
 				</Text>
@@ -63,7 +63,7 @@ export default class TicketBox extends Component {
 					style={{
 						flex: 1,
 						flexDirection: 'row',
-						justifyContent:'flex-start',
+						justifyContent: 'flex-start',
 					}}>
 					<MaterialCommunityIcons
 						name={this.statusIcon(this.props.status)}
@@ -79,36 +79,36 @@ export default class TicketBox extends Component {
 						}}>
 						{this.statusText(this.props.status)}
 					</Text>
-				</View> :(
-					<View
-						style={{
-							flex: 1,
-							flexDirection: 'row',
-							justifyContent:'flex-start',
-						}}>
-
-						<Text
+				</View> : (
+						<View
 							style={{
-								marginLeft: 4,
-								fontFamily: 'myfont',
-								fontSize: 12,
-								color: Colors.secondaryColor
+								flex: 1,
+								flexDirection: 'row',
+								justifyContent: 'flex-start',
 							}}>
-							العدد {this.props.count}
-						</Text>
 
-						<Text
-							style={{
-								marginLeft: 4,
-								fontFamily: 'myfont',
-								fontSize: 12,
-								color: Colors.secondaryColor
-							}}>
-							السعر {this.props.count * this.props.price} رس /
+							<Text
+								style={{
+									marginLeft: 4,
+									fontFamily: 'myfont',
+									fontSize: 12,
+									color: Colors.secondaryColor
+								}}>
+								العدد {this.props.count}
+							</Text>
+
+							<Text
+								style={{
+									marginLeft: 4,
+									fontFamily: 'myfont',
+									fontSize: 12,
+									color: Colors.secondaryColor
+								}}>
+								السعر {this.props.count * this.props.price} رس /
 						</Text>
 
 						</View>
-				)}
+					)}
 
 
 			</View>

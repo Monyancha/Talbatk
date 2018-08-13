@@ -13,7 +13,7 @@ export default class App extends Component {
 		SplashScreen.hide()
 	}
 
-	render () {
+	render() {
 		return <RootNavigation />
 	}
 } 

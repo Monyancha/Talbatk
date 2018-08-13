@@ -1,7 +1,6 @@
 import React from 'react';
 import {
 	View,
-	TextInput,
 	StyleSheet,
 	AsyncStorage,
 	Platform,
@@ -10,7 +9,6 @@ import {
 } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import Colors from '../constants/Colors';
-import { NavigationActions } from 'react-navigation';
 import Server from '../constants/server';
 
 export default class SettingsScreen extends React.Component {

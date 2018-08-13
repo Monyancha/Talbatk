@@ -1,5 +1,5 @@
 import React from 'react';
-import { Platform, View, Text,AsyncStorage } from 'react-native';
+import { Platform, View, Text, AsyncStorage } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { TabNavigator, TabBarBottom } from 'react-navigation';
 
@@ -8,20 +8,19 @@ import Colors from '../constants/Colors';
 import HomeScreen from '../screens/HomeScreen';
 import OffersTab from '../screens/OffersTab';
 import SettingsScreen from '../screens/SettingsScreen';
-import Header from '../components/Header';
 import CartScreen from '../screens/CartScreen';
 import OrderTabs from '../navigation/OrderTabsNavigator';
-function cart(){
-	AsyncStorage.getItem('cart').then((cart)=>{
-		if(cart){
-			return  cart.split(",").length;
+
+function cart() {
+	AsyncStorage.getItem('cart').then((cart) => {
+		if (cart) {
+			return cart.split(",").length;
 		}
-		else{
+		else {
 			return 0;
 		}
 	})
 }
-
 
 export default TabNavigator(
 	{
@@ -41,7 +40,6 @@ export default TabNavigator(
 			screen: SettingsScreen
 		}
 	},
-	
 	{
 		navigationOptions: ({ navigation }) => ({
 			header: null,
@@ -116,8 +114,8 @@ export default TabNavigator(
 										</Text>
 									</View>
 								) : (
-									undefined
-								)}
+										undefined
+									)}
 							</View>
 						);
 						break;
@@ -143,6 +141,5 @@ export default TabNavigator(
 		tabBarPosition: 'bottom',
 		animationEnabled: false,
 		swipeEnabled: true
-
 	}
 );

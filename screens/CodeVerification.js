@@ -8,7 +8,6 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import Colors from '../constants/Colors';
-import { NavigationActions } from 'react-navigation';
 import Server from '../constants/server';
 
 export default class CodeVerification extends React.Component {
@@ -26,7 +25,7 @@ export default class CodeVerification extends React.Component {
 	}
 
 	navigateToHome = () => {
-		 this.props.navigation.navigate('Main')
+		this.props.navigation.navigate('Main')
 	};
 
 	setLoginStatus = value => {
@@ -41,12 +40,12 @@ export default class CodeVerification extends React.Component {
 			const { params } = this.props.navigation.state;
 			fetch(
 				Server.dest +
-					'/api/verifycode?code=' +
-					this.state.code +
-					'&identifier=' +
-					params.device +
-					'&process=' +
-					params.process,
+				'/api/verifycode?code=' +
+				this.state.code +
+				'&identifier=' +
+				params.device +
+				'&process=' +
+				params.process,
 				{ headers: { 'Cache-Control': 'no-cache' } }
 			)
 				.then(res => res.json())
@@ -137,11 +136,11 @@ export default class CodeVerification extends React.Component {
 							borderBottomWidth: 1
 						}}
 						onChangeText={(text) => {
-							this.setState({ code: text },()=>{
+							this.setState({ code: text }, () => {
 								this.verifyCode()
 							})
-					}}
-						onSubmitEditing={event => this.verifyCode()}
+						}}
+						onSubmitEditing={() => this.verifyCode()}
 					/>
 				</KeyboardAvoidingView>
 

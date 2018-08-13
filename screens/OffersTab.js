@@ -1,11 +1,9 @@
 import React from 'react';
 import {
-	Text,
 	View,
 	StyleSheet,
 	FlatList,
-	TouchableOpacity,
-	AsyncStorage
+	TouchableOpacity
 } from 'react-native';
 import OfferBox from '../components/OfferBox';
 import Colors from '../constants/Colors';
@@ -75,15 +73,14 @@ export default class OffersTab extends React.Component {
 		};
 	}
 
-	_keyExtractor = (item, index) => item.id;
+	_keyExtractor = (item) => item.id;
 
 	render() {
-		const { navigate } = this.props.navigation;
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
 		return (
-			<View style={{marginTop:20}}>
+			<View style={{ marginTop: 20 }}>
 				<FlatList
 					automaticallyAdjustContentInsets={false}
 					style={{ backgroundColor: 'white' }}

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Constants, MapView } from 'expo';
+import { MapView } from 'expo';
 import {
 	KeyboardAvoidingView,
 	View,
@@ -9,14 +9,11 @@ import {
 	Text,
 	Platform,
 	TextInput,
-	Button,
 	StyleSheet,
 	TouchableOpacity
 } from 'react-native';
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
 import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
-import { NavigationActions } from 'react-navigation';
 import Saudi_Governorates from '../constants/Saudi_Governorates.js';
 import SelectInput from 'react-native-select-input-ios';
 import Server from '../constants/server';
@@ -32,7 +29,7 @@ export default class LocationSetting extends React.Component {
 
 		this.state = {
 			display: 0,
-			details:'',
+			details: '',
 			pos: {
 				long: 360,
 				lat: 360
@@ -43,7 +40,7 @@ export default class LocationSetting extends React.Component {
 
 		};
 
-		Saudi_Governorates.regions.map((data, index) => {
+		Saudi_Governorates.regions.map((data) => {
 			this.state.pickerData.push({ value: data, label: data });
 		});
 	}
@@ -57,85 +54,83 @@ export default class LocationSetting extends React.Component {
 			}
 		});
 	}
-	set_location = (location) =>{
+	set_location = (location) => {
 		fetch(
 			'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
-				location.coordinate.latitude +
-				',' +
-				location.coordinate.longitude +
-				'&language=ar&key=AIzaSyCxXoRqTcOTvsOLQPOiVtPnSxLUyGJBFqw',
+			location.coordinate.latitude +
+			',' +
+			location.coordinate.longitude +
+			'&language=ar&key=AIzaSyCxXoRqTcOTvsOLQPOiVtPnSxLUyGJBFqw',
 			{ headers: { 'Cache-Control': 'no-cache' } }
 		)
 			.then(res => res.json())
 			.then(resJson => {
 				console.log(location.coordinate)
-				var target = resJson.results[0].address_components;
-				console.log('resJSON '+JSON.stringify (resJson));
+				console.log('resJSON ' + JSON.stringify(resJson));
 				this.setState({
-					region:resJson.results[0].formatted_address
+					region: resJson.results[0].formatted_address
 				})
 			});
-			this.setState({
-				pos: {
-					lat: location.coordinate.latitude,
-					long: location.coordinate.longitude
-				}
-			})
+		this.setState({
+			pos: {
+				lat: location.coordinate.latitude,
+				long: location.coordinate.longitude
+			}
+		})
 
 	}
 	navigateToHome = () => {
 		this.props.navigation.navigate('Main');
 	};
-	submit_location = () =>{
-		var data= this.state.region;
-		 var details = this.state.details;
+	submit_location = () => {
+		var data = this.state.region;
 		// 'details' is provided when fetchDetails = true
 		//console.log(data.description);
 		//console.log(details);
-		AsyncStorage.setItem('hint',this.state.details);
+		AsyncStorage.setItem('hint', this.state.details);
 		AsyncStorage.setItem('location', data).then(() => {
 			AsyncStorage.getItem('login').then(value => {
 				if (value === '1') {
 					AsyncStorage.getItem('userid').then(userid => {
 						fetch(
 							Server.dest +
-								'/api/user_location?id=' +
-								userid +
-								'&location=' +
-								data +
-								'&region=' +
-								this.state.country +
-								'&longitude=' +
-								this.state.pos.long +
-								'&latitude=' +
-								this.state.pos.lat,
+							'/api/user_location?id=' +
+							userid +
+							'&location=' +
+							data +
+							'&region=' +
+							this.state.country +
+							'&longitude=' +
+							this.state.pos.long +
+							'&latitude=' +
+							this.state.pos.lat,
 							{ headers: { 'Cache-Control': 'no-cache' } }
 						)
 							.then(res => res.json())
-							.then(resJson => {
-								AsyncStorage.getItem('LocationToCart').then((LocationToCart)=>{
-									console.log('location var is '+LocationToCart);
-									if(LocationToCart == 1){
-										AsyncStorage.setItem('LocationToCart','0');
+							.then(() => {
+								AsyncStorage.getItem('LocationToCart').then((LocationToCart) => {
+									console.log('location var is ' + LocationToCart);
+									if (LocationToCart == 1) {
+										AsyncStorage.setItem('LocationToCart', '0');
 										this.props.navigation.navigate('السله');
 									}
-									else{
+									else {
 										this.navigateToHome();
 									}
-								})
+								});
 							})
-							.catch(error => {
+							.catch(() => {
 								//console.error(error);
-								AsyncStorage.getItem('LocationToCart').then((LocationToCart)=>{
-									console.log('location var is '+LocationToCart);
-									if(LocationToCart == 1){
-										AsyncStorage.setItem('LocationToCart','0');
+								AsyncStorage.getItem('LocationToCart').then((LocationToCart) => {
+									console.log('location var is ' + LocationToCart);
+									if (LocationToCart == 1) {
+										AsyncStorage.setItem('LocationToCart', '0');
 										this.props.navigation.navigate('السله');
 									}
-									else{
+									else {
 										this.navigateToHome();
 									}
-								})
+								});
 							});
 					});
 				} else this.props.navigation.navigate('Signin', {});
@@ -161,20 +156,19 @@ export default class LocationSetting extends React.Component {
 
 								fetch(
 									'https://maps.googleapis.com/maps/api/geocode/json?latlng=' +
-										position.coords.latitude +
-										',' +
-										position.coords.longitude +
-										'&language=ar&key=AIzaSyCxXoRqTcOTvsOLQPOiVtPnSxLUyGJBFqw',
+									position.coords.latitude +
+									',' +
+									position.coords.longitude +
+									'&language=ar&key=AIzaSyCxXoRqTcOTvsOLQPOiVtPnSxLUyGJBFqw',
 									{ headers: { 'Cache-Control': 'no-cache' } }
 								)
 
 									.then(res => res.json())
 									.then(resJson => {
 										console.log(resJson)
-										var target = resJson.results[0].address_components;
-										console.log('resJSON '+JSON.stringify (resJson));
+										console.log('resJSON ' + JSON.stringify(resJson));
 										this.setState({
-											region:resJson.results[0].formatted_address
+											region: resJson.results[0].formatted_address
 										})
 										//var foundRegion1 = target.find(function(element) {
 										//	return element.types.includes('locality');
@@ -184,24 +178,24 @@ export default class LocationSetting extends React.Component {
 										//	return element.types.includes(
 										//		'administrative_area_level_1'
 										//	);
-									//	}).long_name;
+										//	}).long_name;
 
 										for (
 											var i = 0;
 											i != Saudi_Governorates.regions.length;
 											++i
 										) {
-										/*	if (
-												Saudi_Governorates.regions[i].includes(foundRegion1) ||
-												foundRegion1.includes(Saudi_Governorates.regions[i]) ||
-												Saudi_Governorates.regions[i].includes(foundRegion2)
-												foundRegion2.includes(Saudi_Governorates.regions[i])
-											) {
-												this.setState({
-													region: Saudi_Governorates.regions[i]
-												});
-												break;
-											}*/
+											/*	if (
+													Saudi_Governorates.regions[i].includes(foundRegion1) ||
+													foundRegion1.includes(Saudi_Governorates.regions[i]) ||
+													Saudi_Governorates.regions[i].includes(foundRegion2)
+													foundRegion2.includes(Saudi_Governorates.regions[i])
+												) {
+													this.setState({
+														region: Saudi_Governorates.regions[i]
+													});
+													break;
+												}*/
 										}
 
 										this.setState({ fetchedLocationData: true });
@@ -274,7 +268,7 @@ export default class LocationSetting extends React.Component {
 							flex: 0.3,
 							backgroundColor: Colors.mainColor,
 							borderWidth: 0,
-							marginTop:10
+							marginTop: 10
 						}}
 					>
 
@@ -293,46 +287,46 @@ export default class LocationSetting extends React.Component {
 						/>
 					</View>
 					<View style={styles.box}>
-					<TextInput
-					placeholderTextColor="#999999"
+						<TextInput
+							placeholderTextColor="#999999"
 
-					underlineColorAndroid="transparent"
-					style={styles.input}
-						placeholder="اكتب عنوانك"
-						minLength={2}
-						autoFocus={false}
-						editable={false}
-						listViewDisplayed="auto"
-						fetchDetails={false}
-						value={this.state.region}
-						onChangeText={(text)=>{
-							this.setState({
-								region:text
-							})
-						}}
-						onSubmitEditing ={() => {
-						this.submit_location();
-						}}
-					/>
+							underlineColorAndroid="transparent"
+							style={styles.input}
+							placeholder="اكتب عنوانك"
+							minLength={2}
+							autoFocus={false}
+							editable={false}
+							listViewDisplayed="auto"
+							fetchDetails={false}
+							value={this.state.region}
+							onChangeText={(text) => {
+								this.setState({
+									region: text
+								})
+							}}
+							onSubmitEditing={() => {
+								this.submit_location();
+							}}
+						/>
 					</View>
-				<TouchableOpacity style={{justifyContent:'center',alignItems:'center'}} onPress={() => this.submit_location()}>
-					<View style={{backgroundColor:Colors.mainColor,padding:10,borderRadius:10, width:120,justifyContent:'center'}}>
-						<Text style={{marginBottom:6,fontFamily:'myfont',color:Colors.secondaryColor,textAlign:'center'}}>حفظ العنوان</Text>
-					</View>
-				</TouchableOpacity>
+					<TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => this.submit_location()}>
+						<View style={{ backgroundColor: Colors.mainColor, padding: 10, borderRadius: 10, width: 120, justifyContent: 'center' }}>
+							<Text style={{ marginBottom: 6, fontFamily: 'myfont', color: Colors.secondaryColor, textAlign: 'center' }}>حفظ العنوان</Text>
+						</View>
+					</TouchableOpacity>
 					<MapView
 						style={{ flex: 1 }}
 						showsMyLocationButton={true}
-						showsUserLocation = {true}
-						followUserLocation = {true}
-						showsMyLocationButton = {true}
-						zoomEnabled = {true}
+						showsUserLocation={true}
+						followUserLocation={true}
+						showsMyLocationButton={true}
+						zoomEnabled={true}
 
 						initialRegion={{
 							latitude: this.state.pos.lat,
 							longitude: this.state.pos.long,
-							longitudeDelta:0.04250270688370961,
-            latitudeDelta:0.03358723958820065
+							longitudeDelta: 0.04250270688370961,
+							latitudeDelta: 0.03358723958820065
 
 						}}
 					>
@@ -341,8 +335,7 @@ export default class LocationSetting extends React.Component {
 								latitude: this.state.pos.lat,
 								longitude: this.state.pos.long
 							}}
-							onDragEnd={(e) =>
-							{
+							onDragEnd={(e) => {
 								this.set_location(e.nativeEvent);
 
 							}
