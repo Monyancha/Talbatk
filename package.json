@@ -24,6 +24,7 @@
     "react-native-star-rating": "^1.0.9",
     "react-native-table-component": "^1.1.8",
     "react-native-timeline-listview": "^0.2.3",
+    "react-native-vector-icons": "^5.0.0",
     "react-navigation": "^2.11.2"
   },
   "devDependencies": {
