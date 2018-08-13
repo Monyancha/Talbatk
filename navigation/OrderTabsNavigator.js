@@ -1,10 +1,10 @@
-import { TabNavigator } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation';
 
 import CurrentOrders from '../screens/orders/CurrentOrders';
 import OrdersHistory from '../screens/orders/OrdersHistory';
 import AdminOrders from '../screens/orders/AdminOrders';
 
-export default TabNavigator(
+export default createBottomTabNavigator(
 	{
 		'الطلبات الحالية': {
 			screen: CurrentOrders
@@ -36,7 +36,6 @@ export default TabNavigator(
 			},
 			activeTintColor: '#000'
 		},
-		tabBarPosition: 'bottom',
 		animationEnabled: false,
 		swipeEnabled: true
 	}

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, View, Text, AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { TabNavigator, TabBarBottom } from 'react-navigation';
+import { createBottomTabNavigator, TabBarBottom } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
@@ -22,7 +22,7 @@ function cart() {
 	})
 }
 
-export default TabNavigator(
+export default createBottomTabNavigator(
 	{
 		مطاعم: {
 			screen: HomeScreen
@@ -138,7 +138,6 @@ export default TabNavigator(
 		}),
 		tabBarOptions: { showLabel: false },
 		tabBarComponent: TabBarBottom,
-		tabBarPosition: 'bottom',
 		animationEnabled: false,
 		swipeEnabled: true
 	}
