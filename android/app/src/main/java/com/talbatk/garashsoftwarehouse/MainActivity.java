@@ -1,4 +1,4 @@
-package com.talbatk;
+package com.talbatk.garashsoftwarehouse;
 
 import com.facebook.react.ReactActivity;
 
