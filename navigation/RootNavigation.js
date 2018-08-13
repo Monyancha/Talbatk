@@ -1,9 +1,6 @@
-import { Notifications } from 'expo';
-import React from 'react';
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
-import MainTabNavigator from './MainTabNavigator';
-import registerForPushNotificationsAsync from '../api/registerForPushNotificationsAsync';
+/*import MainTabNavigator from './MainTabNavigator';
 import LocationSetting from '../screens/LocationSetting';
 import Signin from '../screens/Signin';
 import Signup from '../screens/Signup';
@@ -19,10 +16,13 @@ import SingleTicketScreen from '../screens/SingleTicketScreen';
 import FilterScreen from '../screens/FilterScreen';
 import AddTicketScreen from '../screens/AddTicketScreen';
 import AboutUs from '../screens/AboutUs';
-import SpecialOrderScreen from '../screens/SpecialOrderScreen';
-const RootStackNavigator = StackNavigator(
+import SpecialOrderScreen from '../screens/SpecialOrderScreen';*/
+import TestScreen from '../screens/TestScreen';
+
+export default RootStackNavigator = createStackNavigator(
 	{
-		LocationSetting: { screen: LocationSetting },
+		Test: { screen: TestScreen },
+		/*LocationSetting: { screen: LocationSetting },
 		Signin: { screen: Signin },
 		Signup: { screen: Signup },
 		CodeVerification: { screen: CodeVerification },
@@ -38,7 +38,7 @@ const RootStackNavigator = StackNavigator(
 		FilterScreen: { screen: FilterScreen },
 		AddTicketScreen: { screen: AddTicketScreen },
 		AboutUs: { screen: AboutUs },
-		SpecialOrderScreen: { screen: SpecialOrderScreen }
+		SpecialOrderScreen: { screen: SpecialOrderScreen }*/
 
 	},
 	{
@@ -49,36 +49,3 @@ const RootStackNavigator = StackNavigator(
 		})
 	}
 );
-
-export default class RootNavigator extends React.Component {
-	componentDidMount() {
-		this._notificationSubscription = this._registerForPushNotifications();
-	}
-
-	componentWillUnmount() {
-		this._notificationSubscription && this._notificationSubscription.remove();
-	}
-
-	render() {
-		return <RootStackNavigator />;
-	}
-
-	_registerForPushNotifications() {
-		// Send our push token over to our backend so we can receive notifications
-		// You can comment the following line out if you want to stop receiving
-		// a notification every time you open the app. Check out the source
-		// for this function in api/registerForPushNotificationsAsync.js
-		registerForPushNotificationsAsync();
-
-		// Watch for incoming notifications
-		this._notificationSubscription = Notifications.addListener(
-			this._handleNotification
-		);
-	}
-
-	_handleNotification = ({ origin, data }) => {
-		console.log(
-			`Push notification ${origin} with data: ${JSON.stringify(data)}`
-		);
-	};
-}

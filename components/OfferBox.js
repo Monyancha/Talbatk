@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, View, Text, Image } from 'react-native';
-import FastImage from 'react-native-fast-image';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { View, Text, Image } from 'react-native';
 import Colors from '../constants/Colors';
 
 export default class OfferBox extends Component {
