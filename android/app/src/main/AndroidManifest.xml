@@ -2,6 +2,7 @@
 	package="com.talbatk.garashsoftwarehouse">
 
 	<uses-permission android:name="android.permission.INTERNET" />
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
 	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
 
 	<application
@@ -12,6 +13,10 @@
 		android:allowBackup="false"
 		android:theme="@style/AppTheme"
 		android:supportsRtl="true">
+		<meta-data
+			android:name="com.google.android.geo.API_KEY"
+			android:value="AIzaSyBlHeAYsIYUgLiM1iMJAPyDQjXy2YUkgAg"/>
+
 		<activity
 			android:name=".MainActivity"
 			android:label="@string/app_name"

@@ -18,6 +18,13 @@ buildscript {
 
 allprojects {
     repositories {
+		configurations.all {
+            resolutionStrategy {
+ 				// react-native-maps
+                force "com.google.android.gms:play-services-base:11.8.0"
+                force "com.google.android.gms:play-services-maps:11.8.0"
+            }
+        }
         mavenLocal()
         jcenter()
         maven {

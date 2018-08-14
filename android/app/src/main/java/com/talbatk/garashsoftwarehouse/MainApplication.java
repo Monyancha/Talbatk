@@ -10,6 +10,7 @@ import com.facebook.soloader.SoLoader;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
+import com.airbnb.android.react.maps.MapsPackage;
 
 import java.util.Arrays;
 import java.util.List;
@@ -27,7 +28,8 @@ public class MainApplication extends Application implements ReactApplication {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
 		  new SplashScreenReactPackage(),
-		  new VectorIconsPackage()
+		  new VectorIconsPackage(),
+		  new MapsPackage()
       );
     }
 
