@@ -15,11 +15,12 @@ import SingleTicketScreen from '../screens/SingleTicketScreen';
 //import SingleOrderScreen from '../screens/SingleOrderScreen';
 import FilterScreen from '../screens/FilterScreen';
 import AddTicketScreen from '../screens/AddTicketScreen';
-import AboutUs from '../screens/AboutUs';
 import SpecialOrderScreen from '../screens/SpecialOrderScreen';*/
+import AboutUs from '../screens/AboutUs';
 
 export default RootStackNavigator = createStackNavigator(
 	{
+		// AboutUs: { screen: AboutUs },
 		LocationSetting: { screen: LocationSetting },
 		/*Signin: { screen: Signin },
 		Signup: { screen: Signup },
@@ -35,7 +36,6 @@ export default RootStackNavigator = createStackNavigator(
 		MyTicketsScreen: { screen: MyTicketsScreen },
 		FilterScreen: { screen: FilterScreen },
 		AddTicketScreen: { screen: AddTicketScreen },
-		AboutUs: { screen: AboutUs },
 		SpecialOrderScreen: { screen: SpecialOrderScreen }*/
 
 	},

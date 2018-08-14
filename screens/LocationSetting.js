@@ -266,7 +266,7 @@ export default class LocationSetting extends React.Component {
 				<View style={{ flex: 1 }}>
 					<View
 						style={{
-							flex: 0.3,
+							flex: 0.1,
 							backgroundColor: Colors.mainColor,
 							borderWidth: 0,
 							marginTop: 10
@@ -281,7 +281,7 @@ export default class LocationSetting extends React.Component {
 							submitKeyText="اختيار"
 							value={this.state.country}
 							options={this.state.pickerData}
-							labelStyle={{ color: Colors.secondaryColor }}
+							labelStyle={{ color: Colors.secondaryColor,textAlign:'center' }}
 							onSubmitEditing={itemValue =>
 								this.setState({ region: itemValue })
 							}
@@ -312,7 +312,7 @@ export default class LocationSetting extends React.Component {
 					</View>
 					<TouchableOpacity style={{ justifyContent: 'center', alignItems: 'center' }} onPress={() => this.submit_location()}>
 						<View style={{ backgroundColor: Colors.mainColor, padding: 10, borderRadius: 10, width: 120, justifyContent: 'center' }}>
-							<Text style={{ marginBottom: 6, fontFamily: 'myfont', color: Colors.secondaryColor, textAlign: 'center' }}>حفظ العنوان</Text>
+							<Text style={{ marginBottom: 6, fontFamily: 'Droid Arabic Kufi', color: Colors.secondaryColor, textAlign: 'center' }}>حفظ العنوان</Text>
 						</View>
 					</TouchableOpacity>
 					<MapView
@@ -380,7 +380,7 @@ const styles = StyleSheet.create({
 	input: {
 		justifyContent: 'center',
 		height: 22,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		marginTop: 5,
 		backgroundColor: 'transparent',
 		fontSize: 15,
