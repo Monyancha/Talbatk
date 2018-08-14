@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapView } from 'expo';
+import MapView from 'react-native-maps';
 import {
 	KeyboardAvoidingView,
 	View,
@@ -17,7 +17,6 @@ import LoadingIndicator from '../components/LoadingIndicator';
 import Saudi_Governorates from '../constants/Saudi_Governorates.js';
 import SelectInput from 'react-native-select-input-ios';
 import Server from '../constants/server';
-
 
 export default class LocationSetting extends React.Component {
 	static navigationOptions = {
@@ -210,6 +209,8 @@ export default class LocationSetting extends React.Component {
 											String(position.coords.latitude)
 										);
 										AsyncStorage.setItem('region', this.state.region);
+									}).catch((error) => {
+										console.error('error', error);
 									});
 							},
 							error => {
@@ -316,20 +317,17 @@ export default class LocationSetting extends React.Component {
 					</TouchableOpacity>
 					<MapView
 						style={{ flex: 1 }}
-						showsMyLocationButton={true}
 						showsUserLocation={true}
-						followUserLocation={true}
+						followsUserLocation={true}
 						showsMyLocationButton={true}
 						zoomEnabled={true}
-
 						initialRegion={{
 							latitude: this.state.pos.lat,
 							longitude: this.state.pos.long,
 							longitudeDelta: 0.04250270688370961,
 							latitudeDelta: 0.03358723958820065
 
-						}}
-					>
+						}}>
 						<MapView.Marker
 							coordinate={{
 								latitude: this.state.pos.lat,

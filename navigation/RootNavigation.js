@@ -1,8 +1,8 @@
 import { createStackNavigator } from 'react-navigation';
 
-/*import MainTabNavigator from './MainTabNavigator';
+//import MainTabNavigator from './MainTabNavigator';
 import LocationSetting from '../screens/LocationSetting';
-import Signin from '../screens/Signin';
+/*import Signin from '../screens/Signin';
 import Signup from '../screens/Signup';
 import Restaurant from '../screens/Restaurant';
 import CodeVerification from '../screens/CodeVerification';
@@ -17,13 +17,11 @@ import FilterScreen from '../screens/FilterScreen';
 import AddTicketScreen from '../screens/AddTicketScreen';
 import AboutUs from '../screens/AboutUs';
 import SpecialOrderScreen from '../screens/SpecialOrderScreen';*/
-import TestScreen from '../screens/TestScreen';
 
 export default RootStackNavigator = createStackNavigator(
 	{
-		Test: { screen: TestScreen },
-		/*LocationSetting: { screen: LocationSetting },
-		Signin: { screen: Signin },
+		LocationSetting: { screen: LocationSetting },
+		/*Signin: { screen: Signin },
 		Signup: { screen: Signup },
 		CodeVerification: { screen: CodeVerification },
 		ResetPassword: { screen: ResetPassword },
