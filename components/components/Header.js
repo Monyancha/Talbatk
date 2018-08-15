@@ -8,7 +8,9 @@ import {
 	AsyncStorage,
 	TouchableOpacity
 } from 'react-native';
-import { Ionicons,MaterialCommunityIcons,SimpleLineIcons } from '@expo/vector-icons';
+import Ionicons from 'react-native-vector-icons'
+import MaterialCommunityIcons from 'react-native-vector-icons'
+import SimpleLineIcons from 'react-native-vector-icons'
 import Colors from '../constants/Colors';
 import { Font } from 'expo';
 import Server from '../constants/server';

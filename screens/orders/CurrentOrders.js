@@ -1,5 +1,6 @@
 import React from 'react';
-import { Text, StyleSheet, Modal, ScrollView, View, Image, Dimensions, FlatList, TouchableOpacity, AsyncStorage, DeviceEventEmitter, SafeAreaView } from 'react-native';
+import { Text,StyleSheet,Modal,ScrollView, View,Image,Dimensions,FlatList,TouchableOpacity,AsyncStorage,DeviceEventEmitter,SafeAreaView } from 'react-native';
+import { TabNavigator } from 'react-navigation'; // 1.0.0-beta.27
 import OrderBox from '../../components/OrderBox';
 import Colors from '../../constants/Colors';
 import LoadingIndicator from '../../components/LoadingIndicator';
@@ -8,248 +9,246 @@ import { Table, Row, Rows } from 'react-native-table-component';
 import Server from '../../constants/server';
 
 const Center = ({ children }) => (
-	<View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#ffffff' }}>{children}</View>
+  <View style={{ alignItems: 'center', justifyContent: 'center', flex: 1,backgroundColor:'#ffffff' }}>{children}</View>
 );
 export default class OrdersScreen extends React.Component {
-	return_image = (status) => {
-		if (status == 0) {
-			return require('../../assets/images/not-accepted.png');
-		}
-		else {
-			return require('../../assets/images/delevering.png');
-		}
-	}
+ return_image = (status)=>{
+   if(status == 0){
+     return require('../../assets/images/not-accepted.png');
+   }
+   else {
+     return require('../../assets/images/delevering.png');
+   }
+ }
 
-	componentDidMount() {
-		this.fetch_data();
+ componentDidMount(){
+  this.fetch_data();
 
 
-	}
-	fetch_data() {
-		AsyncStorage.getItem('userid').then(id => {
-			fetch(Server.dest + '/api/show-orders-current?user_id=' + id)
-				.then(res => res.json())
-				.then(orders => {
+ }
+ fetch_data(){
+   AsyncStorage.getItem('userid').then(id => {
+     fetch(Server.dest + '/api/show-orders-current?user_id='+id)
+       .then(res => res.json())
+       .then(orders => {
 
-					this.setState({
-						doneFetches: 1,
-						orders: orders.response,
-						deliveryTime: orders.deliveryTime
-					});
-				});
-		})
-		setInterval(() => {
-			AsyncStorage.getItem('userid').then(id => {
-				fetch(Server.dest + '/api/show-orders-current?user_id=' + id)
-					.then(res => res.json())
-					.then(orders => {
+         this.setState({
+           doneFetches: 1,
+           orders: orders.response,
+           deliveryTime:orders.deliveryTime
+         });
+       });
+   })
+   setInterval(()=>{ AsyncStorage.getItem('userid').then(id => {
+     fetch(Server.dest + '/api/show-orders-current?user_id='+id)
+       .then(res => res.json())
+       .then(orders => {
 
-						this.setState({
-							doneFetches: 1,
-							orders: orders.response,
-							deliveryTime: orders.deliveryTime
-						});
-					});
-			})
-		}, 60000);
-	}
+         this.setState({
+           doneFetches: 1,
+           orders: orders.response,
+           deliveryTime:orders.deliveryTime
+         });
+       });
+   })}, 60000);
+ }
 
-	constructor(props) {
-		super(props)
+    constructor(props) {
+        super(props)
         /*orders status
          0 ----> waiting
          1 ----> accepted on way
          2 ----> Delivered
         */
-		this.state = {
-			doneFetches: 0,
-			current_id: 0,
-			modalVisible: false,
-			detailed_order: [],
-			cost_dicounted: 0,
-			price: 0,
-			delivery_cost: 0,
-			orders: [
-			]
-		}
-	}
+        this.state= {
+          doneFetches:0,
+          current_id:0,
+          modalVisible:false,
+          detailed_order:[],
+          cost_dicounted:0,
+          price:0,
+          delivery_cost:0,
+          orders:[
+          ]
+        }
+    }
 
-	static navigationOptions = ({ navigation }) => {
-		return {
-			header: null,
-			tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
-				// Inject event
-				DeviceEventEmitter.emit('ReloadCurrentOrders', { empty: 0 });
+    static navigationOptions = ({ navigation }) => {
+      return {
+        header: null,
+        tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
+          // Inject event
+          DeviceEventEmitter.emit('ReloadCurrentOrders', { empty: 0 });
 
-				// Keep original behaviour
-				jumpToIndex(scene.index);
-			}
-		};
-	};
+          // Keep original behaviour
+          jumpToIndex(scene.index);
+        }
+      };
+    };
 
-	listeners = {
-		update: DeviceEventEmitter.addListener('ReloadCurrentOrders', ({ empty }) => {
-			this.setState({ doneFetches: 0 });
-			this.fetch_data();
-		})
-	};
-	componentWillUnmount() {
-		// cleaning up listeners
-		// I am using lodash
-		_.each(this.listeners, listener => {
-			listener.remove();
-		});
-	}
-	openModal() {
-		this.setState({ modalVisible: true });
-	}
+    listeners = {
+  		update: DeviceEventEmitter.addListener('ReloadCurrentOrders', ({ empty }) => {
+        this.setState({ doneFetches: 0 });
+  		this.fetch_data();
+  		})
+  	};
+    componentWillUnmount() {
+      // cleaning up listeners
+      // I am using lodash
+      _.each(this.listeners, listener => {
+        listener.remove();
+      });
+    }
+    openModal() {
+  		this.setState({ modalVisible: true });
+  	}
 
-	closeModal() {
-		this.setState({ modalVisible: false });
-	}
-	order_click(id) {
-		this.openModal();
-		this.setState({ current_id: id });
-		fetch(Server.dest + '/api/order-data?id=' + id)
-			.then(res => res.json())
-			.then(data => {
-				this.setState({ detailed_order: data.meals, price: data.order.cost, cost_dicounted: data.order.cost_dicounted, delivery_cost: data.order.delivery_cost })
-			});
-	}
-	getStatusAsStr = (status) => {
-		switch (status) {
-			case 0:
-				return ("قيد القبول");
-			case 1:
-				return ("جاري التوصيل");
-			case 2:
-				return ("تم التوصيل");
-		}
-	};
+  	closeModal() {
+  		this.setState({ modalVisible: false });
+  	}
+    order_click(id){
+      this.openModal();
+      this.setState({current_id:id});
+      fetch(Server.dest + '/api/order-data?id=' + id)
+  			.then(res => res.json())
+  			.then(data => {
+  				this.setState({detailed_order:data.meals,price:data.order.cost,cost_dicounted:data.order.cost_dicounted,delivery_cost:data.order.delivery_cost})
+  			});
+    }
+    getStatusAsStr = (status) => {
+        switch(status)
+        {
+            case 0:
+                return ("قيد القبول");
+            case 1:
+                return ("جاري التوصيل");
+            case 2:
+                return ("تم التوصيل");
+        }
+    };
 
-	render() {
-		const { navigate } = this.props.navigation;
-		const tableHead = ['الوصف', 'النوع']
+  render() {
+    const { navigate } = this.props.navigation;
+    const tableHead = ['الوصف','النوع']
 		const tableData = [
 
 			['' + this.state.price, ' سعرالطلب'],
 			['' + this.state.cost_dicounted, ' الخصم'],
-			['' + this.state.delivery_cost, 'رسوم التوصيل'],
-			['' + this.state.price - this.state.cost_dicounted, ' السعر الإجمالي مع الضريبة'],
-		];
-		if (this.state.doneFetches == 0)
+      ['' + this.state.delivery_cost, 'رسوم التوصيل'],
+			['' + this.state.price-this.state.cost_dicounted, ' السعر الإجمالي مع الضريبة'],
+    ];
+    if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
-		if (this.state.orders) {
-			return (
+    if ( this.state.orders) {
+      return (
 
 
-				<SafeAreaView style={{ flex: 1 }}>
-					<Modal
-						visible={this.state.modalVisible}
-						animationType={'slide'}
-						onRequestClose={() => this.closeModal()}
+        <SafeAreaView style={{flex: 1}}>
+        <Modal
+          visible={this.state.modalVisible}
+          animationType={'slide'}
+          onRequestClose={() => this.closeModal()}
 
-					>
+        >
 
-						<View style={styles.modalContainer}>
-							<View style={styles.innerContainer}>
-								<ScrollView>
-									<View style={{ paddingRight: 10, paddingLeft: 10 }}>
+          <View style={styles.modalContainer}>
+            <View style={styles.innerContainer}>
+            <ScrollView>
+            <View style={{ paddingRight: 10, paddingLeft: 10 }}>
 
-										<Table
-											borderStyle={{
-												borderWidth: 0.5,
-												borderColor: Colors.fadedMainColor,
-												width: '100%',
-												paddingTop: 10
-											}}
-										>
-											<Row
-												data={tableHead}
-												style={styles.head}
-												textStyle={styles.text}
-											/>
-											<Rows
-												data={tableData}
-												style={styles.row}
-												textStyle={styles.text2}
-											/>
-										</Table>
+            <Table
+              borderStyle={{
+                borderWidth: 0.5,
+                borderColor: Colors.fadedMainColor,
+                width:'100%',
+                paddingTop:10
+              }}
+            >
+              <Row
+                data={tableHead}
+                style={styles.head}
+                textStyle={styles.text}
+              />
+              <Rows
+                data={tableData}
+                style={styles.row}
+                textStyle={styles.text2}
+              />
+            </Table>
 
-										<FlatList
-											automaticallyAdjustContentInsets={false}
-											style={{ backgroundColor: 'white', marginTop: 20 }}
-											removeClippedSubviews={false}
-											ItemSeparatorComponent={() => (
-												<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
-											)}
-											data={this.state.detailed_order}
+            <FlatList
+              automaticallyAdjustContentInsets={false}
+              style={{ backgroundColor: 'white',marginTop:20 }}
+              removeClippedSubviews={false}
+              ItemSeparatorComponent={() => (
+                <View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
+              )}
+              data={this.state.detailed_order}
 
-											renderItem={({ item }) => (
-												<TouchableOpacity
+              renderItem={({ item }) => (
+                <TouchableOpacity
 
-												>
-													<OrderDetailBox
-														style={styles.restaurant}
-														name={item.name}
+                >
+                  <OrderDetailBox
+                    style={styles.restaurant}
+                    name={item.name}
 
-														desc={item.desc}
-														image={item.img}
-														price={item.cost}
-														count={item.count}
-													/>
-												</TouchableOpacity>
-											)}
-										/>
-										<TouchableOpacity onPress={() => {
-											this.closeModal()
-										}} style={{ width: 350, backgroundColor: Colors.mainColor, justifyContent: 'center', alignItems: 'center', color: 'white', padding: 10, marginRight: 20, marginBottom: 20, marginTop: 20 }} >
-											<Text style={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center', color: 'white' }}>اغلاق</Text>
-										</TouchableOpacity>
-									</View>
+                    desc={item.desc}
+                    image={item.img}
+                    price={item.cost}
+                    count={item.count}
+                  />
+                </TouchableOpacity>
+              )}
+            />
+            <TouchableOpacity onPress={()=>{
+              this.closeModal()
+            }} style={{width:350,backgroundColor:Colors.mainColor,justifyContent:'center',alignItems:'center',color:'white',padding:10,marginRight:20,marginBottom:20,marginTop:20}} >
+            <Text style={{textAlign:'center',justifyContent:'center',alignItems:'center',color:'white'}}>اغلاق</Text>
+            </TouchableOpacity>
+            </View>
 
-								</ScrollView>
+            </ScrollView>
 
-							</View>
-						</View>
-					</Modal>
-					<View style={{ marginTop: 20 }}>
-						<FlatList
-							automaticallyAdjustContentInsets={false}
-							style={{ backgroundColor: 'white' }}
-							removeClippedSubviews={false}
-							ItemSeparatorComponent={() => <View style={{ height: 5, backgroundColor: Colors.smoothGray }} />}
-							data={this.state.orders}
-							renderItem={({ item }) => (
-								<TouchableOpacity onPress={() => {
-									this.order_click(item.key);
-								}} >
-									<OrderBox
-										name={item.title}
-										idkey={item.key}
-										status={item.status}
-										time={item.time}
-										desc={this.getStatusAsStr(item.status)}
-										image={this.return_image(item.status)}
-										price={item.price}
-									/>
-								</TouchableOpacity>
-							)}
-						/>
-					</View>
-				</SafeAreaView>
-			);
-		}
-		else {
-			return (
-				<Center><Text style={{
-					fontFamily: 'Droid Arabic Kufi',
-					fontSize: 16
-				}}>ليس لديك طلبات حاليا</Text></Center>
-			);
-		}
-	}
+            </View>
+          </View>
+        </Modal>
+          <View style={{marginTop:20}}>
+            <FlatList
+              automaticallyAdjustContentInsets={false}
+              style={{ backgroundColor: 'white' }}
+              removeClippedSubviews={false}
+              ItemSeparatorComponent={ () => <View style={{ height: 5, backgroundColor: Colors.smoothGray }} /> }
+              data={this.state.orders}
+              renderItem={({ item }) => (
+                <TouchableOpacity onPress={() =>{
+                  this.order_click(item.key);
+                }} >
+                <OrderBox
+                  name={item.title}
+                  idkey={item.key}
+                  status={item.status}
+                  time={item.time}
+                  desc={this.getStatusAsStr(item.status)}
+                  image={this.return_image(item.status)}
+                  price={item.price}
+                />
+                </TouchableOpacity>
+              )}
+            />
+          </View>
+          </SafeAreaView>
+      );
+    }
+    else{
+    return (
+        <Center><Text style={{
+          fontFamily: 'Droid Arabic Kufi',
+          fontSize:16 }}>ليس لديك طلبات حاليا</Text></Center>
+      );
+    }
+  }
 }
 const styles = StyleSheet.create({
 	table: { flex: 1, marginTop: 20 },
@@ -314,13 +313,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center'
 	},
-	modalContainer: {
-		flex: 1,
-		justifyContent: 'center',
-		backgroundColor: 'white'
-	},
-	innerContainer: {
-		marginTop: 20,
-		flex: 1
-	},
+		modalContainer: {
+			flex: 1,
+			justifyContent: 'center',
+			backgroundColor: 'white'
+		},
+		innerContainer: {
+			marginTop:20,
+			flex:1
+		},
 });

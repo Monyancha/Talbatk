@@ -19,7 +19,7 @@ export default class MenuBackButton extends React.Component {
 					color="#000"
 					style={{ backgroundColor: 'transparent', marginRight: 7, marginTop: 7 }} />
 
-				<Text style={{ backgroundColor: 'transparent', color: "#000", fontFamily: 'myfont', fontWeight: 'bold', fontSize: 16 }}>رجوع</Text>
+				<Text style={{ backgroundColor: 'transparent', color: "#000", fontFamily: 'Droid Arabic Kufi', fontWeight: 'bold', fontSize: 16 }}>رجوع</Text>
 			</TouchableOpacity>
 		);
 	}

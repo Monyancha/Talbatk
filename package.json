@@ -10,6 +10,7 @@
     "babel-core": "^6.26.3",
     "babel-loader": "^7.1.5",
     "babel-preset-react-native": "4.0.0",
+    "radio-button-react-native": "^1.1.6",
     "react": "16.4.1",
     "react-native": "0.55.4",
     "react-native-chooser": "^1.7.0",
@@ -20,14 +21,17 @@
     "react-native-linear-gradient": "^2.4.0",
     "react-native-maps": "0.20.1",
     "react-native-material-textfield": "^0.12.0",
+    "react-native-radio-group": "^1.0.3",
     "react-native-scrollable-tab-view": "^0.8.0",
     "react-native-select-input-ios": "^1.2.0",
+    "react-native-simple-radio-button": "^2.7.2",
     "react-native-splash-screen": "3.0.9",
     "react-native-star-rating": "^1.0.9",
     "react-native-table-component": "^1.1.8",
     "react-native-timeline-listview": "^0.2.3",
     "react-native-vector-icons": "^5.0.0",
-    "react-navigation": "^2.11.2"
+    "react-navigation": "^2.11.2",
+    "react-navigation-tabs": "^0.6.0"
   },
   "devDependencies": {
     "babel-jest": "23.4.2",

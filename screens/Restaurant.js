@@ -54,7 +54,7 @@ export default class Restaurants extends React.Component {
 	static navigationOptions = () => ({
 		title: 'الأقسام',
 		headerTintColor: Colors.smoothGray,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		headerStyle: {
 			backgroundColor: Colors.mainColor,
 			borderBottomColor: Colors.mainColor,
@@ -63,7 +63,7 @@ export default class Restaurants extends React.Component {
 		headerTitleStyle: {
 			fontWeight: '300',
 			color: '#ffffff',
-			fontFamily: 'myfont',
+			fontFamily: 'Droid Arabic Kufi',
 			fontSize: 16,
 			headerTintColor: Colors.smoothGray,
 		},
@@ -95,7 +95,7 @@ export default class Restaurants extends React.Component {
 		>
 
 			<Text style={{
-				fontFamily: 'myfont',
+				fontFamily: 'Droid Arabic Kufi',
 				textAlign: 'center',
 				color: 'white',
 				fontSize: 16,

@@ -84,7 +84,7 @@ export default class CodeVerification extends React.Component {
 						justifyContent: 'center'
 					}}
 				>
-					<Text style={{ fontFamily: 'myfont', color: '#E85151' }}>
+					<Text style={{ fontFamily: 'Droid Arabic Kufi', color: '#E85151' }}>
 						{this.state.errorMsg}
 					</Text>
 				</View>
@@ -102,7 +102,7 @@ export default class CodeVerification extends React.Component {
 						paddingHorizontal: 10,
 						marginTop: 40,
 						textAlign: 'center',
-						fontFamily: 'myfont',
+						fontFamily: 'Droid Arabic Kufi',
 						color: Colors.mainColor
 					}}
 				>
@@ -129,7 +129,7 @@ export default class CodeVerification extends React.Component {
 							fontSize: 33,
 							color: Colors.mainColor,
 							textAlign: 'center',
-							fontFamily: 'myfont',
+							fontFamily: 'Droid Arabic Kufi',
 							borderRadius: 4,
 							backgroundColor: 'transparent',
 							borderBottomColor: Colors.fadedMainColor,
@@ -154,7 +154,7 @@ export default class CodeVerification extends React.Component {
 						containerViewStyle={{ marginBottom: 35, borderRadius: 15 }}
 						borderRadius={15}
 						buttonStyle={{ padding: 10 }}
-						textStyle={{ fontFamily: 'myfont' }}
+						textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 						title="تأكيد"
 					/>
 				</View>

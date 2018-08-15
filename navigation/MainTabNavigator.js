@@ -1,7 +1,7 @@
 import React from 'react';
 import { Platform, View, Text, AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createBottomTabNavigator, TabBarBottom } from 'react-navigation';
+import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
 
 import Colors from '../constants/Colors';
 
@@ -137,7 +137,7 @@ export default createBottomTabNavigator(
 			}
 		}),
 		tabBarOptions: { showLabel: false },
-		tabBarComponent: TabBarBottom,
+		tabBarComponent: BottomTabBar,
 		animationEnabled: false,
 		swipeEnabled: true
 	}

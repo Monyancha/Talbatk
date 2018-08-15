@@ -1,6 +1,6 @@
 import React from 'react';
 import { ScrollView, StyleSheet,Text,FlatList,TouchableOpacity,View,SafeAreaView } from 'react-native';
-import { ExpoLinksView } from '@expo/samples';
+
 import Colors from '../constants/Colors';
 import MealBox from '../components/MealBox';
 import RestaurantBox from '../components/RestaurantBox';

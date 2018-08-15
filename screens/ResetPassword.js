@@ -58,7 +58,7 @@ export default class ResetPassword extends React.Component {
 		if (this.state.errorMsg != '') {
 			return (
 				<View style={{ paddingVertical: 3, flexDirection: 'row', justifyContent: 'center' }}>
-					<Text style={{ fontFamily: 'myfont', color: '#E85151' }}>{this.state.errorMsg}</Text>
+					<Text style={{ fontFamily: 'Droid Arabic Kufi', color: '#E85151' }}>{this.state.errorMsg}</Text>
 				</View>
 			);
 		}
@@ -70,7 +70,7 @@ export default class ResetPassword extends React.Component {
 			<View style={{ flex: 1, backgroundColor: 'white' }}>
 				{this.shouldRenderErrorMessage()}
 
-				<Text style={{ paddingHorizontal: 10, marginTop: 40, textAlign: 'center', fontFamily: 'myfont', color: Colors.mainColor }}>
+				<Text style={{ paddingHorizontal: 10, marginTop: 40, textAlign: 'center', fontFamily: 'Droid Arabic Kufi', color: Colors.mainColor }}>
 					اكتب كلمة مرور جديدة
                 </Text>
 
@@ -93,7 +93,7 @@ export default class ResetPassword extends React.Component {
 							fontSize: 33,
 							color: Colors.mainColor,
 							textAlign: 'center',
-							fontFamily: 'myfont',
+							fontFamily: 'Droid Arabic Kufi',
 							borderRadius: 4,
 							backgroundColor: 'transparent',
 							borderBottomColor: Colors.fadedMainColor,
@@ -114,7 +114,7 @@ export default class ResetPassword extends React.Component {
 						containerViewStyle={{ marginBottom: 35, borderRadius: 15 }}
 						borderRadius={15}
 						buttonStyle={{ padding: 10 }}
-						textStyle={{ fontFamily: 'myfont' }}
+						textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 						title="تغيير كلمة المرور" />
 				</View>
 			</View>

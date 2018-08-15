@@ -1,5 +1,9 @@
 import React from 'react';
 import {
+	ScrollView,
+	Text,
+	FlatList,
+	TouchableOpacity,
 	View,
 	AsyncStorage
 } from 'react-native';
@@ -8,6 +12,7 @@ import MealBox from '../components/MealBox';
 import { Button } from 'react-native-elements';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
+// import { NavigationActions } from 'react-navigation';
 
 export default class SingleOffer extends React.Component {
 	addcart = () => {
@@ -19,7 +24,7 @@ export default class SingleOffer extends React.Component {
 		});
 	};
 
-	static navigationOptions = () => ({
+	static navigationOptions = ({ navigation }) => ({
 		title: 'عرض',
 		headerTintColor: Colors.smoothGray,
 		fontFamily: 'Droid Arabic Kufi',
@@ -46,8 +51,8 @@ export default class SingleOffer extends React.Component {
 	componentDidMount() {
 		fetch(
 			Server.dest +
-			'/api/offer?offer_id=' +
-			this.props.navigation.state.params.offer_id
+				'/api/offer?offer_id=' +
+				this.props.navigation.state.params.offer_id
 		)
 			.then(res => res.json())
 			.then(res =>
@@ -57,6 +62,7 @@ export default class SingleOffer extends React.Component {
 			);
 	}
 	render() {
+		const { params } = this.props.navigation.state;
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 

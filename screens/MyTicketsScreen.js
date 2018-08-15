@@ -24,7 +24,7 @@ export default class Meals extends React.Component {
 			style={{ paddingLeft: 5 }}
 			onPress={() => { navigation.navigate('Main') }} />,
 		headerTintColor: Colors.smoothGray,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		headerStyle: {
 			backgroundColor: Colors.mainColor,
 			borderBottomColor: Colors.mainColor,
@@ -33,7 +33,7 @@ export default class Meals extends React.Component {
 		headerTitleStyle: {
 			fontWeight: '300',
 			color: '#ffffff',
-			fontFamily: 'myfont',
+			fontFamily: 'Droid Arabic Kufi',
 			fontSize: 16
 		}
 	});
@@ -113,7 +113,7 @@ export default class Meals extends React.Component {
 								>
 									<Text
 										style={{
-											fontFamily: 'myfont'
+											fontFamily: 'Droid Arabic Kufi'
 										}}
 									>
 										افتح تذكره جديده
@@ -161,7 +161,7 @@ export default class Meals extends React.Component {
 				<TouchableOpacity onPress={() => navigate('AddTicketScreen')}>
 					<Text
 						style={{
-							fontFamily: 'myfont'
+							fontFamily: 'Droid Arabic Kufi'
 						}}
 					>
 						افتح تذكره جديده

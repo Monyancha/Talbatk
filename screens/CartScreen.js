@@ -310,7 +310,7 @@ export default class Meals extends React.Component {
 
 						<View style={styles.modalContainer}>
 							<View style={styles.innerContainer}>
-								<Text style={{ fontFamily: 'myfont', fontSize: 25 }}>
+								<Text style={{ fontFamily: 'Droid Arabic Kufi', fontSize: 25 }}>
 									تأكيد عملية الشراء
 												</Text>
 								<View style={styles.buttons}>
@@ -433,7 +433,7 @@ export default class Meals extends React.Component {
 												>
 													<Text
 														style={{
-															fontFamily: 'myfont',
+															fontFamily: 'Droid Arabic Kufi',
 															textAlign: 'center',
 															color: Colors.secondaryColor
 														}}
@@ -453,7 +453,7 @@ export default class Meals extends React.Component {
 														justifyContent: 'flex-start',
 														alignSelf: 'flex-start',
 														textAlign: 'right',
-														fontFamily: 'myfont',
+														fontFamily: 'Droid Arabic Kufi',
 														padding: 9,
 														marginVertical: 20,
 														borderRadius: 4,
@@ -489,7 +489,7 @@ export default class Meals extends React.Component {
 											>
 												<Text
 													style={{
-														fontFamily: 'myfont'
+														fontFamily: 'Droid Arabic Kufi'
 													}}
 												>
 													تنفيذ الطلب
@@ -519,7 +519,7 @@ export default class Meals extends React.Component {
 											>
 												<Text
 													style={{
-														fontFamily: 'myfont'
+														fontFamily: 'Droid Arabic Kufi'
 													}}
 												>
 													الغاء الطلب
@@ -559,7 +559,7 @@ export default class Meals extends React.Component {
 			<Center>
 				<Text
 					style={{
-						fontFamily: 'myfont',
+						fontFamily: 'Droid Arabic Kufi',
 						fontSize: 16
 					}}
 				>
@@ -573,7 +573,7 @@ const styles = StyleSheet.create({
 	head: { height: 40, backgroundColor: Colors.mainColor },
 	text: {
 		textAlign: 'center',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		fontSize: 18,
 		color: Colors.secondaryColor
 	},
@@ -581,7 +581,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: Colors.mainColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 9,
 		marginVertical: 20,
 		borderRadius: 4,
@@ -601,7 +601,7 @@ const styles = StyleSheet.create({
 		width: '90%',
 	},
 	text2: {
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		fontSize: 13,
 		color: Colors.secondaryColor,
 		textAlign: 'center'
@@ -623,7 +623,7 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		backgroundColor: Colors.mainColor,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 20,
 
 		marginLeft: 5,

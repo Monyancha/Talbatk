@@ -19,7 +19,7 @@ export default class SingleTicketScreen extends React.Component {
 			style={{ paddingLeft: 5 }}
 			onPress={() => { navigation.navigate('MyTicketsScreen') }} />,
 		headerTintColor: Colors.smoothGray,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		headerStyle: {
 			backgroundColor: Colors.mainColor,
 			borderBottomColor: Colors.mainColor,
@@ -28,7 +28,7 @@ export default class SingleTicketScreen extends React.Component {
 		headerTitleStyle: {
 			fontWeight: '300',
 			color: '#ffffff',
-			fontFamily: 'myfont',
+			fontFamily: 'Droid Arabic Kufi',
 			fontSize: 16
 		},
 

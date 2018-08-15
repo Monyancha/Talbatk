@@ -2,6 +2,7 @@ package com.talbatk.garashsoftwarehouse;
 
 import android.os.Bundle;
 import com.facebook.react.ReactActivity;
+import com.oblador.vectoricons.VectorIconsPackage;
 import org.devio.rn.splashscreen.SplashScreen;
 
 public class MainActivity extends ReactActivity {

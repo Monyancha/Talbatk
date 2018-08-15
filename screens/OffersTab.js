@@ -30,7 +30,7 @@ var styles = StyleSheet.create({
 	input: {
 		justifyContent: 'center',
 		height: 22,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		marginTop: 5,
 		backgroundColor: '#fff',
 		fontSize: 13,

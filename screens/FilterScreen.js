@@ -18,7 +18,7 @@ export default class FilterScreen extends React.Component {
 	static navigationOptions = () => ({
 		title: 'التصنيف',
 		headerTintColor: Colors.smoothGray,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		headerStyle: {
 			backgroundColor: Colors.mainColor,
 			borderBottomColor: Colors.mainColor,
@@ -27,7 +27,7 @@ export default class FilterScreen extends React.Component {
 		headerTitleStyle: {
 			fontWeight: '300',
 			color: '#ffffff',
-			fontFamily: 'myfont',
+			fontFamily: 'Droid Arabic Kufi',
 			fontSize: 16
 		}
 	});
@@ -210,7 +210,7 @@ export default class FilterScreen extends React.Component {
 								containerViewStyle={{ borderRadius: 15 }}
 								borderRadius={15}
 								buttonStyle={{ padding: 10 }}
-								textStyle={{ fontFamily: 'myfont' }}
+								textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 								title="حفظ التغيرات"
 							/>
 						</View>
@@ -226,7 +226,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: Colors.mainColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 9,
 		borderRadius: 4,
 		backgroundColor: 'transparent',

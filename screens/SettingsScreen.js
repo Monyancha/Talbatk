@@ -1,14 +1,18 @@
 import React from 'react';
 import {
 	View,
+	TextInput,
 	StyleSheet,
 	AsyncStorage,
 	Platform,
 	Text,
 	TouchableOpacity
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Colors from '../constants/Colors';
+import { NavigationActions } from 'react-navigation';
 import Server from '../constants/server';
 
 export default class SettingsScreen extends React.Component {
