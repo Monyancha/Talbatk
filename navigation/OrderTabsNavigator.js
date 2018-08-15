@@ -25,7 +25,7 @@ export default createBottomTabNavigator(
 			labelStyle: {
 				fontWeight: '500',
 				color: 'white',
-				fontFamily: 'myfont',
+				fontFamily: 'Droid Arabic Kufi',
 				fontSize: 15,
 				alignItems:'center',
 				justifyContent:'center',

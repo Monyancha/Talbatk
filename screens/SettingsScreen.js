@@ -241,7 +241,7 @@ const styles = StyleSheet.create({
 		flex: 0.5,
 		color: Colors.secondaryColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 10,
 		borderRadius: 4,
 		backgroundColor: 'transparent',
@@ -256,7 +256,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: Colors.secondaryColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 10,
 		borderRadius: 4,
 		backgroundColor: 'transparent'

@@ -234,7 +234,7 @@ export default class Signin extends React.Component {
 						justifyContent: 'center'
 					}}
 				>
-					<Text style={{ fontFamily: 'myfont', color: '#E85151' }}>
+					<Text style={{ fontFamily: 'Droid Arabic Kufi', color: '#E85151' }}>
 						{this.state.errorMsg}
 					</Text>
 				</View>
@@ -468,7 +468,7 @@ export default class Signin extends React.Component {
 									width: '100%',
 									borderRadius: 15
 								}}
-								textStyle={{ fontFamily: 'myfont' }}
+								textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 								title="تسجيل دخول التاجر"
 							/>
 						</View>
@@ -495,7 +495,7 @@ export default class Signin extends React.Component {
 									marginHorizontal: 7,
 									borderRadius: 15
 								}}
-								textStyle={{ fontFamily: 'myfont' }}
+								textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 								title="تسجيل خروج من المتجر"
 							/>
 						</View>
@@ -602,7 +602,7 @@ export default class Signin extends React.Component {
 const styles = StyleSheet.create({
 	table: { flex: 1, marginTop: 20 },
 	head: { height: 70, backgroundColor: Colors.mainColor },
-	headText: { fontFamily: 'myfont', textAlign: 'center', color: 'white' },
+	headText: { fontFamily: 'Droid Arabic Kufi', textAlign: 'center', color: 'white' },
 	text: {
 		paddingVertical: 10,
 		textAlign: 'center',
@@ -613,7 +613,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: Colors.mainColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 9,
 		borderRadius: 4,
 		backgroundColor: 'transparent',
@@ -652,7 +652,7 @@ const styles = StyleSheet.create({
 	},
 
 	text2: {
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		fontSize: 13,
 		color: Colors.secondaryColor,
 		textAlign: 'center'

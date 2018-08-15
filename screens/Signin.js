@@ -91,7 +91,7 @@ export default class Signin extends React.Component {
 		if (this.state.errorMsg != '') {
 			return (
 				<View style={{ paddingVertical: 3, flexDirection: 'row', justifyContent: 'center' }}>
-					<Text style={{ fontFamily: 'myfont', color: '#E85151' }}>{this.state.errorMsg}</Text>
+					<Text style={{ fontFamily: 'Droid Arabic Kufi', color: '#E85151' }}>{this.state.errorMsg}</Text>
 				</View>
 			);
 		}
@@ -144,11 +144,7 @@ export default class Signin extends React.Component {
 									onChangeText={(text) => this.setState({ identifier: text })}
 									onSubmitEditing={(event) => this.loginUser()} />
 
-								<Ionicons
-									name={Platform.OS === 'ios' ? 'ios-contact' : 'md-contact'}
-									size={26}
-									color={Colors.fadedMainColor}
-									style={styles.inputIcon} />
+
 							</View>
 
 							<View style={styles.singleInputContainer}>
@@ -164,11 +160,7 @@ export default class Signin extends React.Component {
 									onChangeText={(text) => this.setState({ password: text })}
 									onSubmitEditing={(event) => this.loginUser()} />
 
-								<Ionicons
-									name={Platform.OS === 'ios' ? 'ios-lock' : 'md-lock'}
-									size={26}
-									color={Colors.fadedMainColor}
-									style={styles.inputIcon} />
+									
 							</View>
 						</View>
 					</KeyboardAvoidingView>
@@ -183,7 +175,7 @@ export default class Signin extends React.Component {
 									containerViewStyle={{ borderRadius: 15 }}
 									borderRadius={15}
 									buttonStyle={{ padding: 10 }}
-									textStyle={{ fontFamily: 'myfont' }}
+									textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 									title="انشاء حساب جديد" />
 							</View>
 
@@ -197,7 +189,7 @@ export default class Signin extends React.Component {
 									containerViewStyle={{ borderRadius: 15 }}
 									borderRadius={15}
 									buttonStyle={{ padding: 10 }}
-									textStyle={{ fontFamily: 'myfont' }}
+									textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 									title="تسجيل دخول" />
 							</View>
 						</View>
@@ -239,7 +231,7 @@ export default class Signin extends React.Component {
 									{ cancelable: true }
 								);
 							}}>
-							<Text style={{ fontFamily: 'myfont', color: Colors.mainColor, marginTop: 10 }}>نسيت كلمة المرور؟</Text>
+							<Text style={{ fontFamily: 'Droid Arabic Kufi', color: Colors.mainColor, marginTop: 10 }}>نسيت كلمة المرور؟</Text>
 						</TouchableOpacity>
 					</View>
 
@@ -261,7 +253,7 @@ export default class Signin extends React.Component {
 									marginLeft: 0,
 									width: '100%', borderRadius: 15
 								}}
-								textStyle={{ fontFamily: 'myfont' }}
+								textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 								title="استكمل كـزائر" />
 						</View>
 					</View>
@@ -276,7 +268,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: Colors.mainColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 9,
 		borderRadius: 4,
 		backgroundColor: 'transparent',

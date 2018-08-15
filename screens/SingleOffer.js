@@ -22,7 +22,7 @@ export default class SingleOffer extends React.Component {
 	static navigationOptions = () => ({
 		title: 'عرض',
 		headerTintColor: Colors.smoothGray,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		headerStyle: {
 			backgroundColor: Colors.mainColor,
 			borderBottomColor: Colors.mainColor,
@@ -31,7 +31,7 @@ export default class SingleOffer extends React.Component {
 		headerTitleStyle: {
 			fontWeight: '300',
 			color: '#ffffff',
-			fontFamily: 'myfont',
+			fontFamily: 'Droid Arabic Kufi',
 			fontSize: 16
 		}
 	});
@@ -82,7 +82,7 @@ export default class SingleOffer extends React.Component {
 					containerViewStyle={{ borderRadius: 15 }}
 					borderRadius={15}
 					buttonStyle={{ padding: 10 }}
-					textStyle={{ fontFamily: 'myfont' }}
+					textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 					title="اضف الى السله"
 				/>
 			</View>

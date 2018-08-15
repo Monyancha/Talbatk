@@ -123,7 +123,7 @@ export default class OrdersScreen extends React.Component {
 		else {
 			return (
 				<Center><Text style={{
-					fontFamily: 'myfont',
+					fontFamily: 'Droid Arabic Kufi',
 					fontSize: 16
 				}}>ليس لديك طلبات حاليا</Text></Center>
 			);

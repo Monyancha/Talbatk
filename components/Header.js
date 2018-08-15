@@ -154,7 +154,7 @@ export default class Header extends React.Component {
 
 							<Text
 								style={{
-									fontFamily: 'myfont',
+									fontFamily: 'Droid Arabic Kufi',
 									fontSize: 18,
 									fontWeight: 'bold',
 									textAlign: 'right',
@@ -212,7 +212,7 @@ var styles = StyleSheet.create({
 	input: {
 		justifyContent: 'center',
 		height: 22,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		marginTop: 10,
 		backgroundColor: 'transparent',
 		fontSize: 15,

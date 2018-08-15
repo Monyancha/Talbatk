@@ -31,7 +31,7 @@ export default class RestaurantBox extends Component {
 								<Text
 									style={{
 										marginLeft: 4,
-										fontFamily: 'myfont',
+										fontFamily: 'Droid Arabic Kufi',
 										fontSize: 12,
 										color: 'red'
 									}}>
@@ -49,7 +49,7 @@ export default class RestaurantBox extends Component {
 									<Text
 										style={{
 											marginLeft: 4,
-											fontFamily: 'myfont',
+											fontFamily: 'Droid Arabic Kufi',
 											fontSize: 10,
 											color: 'green'
 										}}>
@@ -57,12 +57,12 @@ export default class RestaurantBox extends Component {
 						</Text>
 								</View>
 							)}
-						<Text style={{ fontFamily: 'myfont', fontSize: 15, textAlign: 'right', justifyContent: 'flex-end' }}>{this.props.name}</Text>
+						<Text style={{ fontFamily: 'Droid Arabic Kufi', fontSize: 15, textAlign: 'right', justifyContent: 'flex-end' }}>{this.props.name}</Text>
 
 
 					</View>
 					<View style={{ flex: 1 }}>
-						<Text style={{ fontFamily: 'myfont', color: '#777777', fontSize: 12, textAlign: 'right' }}>{this.props.desc}</Text>
+						<Text style={{ fontFamily: 'Droid Arabic Kufi', color: '#777777', fontSize: 12, textAlign: 'right' }}>{this.props.desc}</Text>
 					</View>
 
 					<View
@@ -88,7 +88,7 @@ export default class RestaurantBox extends Component {
 							<Text
 								style={{
 									marginLeft: 4,
-									fontFamily: 'myfont',
+									fontFamily: 'Droid Arabic Kufi',
 									fontSize: 10,
 									color: Colors.secondaryColor
 								}}>
@@ -111,7 +111,7 @@ export default class RestaurantBox extends Component {
 							<Text
 								style={{
 									marginLeft: 4,
-									fontFamily: 'myfont',
+									fontFamily: 'Droid Arabic Kufi',
 									fontSize: 10,
 									color: Colors.secondaryColor
 								}}>
@@ -134,7 +134,7 @@ export default class RestaurantBox extends Component {
 							<Text
 								style={{
 									marginLeft: 4,
-									fontFamily: 'myfont',
+									fontFamily: 'Droid Arabic Kufi',
 									fontSize: 10,
 									color: Colors.secondaryColor
 								}}>
@@ -160,7 +160,7 @@ export default class RestaurantBox extends Component {
 							<Text
 								style={{
 									marginLeft: 4,
-									fontFamily: 'myfont',
+									fontFamily: 'Droid Arabic Kufi',
 									fontSize: 10,
 									color: Colors.secondaryColor
 								}}>

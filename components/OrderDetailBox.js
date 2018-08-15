@@ -9,11 +9,11 @@ export default class OrderDetailBox extends Component {
 			<View style={{ flex: 1, flexDirection: 'row', justifyContent: 'flex-end', alignItems: 'center' }}>
 				<View style={{ flex: 1, paddingTop: 9, paddingRight: 10, flexDirection: 'column', justifyContent: 'flex-start', alignItems: 'flex-end' }}>
 					<View style={{ flex: 1, flexDirection: 'row' }}>
-						<Text style={{ fontFamily: 'myfont', fontSize: 15, textAlign: 'right', justifyContent: 'flex-end' }}>{this.props.name}</Text>
+						<Text style={{ fontFamily: 'Droid Arabic Kufi', fontSize: 15, textAlign: 'right', justifyContent: 'flex-end' }}>{this.props.name}</Text>
 					</View>
 
 					<View style={{ flex: 1 }}>
-						<Text style={{ fontFamily: 'myfont', color: '#777777', fontSize: 12, textAlign: 'right' }}>{this.props.desc}</Text>
+						<Text style={{ fontFamily: 'Droid Arabic Kufi', color: '#777777', fontSize: 12, textAlign: 'right' }}>{this.props.desc}</Text>
 					</View>
 
 					<View
@@ -38,7 +38,7 @@ export default class OrderDetailBox extends Component {
 							<Text
 								style={{
 									marginLeft: 4,
-									fontFamily: 'myfont',
+									fontFamily: 'Droid Arabic Kufi',
 									fontSize: 10,
 									color: Colors.secondaryColor
 								}}>
@@ -61,7 +61,7 @@ export default class OrderDetailBox extends Component {
 							<Text
 								style={{
 									marginLeft: 4,
-									fontFamily: 'myfont',
+									fontFamily: 'Droid Arabic Kufi',
 									fontSize: 10,
 									color: Colors.secondaryColor
 								}}>

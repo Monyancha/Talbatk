@@ -64,7 +64,7 @@ export default class SingleMeal extends React.Component {
 	static navigationOptions = () => ({
 		title: 'المنتج',
 		headerTintColor: Colors.smoothGray,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		headerStyle: {
 			backgroundColor: Colors.mainColor,
 			borderBottomColor: Colors.mainColor,
@@ -73,7 +73,7 @@ export default class SingleMeal extends React.Component {
 		headerTitleStyle: {
 			fontWeight: '300',
 			color: '#ffffff',
-			fontFamily: 'myfont',
+			fontFamily: 'Droid Arabic Kufi',
 			fontSize: 16
 		}
 	});
@@ -131,7 +131,7 @@ export default class SingleMeal extends React.Component {
 				>
 					<View style={styles.modalContainer}>
 						<View style={styles.innerContainer}>
-							<Text style={{ fontFamily: 'myfont', fontSize: 25 }}>
+							<Text style={{ fontFamily: 'Droid Arabic Kufi', fontSize: 25 }}>
 								تم إضافة المنتج للسلة
 						</Text>
 							<View style={styles.buttons}>
@@ -142,7 +142,7 @@ export default class SingleMeal extends React.Component {
 									containerViewStyle={{ borderRadius: 15 }}
 									borderRadius={15}
 									buttonStyle={{ padding: 15 }}
-									textStyle={{ fontFamily: 'myfont' }}
+									textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 									title="اكمل التسوق" />
 								<Button onPress={() => this.cart()}
 									color='white'
@@ -150,7 +150,7 @@ export default class SingleMeal extends React.Component {
 									containerViewStyle={{ borderRadius: 15 }}
 									borderRadius={15}
 									buttonStyle={{ padding: 15 }}
-									textStyle={{ fontFamily: 'myfont' }}
+									textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 									title="الذهاب للسلة" />
 
 							</View>
@@ -258,7 +258,7 @@ export default class SingleMeal extends React.Component {
 								containerViewStyle={{ borderRadius: 15 }}
 								borderRadius={15}
 								buttonStyle={{ padding: 10 }}
-								textStyle={{ fontFamily: 'myfont', fontSize: 15 }}
+								textStyle={{ fontFamily: 'Droid Arabic Kufi', fontSize: 15 }}
 								title={"اضف الى السله " + Math.round((this.state.num * this.state.Meal[0].price) * 100) / 100 + " ريال سعودي"}
 							/>
 						</View>
@@ -287,12 +287,12 @@ const styles = StyleSheet.create({
 	head: { height: 40, backgroundColor: Colors.mainColor },
 	text: {
 		textAlign: 'center',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		fontSize: 18,
 		color: 'white'
 	},
 	text2: {
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		fontSize: 13,
 		color: Colors.mainColor,
 		textAlign: 'center'
@@ -313,7 +313,7 @@ const styles = StyleSheet.create({
 	},
 	button: {
 		backgroundColor: Colors.mainColor,
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 20,
 		fontSize: 15,
 		color: 'white',

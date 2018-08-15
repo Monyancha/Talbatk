@@ -127,7 +127,7 @@ export default class Signup extends React.Component {
 		if (this.state.errorMsg != '') {
 			return (
 				<View style={{ paddingVertical: 3, flexDirection: 'row', justifyContent: 'center' }}>
-					<Text style={{ fontFamily: 'myfont', color: 'red' }}>{this.state.errorMsg}</Text>
+					<Text style={{ fontFamily: 'Droid Arabic Kufi', color: 'red' }}>{this.state.errorMsg}</Text>
 				</View>
 			);
 		}
@@ -298,13 +298,13 @@ export default class Signup extends React.Component {
 								containerViewStyle={{ borderRadius: 15 }}
 								borderRadius={15}
 								buttonStyle={{ padding: 10 }}
-								textStyle={{ fontFamily: 'myfont' }}
+								textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 								title="انشاء الحساب" />
 						</View>
 
 						<TouchableOpacity style={{ flex: 0.8, marginTop: 1, width: '80%' }}
 							onPress={() => Linking.openURL('http://138.197.98.186:3000/terms-and-policy')}>
-							<Text style={{ fontSize: 13, textAlign: 'center', fontFamily: 'myfont', color: Colors.mainColor }}>
+							<Text style={{ fontSize: 13, textAlign: 'center', fontFamily: 'Droid Arabic Kufi', color: Colors.mainColor }}>
 								اوافق على الشروط و الاحكام و سياسة التطبيق
                             </Text>
 						</TouchableOpacity>
@@ -320,7 +320,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: Colors.mainColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 9,
 		borderRadius: 4,
 		backgroundColor: 'transparent',

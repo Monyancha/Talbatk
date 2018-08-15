@@ -175,7 +175,7 @@ export default class SingleOrderScreen extends React.Component {
 					containerViewStyle={{ borderRadius: 15, margin: 20 }}
 					borderRadius={15}
 					buttonStyle={{ paddingHorizontal: 30 }}
-					textStyle={{ fontFamily: 'myfont' }}
+					textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
 					title="إغلاق الطلب"
 				/>
 			</Center>

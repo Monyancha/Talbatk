@@ -20,7 +20,7 @@ export default class MealBox extends Component {
 				/>
 				<Text
 					style={{
-						fontFamily: 'myfont',
+						fontFamily: 'Droid Arabic Kufi',
 						marginRight: 10,
 						fontSize: 17,
 						padding: 5,
@@ -32,7 +32,7 @@ export default class MealBox extends Component {
 				</Text>
 				<Text
 					style={{
-						fontFamily: 'myfont',
+						fontFamily: 'Droid Arabic Kufi',
 						marginRight: 15,
 						fontSize: 12,
 						padding: 0,
@@ -51,7 +51,7 @@ export default class MealBox extends Component {
 					<Text
 						style={{
 							marginLeft: 4,
-							fontFamily: 'myfont',
+							fontFamily: 'Droid Arabic Kufi',
 							fontSize: 12,
 							color: Colors.secondaryColor
 						}}

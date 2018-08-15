@@ -244,7 +244,7 @@ export default class OrdersScreen extends React.Component {
 		else {
 			return (
 				<Center><Text style={{
-					fontFamily: 'myfont',
+					fontFamily: 'Droid Arabic Kufi',
 					fontSize: 16
 				}}>ليس لديك طلبات حاليا</Text></Center>
 			);
@@ -254,7 +254,7 @@ export default class OrdersScreen extends React.Component {
 const styles = StyleSheet.create({
 	table: { flex: 1, marginTop: 20 },
 	head: { height: 70, backgroundColor: Colors.mainColor },
-	headText: { fontFamily: 'myfont', textAlign: 'center', color: 'white' },
+	headText: { fontFamily: 'Droid Arabic Kufi', textAlign: 'center', color: 'white' },
 	text: {
 		paddingVertical: 10,
 		textAlign: 'center',
@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
 		flex: 1,
 		color: Colors.mainColor,
 		textAlign: 'right',
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		padding: 9,
 		borderRadius: 4,
 		backgroundColor: 'transparent',
@@ -304,7 +304,7 @@ const styles = StyleSheet.create({
 	},
 
 	text2: {
-		fontFamily: 'myfont',
+		fontFamily: 'Droid Arabic Kufi',
 		fontSize: 13,
 		color: Colors.secondaryColor,
 		textAlign: 'center'
