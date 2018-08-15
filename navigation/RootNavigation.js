@@ -25,7 +25,7 @@ export default RootStackNavigator = createStackNavigator(
 	//	AboutUs: { screen: AboutUs },
 		LocationSetting: { screen: LocationSetting },
 		Main: { screen: IntroScreen },
-		  Signin: { screen: Signin },
+		 Signin: { screen: Signin },
 		Signup: { screen: Signup },
 		CodeVerification: { screen: CodeVerification },
 		Home: { screen: MainTabNavigator },
