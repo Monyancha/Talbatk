@@ -1,16 +1,16 @@
 import { createStackNavigator } from 'react-navigation';
 
- import MainTabNavigator from './MainTabNavigator';
- import LocationSetting from '../screens/LocationSetting';
- import Signin from '../screens/Signin';
- import Signup from '../screens/Signup';
- import Restaurant from '../screens/Restaurant';
- import CodeVerification from '../screens/CodeVerification';
- import ResetPassword from '../screens/ResetPassword';
+import MainTabNavigator from './MainTabNavigator';
+import LocationSetting from '../screens/LocationSetting';
+import Signin from '../screens/Signin';
+import Signup from '../screens/Signup';
+import Restaurant from '../screens/Restaurant';
+import CodeVerification from '../screens/CodeVerification';
+import ResetPassword from '../screens/ResetPassword';
 import MealsScreen from '../screens/MealsScreen';
- import SingleMeal from '../screens/SingleMeal';
- import SingleOffer from '../screens/SingleOffer';
- import MyTicketsScreen from '../screens/MyTicketsScreen';
+import SingleMeal from '../screens/SingleMeal';
+import SingleOffer from '../screens/SingleOffer';
+import MyTicketsScreen from '../screens/MyTicketsScreen';
 import SingleTicketScreen from '../screens/SingleTicketScreen';
 //import SingleOrderScreen from '../screens/SingleOrderScreen';
 import FilterScreen from '../screens/FilterScreen';
@@ -25,13 +25,13 @@ export default RootStackNavigator = createStackNavigator(
 	{
 		LocationSetting: { screen: LocationSetting },
 		Signin: { screen: Signin },
-		 Signup: { screen: Signup },
-		 CodeVerification: { screen: CodeVerification },
+		Signup: { screen: Signup },
+		CodeVerification: { screen: CodeVerification },
 		ResetPassword: { screen: ResetPassword },
-		 Home: { screen: MainTabNavigator },
+		Home: { screen: MainTabNavigator },
 		Restaurant: { screen: Restaurant },
-		 MealsScreen: { screen: MealsScreen },
-		 SingleMeal: { screen: SingleMeal },
+		MealsScreen: { screen: MealsScreen },
+		SingleMeal: { screen: SingleMeal },
 		SingleOffer: { screen: SingleOffer },
 		//SingleOrderScreen: { screen: SingleOrderScreen },
 		SingleTicketScreen: { screen: SingleTicketScreen },
@@ -41,7 +41,7 @@ export default RootStackNavigator = createStackNavigator(
 		AboutUs: { screen: AboutUs },
 		SpecialOrderScreen: { screen: SpecialOrderScreen },
 		CategoriesScreen: { screen: CategoriesScreen },
-		Main:{screen : IntroScreen},
+		Main: { screen: IntroScreen },
 
 
 

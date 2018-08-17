@@ -9,7 +9,6 @@ import Server from '../constants/server';
 import LinearGradient from 'react-native-linear-gradient';
 
 export default class Intro extends React.Component {
-
 	static navigationOptions = () => ({
 		title: 'الرئيسيه',
 		header: null,
@@ -27,40 +26,41 @@ export default class Intro extends React.Component {
 			fontSize: 16
 		},
 	});
+
 	constructor(props) {
 		super(props);
+
 		this.state = {
 			doneFetches: 1,
 
 			tabs: [{
-				key: 5,
+				key: '1',
 				screenName: 'المحلات التجارية',
 				to: 'Home',
 				id: 1
 			},
 			{
-				key: 6,
+				key: '2',
 				screenName: 'مندوب طلباتك',
 				to: 'SpecialOrderScreen',
 				id: 1
 			}, {
-				key: 5,
+				key: '3',
 				screenName: 'خدمات طلباتك',
 				to: 'Home',
 				id: 2
 			},
 			{
-				key: 6,
+				key: '4',
 				screenName: 'المتاجر الشخصية',
 				to: 'Home',
 				id: 3
 			}, {
-				key: 5,
+				key: '5',
 				screenName: 'الأسر المنتجة',
 				to: 'Home',
 				id: 4
-			},
-			],
+			}],
 			SpecialOrderStatus: 0,
 			image: 'https://pbs.twimg.com/media/DkXAIiKWsAAMRVJ.jpg:large'
 		}
