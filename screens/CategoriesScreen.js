@@ -29,62 +29,6 @@ export default class Meals extends React.Component {
 		super(props);
 		this.state = {
 			doneFetches: 0,
-			Restaurant: [
-				{
-					key: 1,
-					name: 'مطعم كنتاكي للدجاج',
-					image:
-						'https://d30v2pzvrfyzpo.cloudfront.net/images/chains/kfc-opengraph-1.jpg',
-					time: '30',
-					desc: 'تمتع بوجبه خفيفه',
-					stars: '5',
-					deliver_price: '40'
-				}
-			],
-			Meals: [
-				{
-					key: 1,
-					name: 'دجاج مشويه على الفحم',
-					desc: '3 قطع من الدجاج + رز',
-					price: 50,
-					image: 'https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb'
-				},
-				{
-					key: 2,
-					name: 'دجاج مشويه على الفحم',
-					desc: '3 قطع من الدجاج + رز',
-					price: 50,
-					image: 'https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb'
-				},
-				{
-					key: 3,
-					name: 'دجاج مشويه على الفحم',
-					desc: '3 قطع من الدجاج + رز',
-					price: 50,
-					image: 'https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb'
-				},
-				{
-					key: 4,
-					name: 'دجاج مشويه على الفحم',
-					desc: '3 قطع من الدجاج + رز',
-					price: 50,
-					image: 'https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb'
-				},
-				{
-					key: 5,
-					name: 'دجاج مشويه على الفحم',
-					desc: '3 قطع من الدجاج + رز',
-					price: 50,
-					image: 'https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb'
-				},
-				{
-					key: 6,
-					name: 'دجاج مشويه على الفحم',
-					desc: '3 قطع من الدجاج + رز',
-					price: 50,
-					image: 'https://images.pexels.com/photos/46239/salmon-dish-food-meal-46239.jpeg?w=940&h=650&auto=compress&cs=tinysrgb'
-				},
-			],
 			tabs: [{
 				key: 5,
 				screenName: 'تحميل ...'
