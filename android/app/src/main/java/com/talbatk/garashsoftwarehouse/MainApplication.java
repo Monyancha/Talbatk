@@ -9,6 +9,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.BV.LinearGradient.LinearGradientPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
 
@@ -25,12 +26,13 @@ public class MainApplication extends Application implements ReactApplication {
 
     @Override
     protected List<ReactPackage> getPackages() {
-      return Arrays.<ReactPackage>asList(
-          new MainReactPackage(),
-		  new SplashScreenReactPackage(),
-		  new VectorIconsPackage(),
-		  new MapsPackage()
-      );
+		return Arrays.<ReactPackage>asList(
+			new MainReactPackage(),
+			new SplashScreenReactPackage(),
+			new VectorIconsPackage(),
+			new LinearGradientPackage(),
+			new MapsPackage()
+		);
     }
 
     @Override
