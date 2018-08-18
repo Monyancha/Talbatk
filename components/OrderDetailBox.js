@@ -1,11 +1,8 @@
 import React, { Component } from 'react';
-import { ActivityIndicator, View, Text, Image } from 'react-native';
+import { View, Text, Image } from 'react-native';
 import Colors from '../constants/Colors';
-import Ionicons from 'react-native-vector-icons'
 import MaterialCommunityIcons from 'react-native-vector-icons'
-import SimpleLineIcons from 'react-native-vector-icons'
 
-const AVERAGE_STARS_COUNT = 2; // between 5 and 0, recommended: 2 or 2.5
 
 export default class OrderDetailBox extends Component {
 

@@ -1,13 +1,6 @@
 import React, { Component } from 'react';
-import { Dimensions, KeyboardAvoidingView, AsyncStorage,
-        StyleSheet, TextInput, View, Text, Image,
-        Platform, TouchableOpacity, Linking } from "react-native";
+import { StyleSheet, Text } from "react-native";
 
-        import Ionicons from 'react-native-vector-icons/Ionicons'
-        import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-        import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
-import { NavigationActions } from 'react-navigation';
-import Colors from '../constants/Colors';
 import  LinearGradient  from 'react-native-linear-gradient';
 
 

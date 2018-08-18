@@ -1,4 +1,4 @@
-import React, { Component, PropTypes }  from 'react';
+import React from 'react';
 import MapView from 'react-native-maps';
 import {
 	KeyboardAvoidingView,
@@ -281,7 +281,7 @@ export default class LocationSetting extends React.Component {
 							submitKeyText="اختيار"
 							value={this.state.country}
 							options={this.state.pickerData}
-							labelStyle={{ color: Colors.secondaryColor,textAlign:'center' }}
+							labelStyle={{ color: Colors.secondaryColor, textAlign: 'center' }}
 							onSubmitEditing={itemValue =>
 								this.setState({ region: itemValue })
 							}

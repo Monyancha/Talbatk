@@ -20,9 +20,6 @@ import {
 import { Button } from 'react-native-elements';
 import { Table, Row, Rows } from 'react-native-table-component';
 import Ionicons from 'react-native-vector-icons'
-import MaterialCommunityIcons from 'react-native-vector-icons'
-import SimpleLineIcons from 'react-native-vector-icons'
-import { NavigationActions } from 'react-navigation';
 import Colors from '../../constants/Colors';
 import LoadingIndicator from '../../components/LoadingIndicator';
 import OrderDetailBox from '../../components/OrderDetailBox';
