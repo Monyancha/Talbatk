@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, SafeAreaView, FlatList, TouchableOpacity, AsyncStorage, DeviceEventEmitter } from 'react-native';
+import { Text, View, SafeAreaView, FlatList, TouchableOpacity, AsyncStorage } from 'react-native';
 import OrderBox from '../../components/OrderBox';
 import Colors from '../../constants/Colors';
 import LoadingIndicator from '../../components/LoadingIndicator';
@@ -8,7 +8,7 @@ import Server from '../../constants/server';
 const Center = ({ children }) => (
 	<View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#ffffff' }}>{children}</View>
 );
-export default class OrdersScreen extends React.Component {
+export default class OrdersHistory extends React.Component {
 	return_image = (status) => {
 		if (status == 0) {
 			return 'https://images.pexels.com/photos/41280/agent-business-call-center-41280.jpeg?w=940&h=650&auto=compress&cs=tinysrgb'
@@ -19,7 +19,7 @@ export default class OrdersScreen extends React.Component {
 	}
 
 	componentDidMount() {
-		this.fetch_data();
+		//this.fetch_data();
 	}
 
 	fetch_data() {
@@ -49,32 +49,22 @@ export default class OrdersScreen extends React.Component {
 			]
 		}
 	}
-	static navigationOptions = ({ navigation }) => {
-		return {
-			header: null,
-			tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
-				// Inject event
-				DeviceEventEmitter.emit('ReloadPastOrders', { empty: 0 });
 
-				// Keep original behaviour
-				jumpToIndex(scene.index);
+	componentWillMount() {
+		this.didFocusSubscription = this.props.navigation.addListener(
+			'didFocus',
+			() => {
+				this.setState({ doneFetches: 0 });
+				this.fetch_data();
 			}
-		};
-	};
-
-	listeners = {
-		update: DeviceEventEmitter.addListener('ReloadPastOrders', ({ empty }) => {
-			this.setState({ doneFetches: 0 });
-			this.fetch_data();
-		})
-	};
-	componentWillUnmount() {
-		// cleaning up listeners
-		// I am using lodash
-		_.each(this.listeners, listener => {
-			listener.remove();
-		});
+		);
 	}
+
+	componentWillUnmount() {
+		// Remove the listener when you are done
+		this.didFocusSubscription.remove();
+	}
+
 	getStatusAsStr = (status) => {
 		switch (status) {
 			case 0:
@@ -87,7 +77,6 @@ export default class OrdersScreen extends React.Component {
 	};
 
 	render() {
-		const { navigate } = this.props.navigation;
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 

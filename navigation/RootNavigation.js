@@ -42,9 +42,6 @@ export default RootStackNavigator = createStackNavigator(
 		SpecialOrderScreen: { screen: SpecialOrderScreen },
 		CategoriesScreen: { screen: CategoriesScreen },
 		Main: { screen: IntroScreen },
-
-
-
 	},
 	{
 		navigationOptions: () => ({

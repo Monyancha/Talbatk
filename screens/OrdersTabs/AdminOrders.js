@@ -10,7 +10,6 @@ import {
 	Text,
 	Image,
 	Platform,
-	DeviceEventEmitter,
 	ScrollView,
 	TouchableOpacity,
 	Share,
@@ -32,7 +31,7 @@ const selectLabels = [
 	'تم التوصيل'
 ]
 
-export default class Signin extends React.Component {
+export default class AdminOrders extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -68,47 +67,35 @@ export default class Signin extends React.Component {
 		};
 	}
 
-	static navigationOptions = ({ navigation }) => {
-		return {
-			header: null,
-			tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
-				// Inject event
-				DeviceEventEmitter.emit('ReloadStoreOrders', { empty: 0 });
+	componentWillMount() {
+		this.didFocusSubscription = this.props.navigation.addListener(
+			'didFocus',
+			() => {
+				AsyncStorage.getItem('owner_login').then(logged => {
+					if (logged === null) return;
 
-				// Keep original behaviour
-				jumpToIndex(scene.index);
+					if (logged == '1') {
+						AsyncStorage.getItem('storeid').then(val => {
+							if (val === null) return;
+
+							this.setState({ storeOrdersFetched: false });
+							this.fetchStoreOrders(parseInt(val));
+						});
+					}
+				});
 			}
-		};
-	};
-
-	componentDidMount () {
-		AsyncStorage.getItem('storeid', (err, storeid) => {
-			if(storeid) this.fetchStoreOrders(parseInt(storeid));
-		})
+		);
 	}
 
-	listeners = {
-		update: DeviceEventEmitter.addListener('ReloadStoreOrders', ({ empty }) => {
-			AsyncStorage.getItem('owner_login').then(logged => {
-				if (logged === null) return;
+	componentDidMount () {
+		/*AsyncStorage.getItem('storeid', (err, storeid) => {
+			if(storeid) this.fetchStoreOrders(parseInt(storeid));
+		})*/
+	}
 
-				if (logged == '1') {
-					AsyncStorage.getItem('storeid').then(val => {
-						if (val === null) return;
-
-						this.setState({ storeOrdersFetched: false });
-						this.fetchStoreOrders(parseInt(val));
-					});
-				}
-			});
-		})
-	};
 	componentWillUnmount() {
-		// cleaning up listeners
-		// I am using lodash
-		_.each(this.listeners, listener => {
-			listener.remove();
-		});
+		// Remove the listener when you are done
+		this.didFocusSubscription.remove();
 	}
 	openModal() {
 		this.setState({ modalVisible: true });
@@ -282,9 +269,8 @@ export default class Signin extends React.Component {
 				headers: { 'Cache-Control': 'no-cache' }
 			})
 				.then(res => res.json())
-				.then(resJson => {
-
-				});
+				.then(() => {
+					});
 		}
 		else {
 			AsyncStorage.getItem('storeid').then((store_id) => {
@@ -292,9 +278,8 @@ export default class Signin extends React.Component {
 				headers: { 'Cache-Control': 'no-cache' }
 			})
 				.then(res => res.json())
-				.then(resJson => {
-
-				});
+				.then(() => {
+					});
 			})
 		}
 
@@ -316,7 +301,7 @@ export default class Signin extends React.Component {
 	            textStyle = {{}}
 	            backdropStyle  = {{backgroundColor : "white"}}
 	            optionListStyle = {{backgroundColor : "white"}}
-				onSelect={(itemValue,  label) => {
+				onSelect={(itemValue) => {
 					let oldOrderState = this.state.orderStates[rowNum];
 
 				    //console.log(this.state.orderStates);
@@ -418,7 +403,7 @@ export default class Signin extends React.Component {
 									style={styles.textInput}
 									defaultValue={this.state.passname}
 									onChangeText={text => this.setState({ passname: text })}
-									onSubmitEditing={event => this.loginOwner()}
+									onSubmitEditing={() => this.loginOwner()}
 								/>
 
 								<Ionicons
@@ -440,7 +425,7 @@ export default class Signin extends React.Component {
 									secureTextEntry={true}
 									style={styles.textInput}
 									onChangeText={text => this.setState({ password: text })}
-									onSubmitEditing={event => this.loginOwner()}
+									onSubmitEditing={() => this.loginOwner()}
 								/>
 
 								<Ionicons

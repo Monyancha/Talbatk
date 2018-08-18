@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, StyleSheet, Modal, ScrollView, View, FlatList, TouchableOpacity, AsyncStorage, DeviceEventEmitter, SafeAreaView } from 'react-native';
+import { Text, StyleSheet, Modal, ScrollView, View, FlatList, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
 import OrderBox from '../../components/OrderBox';
 import Colors from '../../constants/Colors';
 import LoadingIndicator from '../../components/LoadingIndicator';
@@ -10,7 +10,7 @@ import Server from '../../constants/server';
 const Center = ({ children }) => (
 	<View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#ffffff' }}>{children}</View>
 );
-export default class OrdersScreen extends React.Component {
+export default class CurrentOrders extends React.Component {
 	return_image = (status) => {
 		if (status == 0) {
 			return require('../../assets/images/not-accepted.png');
@@ -21,9 +21,7 @@ export default class OrdersScreen extends React.Component {
 	}
 
 	componentDidMount() {
-		this.fetch_data();
-
-
+		//this.fetch_data();
 	}
 	fetch_data() {
 		AsyncStorage.getItem('userid').then(id => {
@@ -74,31 +72,19 @@ export default class OrdersScreen extends React.Component {
 		}
 	}
 
-	static navigationOptions = ({ navigation }) => {
-		return {
-			header: null,
-			tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
-				// Inject event
-				DeviceEventEmitter.emit('ReloadCurrentOrders', { empty: 0 });
-
-				// Keep original behaviour
-				jumpToIndex(scene.index);
+	componentWillMount() {
+		this.didFocusSubscription = this.props.navigation.addListener(
+			'didFocus',
+			() => {
+				this.setState({ doneFetches: 0 });
+				this.fetch_data();
 			}
-		};
-	};
-
-	listeners = {
-		update: DeviceEventEmitter.addListener('ReloadCurrentOrders', ({ empty }) => {
-			this.setState({ doneFetches: 0 });
-			this.fetch_data();
-		})
-	};
+		);
+	}
+	
 	componentWillUnmount() {
-		// cleaning up listeners
-		// I am using lodash
-		_.each(this.listeners, listener => {
-			listener.remove();
-		});
+		// Remove the listener when you are done
+		this.didFocusSubscription.remove();
 	}
 	openModal() {
 		this.setState({ modalVisible: true });
@@ -128,7 +114,6 @@ export default class OrdersScreen extends React.Component {
 	};
 
 	render() {
-		const { navigate } = this.props.navigation;
 		const tableHead = ['الوصف', 'النوع']
 		const tableData = [
 

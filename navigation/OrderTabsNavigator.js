@@ -1,8 +1,5 @@
 import { createBottomTabNavigator } from 'react-navigation';
-
-import CurrentOrders from '../screens/orders/CurrentOrders';
-import OrdersHistory from '../screens/orders/OrdersHistory';
-import AdminOrders from '../screens/orders/AdminOrders';
+import { CurrentOrders, OrdersHistory, AdminOrders } from '../screens/OrdersTabs';
 
 export default createBottomTabNavigator(
 	{
