@@ -9,7 +9,7 @@ import HomeScreen from '../screens/HomeScreen';
 import OffersTab from '../screens/OffersTab';
 import SettingsScreen from '../screens/SettingsScreen';
 import CartScreen from '../screens/CartScreen';
-import OrderTabs from '../navigation/OrderTabsNavigator';
+//import OrderTabsNavigator from '../navigation/OrderTabsNavigator';
 
 function cart() {
 	AsyncStorage.getItem('cart').then((cart) => {
@@ -30,9 +30,9 @@ export default createBottomTabNavigator(
 		السله: {
 			screen: CartScreen
 		},
-		طلبات: {
-			screen: OrderTabs
-		},
+		/*طلبات: {
+			screen: OrderTabsNavigator
+		},*/
 		العروض: {
 			screen: OffersTab
 		},

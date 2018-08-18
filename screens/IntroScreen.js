@@ -4,7 +4,6 @@ import Colors from '../constants/Colors';
 import SingleCategory1 from '../components/SingleCategory1';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Server from '../constants/server';
-import LinearGradient from 'react-native-linear-gradient';
 
 export default class Intro extends React.Component {
 	static navigationOptions = () => ({
@@ -116,8 +115,7 @@ export default class Intro extends React.Component {
 					this.props.navigation.navigate('Signin', {});
 				}}
 				>
-					<LinearGradient
-						colors={['#ebb70a', '#ebb70ae8', '#ebb70ad1']}
+					<View
 						style={{
 							alignSelf: 'center',
 							height: 50,
@@ -125,7 +123,8 @@ export default class Intro extends React.Component {
 							width: 150,
 							alignItems: 'center',
 							justifyContent: 'center',
-							borderRadius: 50
+							borderRadius: 50,
+							backgroundColor: '#ebb70a'
 						}}>
 						<Text style={{
 							textAlign: 'center',
@@ -134,7 +133,7 @@ export default class Intro extends React.Component {
 							fontFamily: 'myfont',
 							fontSize: 16
 						}}>تسجيل الدخول</Text>
-					</LinearGradient>
+					</View>
 				</TouchableOpacity>
 			)
 		}
