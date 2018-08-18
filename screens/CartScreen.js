@@ -41,37 +41,22 @@ const Center = ({ children }) => (
 I18nManager.allowRTL(true);
 
 export default class Meals extends React.Component {
-	static navigationOptions = ({ navigation }) => {
-
-		return {
-			header: null,
-			tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
-				// Inject event
-				DeviceEventEmitter.emit('ReloadMyLibraryBooks', { empty: 0 });
-
-				// Keep original behaviour
-				jumpToIndex(scene.index);
-
-			}
-		};
-	};
-
-	listeners = {
-		update: DeviceEventEmitter.addListener(
-			'ReloadMyLibraryBooks',
-			({ empty }) => {
+	componentWillMount() {
+		this.didFocusSubscription = this.props.navigation.addListener(
+			'didFocus',
+			() => {
+				alert("didFocus")
 				this.setState({ doneFetches: 0 });
 				this.doTheFetching();
 			}
-		)
-	};
-	componentWillUnmount() {
-		// cleaning up listeners
-		// I am using lodash
-		_.each(this.listeners, listener => {
-			listener.remove();
-		});
+		);
 	}
+
+	componentWillUnmount() {
+		// Remove the listener when you are done
+		this.didFocusSubscription.remove();
+	}
+
 	CheckIfBannedThenOrder = () => {
 		this.setState({
 			ordering: true
