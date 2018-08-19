@@ -12,6 +12,7 @@ import Colors from '../constants/Colors';
 import TicketBox from '../components/TicketBox';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default class Meals extends React.Component {
 	static navigationOptions = ({ navigation }) => ({
