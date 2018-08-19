@@ -44,6 +44,7 @@ export default RootStackNavigator = createStackNavigator(
 	},
 	{
 		navigationOptions: () => ({
+			header: null,
 			headerTitleStyle: {
 				fontWeight: 'normal'
 			}

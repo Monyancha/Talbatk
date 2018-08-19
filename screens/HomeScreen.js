@@ -57,11 +57,6 @@ var styles = StyleSheet.create({
 });
 
 export default class HomeScreen extends React.Component {
-	static navigationOptions = ({ navigation }) => ({
-		header: <Header navigation={navigation} />,
-
-	});
-
 	componentDidMount() {
 
 		AsyncStorage.getItem('userid').then(id => {
@@ -87,7 +82,7 @@ export default class HomeScreen extends React.Component {
 							'&maxcost=300' +
 							'&maxtime=300' +
 							'&sortby=2' +
-							'&id=' + this.props.navigation.state.params.id
+							'&id=' + this.props.home_id
 						)
 							.then(res => res.json())
 							.then(restaurants => {
