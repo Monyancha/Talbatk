@@ -23,13 +23,13 @@ function cart() {
 	})
 }
 
-const HomeStack = ({ home_id }) => {
+const HomeStack = (props) => {
 	const HomeStackNavigator = createStackNavigator({
 		HomeScreen: {
-			screen: () => <HomeScreen home_id={home_id} />,
-			navigationOptions: ({ navigation }) => ({
-				header: <Header navigation={navigation} />
-			})
+			screen: () => <HomeScreen home_id={props.home_id} {...props} />,
+			navigationOptions: {
+				header: <Header navigation={props.navigation} />
+			}
 		}
 	});
 
@@ -75,7 +75,7 @@ const OrdersStack = createStackNavigator({
 export default createBottomTabNavigator(
 	{
 		مطاعم: {
-			screen: (props) => <HomeStack home_id={props.navigation.state.params.id} />,
+			screen: (props) => <HomeStack home_id={props.navigation.state.params.id} {...props} />,
 		},
 		السله: {
 			screen: CartStack,
