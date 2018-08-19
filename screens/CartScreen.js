@@ -339,6 +339,7 @@ export default class Meals extends React.Component {
 						ItemSeparatorComponent={() => (
 							<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
 						)}
+						keyExtractor={item => String(item.id)}
 						data={this.state.meals}
 						ListHeaderComponent={() => (
 							<Image
