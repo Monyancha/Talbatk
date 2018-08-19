@@ -18,12 +18,12 @@ import {
 } from 'react-native';
 import { Button } from 'react-native-elements';
 import { Table, Row, Rows } from 'react-native-table-component';
-import Ionicons from 'react-native-vector-icons'
-import Colors from '../../constants/Colors';
-import LoadingIndicator from '../../components/LoadingIndicator';
-import OrderDetailBox from '../../components/OrderDetailBox';
-import Server from '../../constants/server';
-import {Select, Option} from "react-native-chooser";
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import Colors from '../../../constants/Colors';
+import LoadingIndicator from '../../../components/LoadingIndicator';
+import OrderDetailBox from '../../../components/OrderDetailBox';
+import Server from '../../../constants/server';
+import { Select, Option } from "react-native-chooser";
 
 const selectLabels = [
 	'قيد القبول',
@@ -35,33 +35,33 @@ export default class AdminOrders extends React.Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			detailed_order:[],
+			detailed_order: [],
 			owner_login: '0',
 			storeOrdersFetched: false,
 			passname: '',
 			password: '',
 			errorMsg: '',
 			orders: [],
-			note:'...',
-			orderId:0,
-			details:'...',
-			delivery_cost:0,
-			clientName:'...',
-			phone:'',
+			note: '...',
+			orderId: 0,
+			details: '...',
+			delivery_cost: 0,
+			clientName: '...',
+			phone: '',
 			orderStates: [],
-			 modalVisible: false,
-			pickerData:[
+			modalVisible: false,
+			pickerData: [
 				{
-					label:'قيد القبول',
-					value:0
+					label: 'قيد القبول',
+					value: 0
 				},
 				{
 					label: 'التوصيل',
 					value: 1
 				},
 				{
-					label:'تم التوصيل',
-					value:2
+					label: 'تم التوصيل',
+					value: 2
 				}
 			]
 		};
@@ -87,7 +87,7 @@ export default class AdminOrders extends React.Component {
 		);
 	}
 
-	componentDidMount () {
+	componentDidMount() {
 		/*AsyncStorage.getItem('storeid', (err, storeid) => {
 			if(storeid) this.fetchStoreOrders(parseInt(storeid));
 		})*/
@@ -119,8 +119,8 @@ export default class AdminOrders extends React.Component {
 					var data = [];
 					var rowNum = 0;
 					var orderStates = [];
-					resJson.orders.map((order)=>{
-						data.push([order[0],this.location(order[1]),order[2],this.SeeMore(order[3],order[6],order[7],order[8],order[5],order[2],order[9],order[10]),this.order_status_changer(order[4],order[5], rowNum++)]);
+					resJson.orders.map((order) => {
+						data.push([order[0], this.location(order[1]), order[2], this.SeeMore(order[3], order[6], order[7], order[8], order[5], order[2], order[9], order[10]), this.order_status_changer(order[4], order[5], rowNum++)]);
 						//console.log('pushed', order[4], 'at', rowNum-1);
 						orderStates.push(order[4])
 					})
@@ -129,32 +129,32 @@ export default class AdminOrders extends React.Component {
 				}
 			});
 	};
-	showData = (details,note,name,discounted,id,price,delivery_cost,phone) =>{
+	showData = (details, note, name, discounted, id, price, delivery_cost, phone) => {
 		this.setState({
-			details:details,note:note,clientName:name,phone,discounted,price,delivery_cost,orderId:id,modalVisible:true
+			details: details, note: note, clientName: name, phone, discounted, price, delivery_cost, orderId: id, modalVisible: true
 		})
 		fetch(Server.dest + '/api/order-data?id=' + id)
 			.then(res => res.json())
 			.then(data => {
-				this.setState({detailed_order:data.meals})
+				this.setState({ detailed_order: data.meals })
 			});
 	}
-	SeeMore = (details,note,name,discounted,id,price,delivery_cost,phone) =>(
+	SeeMore = (details, note, name, discounted, id, price, delivery_cost, phone) => (
 		<TouchableOpacity style={{
-			backgroundColor:'gray',
-			borderRadius:30,
-			justifyContent:'center',
-			alignItems:'center'
+			backgroundColor: 'gray',
+			borderRadius: 30,
+			justifyContent: 'center',
+			alignItems: 'center'
 		}}
-		onPress={()=>{
-		this.showData(details,note,name,discounted,id,price,delivery_cost,phone)
-		}}
+			onPress={() => {
+				this.showData(details, note, name, discounted, id, price, delivery_cost, phone)
+			}}
 		>
-		<Text style={{
-			textAlign:'center',
-			justifyContent:'center'
-		}}
-		>المزيد </Text>
+			<Text style={{
+				textAlign: 'center',
+				justifyContent: 'center'
+			}}
+			>المزيد </Text>
 		</TouchableOpacity>
 
 	);
@@ -179,10 +179,10 @@ export default class AdminOrders extends React.Component {
 
 		fetch(
 			Server.dest +
-				'/api/store-owner-login?passname=' +
-				this.state.passname +
-				'&password=' +
-				this.state.password,
+			'/api/store-owner-login?passname=' +
+			this.state.passname +
+			'&password=' +
+			this.state.password,
 			{ headers: { 'Cache-Control': 'no-cache' } }
 		)
 			.then(res => res.json())
@@ -196,16 +196,15 @@ export default class AdminOrders extends React.Component {
 					AsyncStorage.setItem('storeid', resJson.response);
 					this.fetchStoreOrders(parseInt(resJson.response));
 					AsyncStorage.getItem('token', (err, result) => {
-						if(result)
-						{
+						if (result) {
 							fetch(
-							  Server.dest +
-								  '/api/store-push-tokens?store_id=' +
-								  resJson.response +
-								  '&token=' +
-								  result,
-							  { headers: { 'Cache-Control': 'no-cache' } }
-						  );
+								Server.dest +
+								'/api/store-push-tokens?store_id=' +
+								resJson.response +
+								'&token=' +
+								result,
+								{ headers: { 'Cache-Control': 'no-cache' } }
+							);
 						}
 					});
 				}
@@ -229,65 +228,65 @@ export default class AdminOrders extends React.Component {
 			);
 		}
 	};
-	share_order = () =>{
+	share_order = () => {
 		Share.share({
-			message: 'Order here http://talbatk.net:90/share-order-data?id='+this.state.orderId,
+			message: 'Order here http://talbatk.net:90/share-order-data?id=' + this.state.orderId,
 
 			title: 'Order Share'
 		}, {
-			// Android only:
-			dialogTitle: 'Share Order',
-			// iOS only:
-			excludedActivityTypes: [
-				'com.apple.UIKit.activity.PostToTwitter'
-			]
-		})
+				// Android only:
+				dialogTitle: 'Share Order',
+				// iOS only:
+				excludedActivityTypes: [
+					'com.apple.UIKit.activity.PostToTwitter'
+				]
+			})
 
 	}
-	 location = (value) => (
+	location = (value) => (
 
-		<TouchableOpacity onPress={() =>{
+		<TouchableOpacity onPress={() => {
 			Share.share({
-		    message: ''+value.replace("- null",""),
+				message: '' + value.replace("- null", ""),
 
-		    title: 'Location for an order'
-		  }, {
-		    // Android only:
-		    dialogTitle: 'Share Location',
-		    // iOS only:
-		    excludedActivityTypes: [
-		      'com.apple.UIKit.activity.PostToTwitter'
-		    ]
-		  })
+				title: 'Location for an order'
+			}, {
+					// Android only:
+					dialogTitle: 'Share Location',
+					// iOS only:
+					excludedActivityTypes: [
+						'com.apple.UIKit.activity.PostToTwitter'
+					]
+				})
 		}}>
-				<Text >{value.replace("- null","")}</Text>
+			<Text >{value.replace("- null", "")}</Text>
 		</TouchableOpacity>
 	);
-	change_order_status = (value,id)=>{
-		if(value == 1){
+	change_order_status = (value, id) => {
+		if (value == 1) {
 			fetch(`${Server.dest}/api/delivering-order?id=${id}`, {
 				headers: { 'Cache-Control': 'no-cache' }
 			})
 				.then(res => res.json())
 				.then(() => {
-					});
+				});
 		}
 		else {
 			AsyncStorage.getItem('storeid').then((store_id) => {
-			fetch(`${Server.dest}/api/delivered-order?id=${id}&store_id=${store_id}&user_id=${store_id}`, {
-				headers: { 'Cache-Control': 'no-cache' }
-			})
-				.then(res => res.json())
-				.then(() => {
+				fetch(`${Server.dest}/api/delivered-order?id=${id}&store_id=${store_id}&user_id=${store_id}`, {
+					headers: { 'Cache-Control': 'no-cache' }
+				})
+					.then(res => res.json())
+					.then(() => {
 					});
 			})
 		}
 
 	}
-	order_status_changer = (value,id, rowNum) => {
+	order_status_changer = (value, id, rowNum) => {
 		let TheSelect = null;
 
-		function resetText (oldOrderState) {
+		function resetText(oldOrderState) {
 			setTimeout(() => {
 				TheSelect.setSelectedText(selectLabels[oldOrderState])
 			}, 0)
@@ -296,52 +295,53 @@ export default class AdminOrders extends React.Component {
 		return (
 			<Select
 				ref={(c) => TheSelect = c}
-	            defaultText={selectLabels[value]}
-	            style = {{borderWidth:0}}
-	            textStyle = {{}}
-	            backdropStyle  = {{backgroundColor : "white"}}
-	            optionListStyle = {{backgroundColor : "white"}}
+				defaultText={selectLabels[value]}
+				style={{ borderWidth: 0 }}
+				textStyle={{}}
+				backdropStyle={{ backgroundColor: "white" }}
+				optionListStyle={{ backgroundColor: "white" }}
 				onSelect={(itemValue) => {
 					let oldOrderState = this.state.orderStates[rowNum];
 
-				    //console.log(this.state.orderStates);
-				    //console.log('old', oldOrderState, 'new', itemValue);
+					//console.log(this.state.orderStates);
+					//console.log('old', oldOrderState, 'new', itemValue);
 
-				    if (itemValue == oldOrderState)
-				        Alert.alert('لا يمكن تغيير الحالة', 'هذا الطلب بالفعل فى هذه الحالة')
-				    else if (itemValue < oldOrderState) {
-				        Alert.alert('لا يمكن تغيير الحالة', 'لا يمكنك ارجاع حالة الطلب.')
+					if (itemValue == oldOrderState)
+						Alert.alert('لا يمكن تغيير الحالة', 'هذا الطلب بالفعل فى هذه الحالة')
+					else if (itemValue < oldOrderState) {
+						Alert.alert('لا يمكن تغيير الحالة', 'لا يمكنك ارجاع حالة الطلب.')
 						resetText(oldOrderState)
 					}
-				    else {
-				        //console.log('success')
-				        // Make a copy of the order states array
-				        let copy_orderStates = [...this.state.orderStates];
+					else {
+						//console.log('success')
+						// Make a copy of the order states array
+						let copy_orderStates = [...this.state.orderStates];
 
-				        // Make a copy of the target order state
-				        let orderState = copy_orderStates[rowNum];
+						// Make a copy of the target order state
+						let orderState = copy_orderStates[rowNum];
 
-				        /// Change order state
-				        orderState = itemValue;
+						/// Change order state
+						orderState = itemValue;
 
-				        // Update our copy of order states array
-				        copy_orderStates[rowNum] = orderState;
+						// Update our copy of order states array
+						copy_orderStates[rowNum] = orderState;
 
-				        // Update component's state
-				        this.setState({ orderStates: copy_orderStates });
+						// Update component's state
+						this.setState({ orderStates: copy_orderStates });
 
-				        // Send to server
-				        this.change_order_status(itemValue,id)
-				}}} >
-			  <Option value='0'>تم القبول</Option>
-			  <Option value='1'>جاري التوصيل</Option>
-			  <Option value='2'>تم التوصيل</Option>
-	        </Select>
+						// Send to server
+						this.change_order_status(itemValue, id)
+					}
+				}} >
+				<Option value='0'>تم القبول</Option>
+				<Option value='1'>جاري التوصيل</Option>
+				<Option value='2'>تم التوصيل</Option>
+			</Select>
 		)
- 	};
+	};
 	render() {
 
-		const tableHead = ['النوع','الوصف'];
+		const tableHead = ['النوع', 'الوصف'];
 		const tableData = [
 			['' + this.state.note, 'الملاحظات'],
 			['' + this.state.details, 'التفاصيل'],
@@ -350,7 +350,7 @@ export default class AdminOrders extends React.Component {
 			['' + this.state.price, ' المبلغ الاجمالى'],
 			['' + this.state.discounted, 'المبلغ المخصوم'],
 			['' + this.state.delivery_cost, 'سعر التوصيل'],
-			['' + this.state.price-this.state.discounted, ' السعر الاجمالى بعد الخصم'],
+			['' + this.state.price - this.state.discounted, ' السعر الاجمالى بعد الخصم'],
 
 		];
 		if (this.state.owner_login == '0') {
@@ -371,10 +371,10 @@ export default class AdminOrders extends React.Component {
 							flex: 1,
 							height: '35%',
 							width: Dimensions.get('window').width,
-							marginTop:20
+							marginTop: 20
 						}}
 						resizeMode="cover"
-						source={require('../../assets/images/splash.jpg')}
+						source={require('../../../assets/images/splash.jpg')}
 					/>
 
 					<KeyboardAvoidingView
@@ -464,117 +464,117 @@ export default class AdminOrders extends React.Component {
 			return <LoadingIndicator size="large" />;
 		} else {
 			return (
-				<View style={{ height: '100%',marginTop:20 }}>
-				<ScrollView>
-					<View style={{ flex: 1, marginBottom: 15 }}>
-						<Button
-							onPress={() => {
-								this.setOwnerLoginStatus('0');
-							}}
-							color="white"
-							backgroundColor={Colors.mainColor}
-							borderRadius={15}
-							buttonStyle={{ padding: 10 }}
-							containerViewStyle={{
-								marginTop: 15,
-								marginHorizontal: 7,
-								borderRadius: 15
-							}}
-							textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
-							title="تسجيل خروج من المتجر"
-						/>
-					</View>
-					<Modal
-						visible={this.state.modalVisible}
-						animationType={'slide'}
-						onRequestClose={() => this.closeModal()}
-
-					>
-
-						<View style={styles.modalContainer}>
-							<View style={styles.innerContainer}>
-							<ScrollView>
-							<View style={{ paddingRight: 10, paddingLeft: 10 }}>
-
-							<TouchableOpacity onPress={()=>{
-								this.closeModal()
-							}} style={{width:350,backgroundColor:Colors.mainColor,justifyContent:'center',alignItems:'center',color:'white',padding:10,marginRight:20,marginBottom:20,marginTop:20}} >
-							<Text style={{textAlign:'center',justifyContent:'center',alignItems:'center',color:'white'}}>اغلاق</Text>
-							</TouchableOpacity>
-							<TouchableOpacity onPress={()=>{
-								this.share_order()
-							}} style={{width:350,backgroundColor:Colors.mainColor,justifyContent:'center',alignItems:'center',color:'white',padding:10,marginRight:20,marginBottom:20,marginTop:20}} >
-							<Text style={{textAlign:'center',justifyContent:'center',alignItems:'center',color:'white'}}>مشاركه الطلب</Text>
-							</TouchableOpacity>
-							<Table
-								borderStyle={{
-									borderWidth: 0.5,
-									borderColor: Colors.fadedMainColor,
-									width:'100%',
-									paddingTop:10
+				<View style={{ height: '100%', marginTop: 20 }}>
+					<ScrollView>
+						<View style={{ flex: 1, marginBottom: 15 }}>
+							<Button
+								onPress={() => {
+									this.setOwnerLoginStatus('0');
 								}}
-							>
-								<Row
-									data={tableHead}
-									style={styles.head}
-									textStyle={styles.text}
-								/>
-								<Rows
-									data={tableData}
-									style={styles.row}
-									textStyle={styles.text2}
-								/>
-							</Table>
-							<FlatList
-								automaticallyAdjustContentInsets={false}
-								style={{ backgroundColor: 'white' }}
-								removeClippedSubviews={false}
-								ItemSeparatorComponent={() => (
-									<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
-								)}
-								data={this.state.detailed_order}
-
-								renderItem={({ item }) => (
-									<TouchableOpacity
-
-									>
-										<OrderDetailBox
-											style={styles.restaurant}
-											name={item.name}
-
-											desc={item.desc}
-											image={item.img}
-											price={item.cost}
-											count={item.count}
-										/>
-									</TouchableOpacity>
-								)}
+								color="white"
+								backgroundColor={Colors.mainColor}
+								borderRadius={15}
+								buttonStyle={{ padding: 10 }}
+								containerViewStyle={{
+									marginTop: 15,
+									marginHorizontal: 7,
+									borderRadius: 15
+								}}
+								textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
+								title="تسجيل خروج من المتجر"
 							/>
-							</View>
-
-							</ScrollView>
-
-							</View>
 						</View>
-					</Modal>
+						<Modal
+							visible={this.state.modalVisible}
+							animationType={'slide'}
+							onRequestClose={() => this.closeModal()}
 
-					<Table
-						style={styles.table}
-						borderStyle={{ borderWidth: 0.5, borderColor: Colors.mainColor }}
-					>
-						<Row
-							data={['بيانات الزبون', 'الموقع', 'السعر', 'التفاصيل', 'الحالة']}
-							style={styles.head}
-							textStyle={styles.headText}
-							flexArr={[2, 2, 1, 2, 2]}
-						/>
-						<Rows
-							data={this.state.orders}
-							style={styles.row}
-							textStyle={styles.text}
-							flexArr={[2, 2, 1, 1, 2]}
-						/>
-					</Table>
+						>
+
+							<View style={styles.modalContainer}>
+								<View style={styles.innerContainer}>
+									<ScrollView>
+										<View style={{ paddingRight: 10, paddingLeft: 10 }}>
+
+											<TouchableOpacity onPress={() => {
+												this.closeModal()
+											}} style={{ width: 350, backgroundColor: Colors.mainColor, justifyContent: 'center', alignItems: 'center', color: 'white', padding: 10, marginRight: 20, marginBottom: 20, marginTop: 20 }} >
+												<Text style={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center', color: 'white' }}>اغلاق</Text>
+											</TouchableOpacity>
+											<TouchableOpacity onPress={() => {
+												this.share_order()
+											}} style={{ width: 350, backgroundColor: Colors.mainColor, justifyContent: 'center', alignItems: 'center', color: 'white', padding: 10, marginRight: 20, marginBottom: 20, marginTop: 20 }} >
+												<Text style={{ textAlign: 'center', justifyContent: 'center', alignItems: 'center', color: 'white' }}>مشاركه الطلب</Text>
+											</TouchableOpacity>
+											<Table
+												borderStyle={{
+													borderWidth: 0.5,
+													borderColor: Colors.fadedMainColor,
+													width: '100%',
+													paddingTop: 10
+												}}
+											>
+												<Row
+													data={tableHead}
+													style={styles.head}
+													textStyle={styles.text}
+												/>
+												<Rows
+													data={tableData}
+													style={styles.row}
+													textStyle={styles.text2}
+												/>
+											</Table>
+											<FlatList
+												automaticallyAdjustContentInsets={false}
+												style={{ backgroundColor: 'white' }}
+												removeClippedSubviews={false}
+												ItemSeparatorComponent={() => (
+													<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
+												)}
+												data={this.state.detailed_order}
+
+												renderItem={({ item }) => (
+													<TouchableOpacity
+
+													>
+														<OrderDetailBox
+															style={styles.restaurant}
+															name={item.name}
+
+															desc={item.desc}
+															image={item.img}
+															price={item.cost}
+															count={item.count}
+														/>
+													</TouchableOpacity>
+												)}
+											/>
+										</View>
+
+									</ScrollView>
+
+								</View>
+							</View>
+						</Modal>
+
+						<Table
+							style={styles.table}
+							borderStyle={{ borderWidth: 0.5, borderColor: Colors.mainColor }}
+						>
+							<Row
+								data={['بيانات الزبون', 'الموقع', 'السعر', 'التفاصيل', 'الحالة']}
+								style={styles.head}
+								textStyle={styles.headText}
+								flexArr={[2, 2, 1, 2, 2]}
+							/>
+							<Rows
+								data={this.state.orders}
+								style={styles.row}
+								textStyle={styles.text}
+								flexArr={[2, 2, 1, 1, 2]}
+							/>
+						</Table>
 
 
 					</ScrollView>
@@ -647,13 +647,13 @@ const styles = StyleSheet.create({
 		flex: 1,
 		justifyContent: 'center'
 	},
-		modalContainer: {
-			flex: 1,
-			justifyContent: 'center',
-			backgroundColor: 'grey'
-		},
-		innerContainer: {
-			marginTop:20,
-			flex:1
-		},
+	modalContainer: {
+		flex: 1,
+		justifyContent: 'center',
+		backgroundColor: 'grey'
+	},
+	innerContainer: {
+		marginTop: 20,
+		flex: 1
+	},
 });

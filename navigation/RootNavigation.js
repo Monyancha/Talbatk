@@ -18,7 +18,6 @@ import AddTicketScreen from '../screens/AddTicketScreen';
 import AboutUs from '../screens/AboutUs';
 import CategoriesScreen from '../screens/CategoriesScreen';
 import IntroScreen from '../screens/IntroScreen';
-
 import SpecialOrderScreen from '../screens/SpecialOrderScreen';
 
 export default RootStackNavigator = createStackNavigator(

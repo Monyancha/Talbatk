@@ -1,11 +1,11 @@
 import React from 'react';
 import { Text, StyleSheet, Modal, ScrollView, View, FlatList, TouchableOpacity, AsyncStorage, SafeAreaView } from 'react-native';
-import OrderBox from '../../components/OrderBox';
-import Colors from '../../constants/Colors';
-import LoadingIndicator from '../../components/LoadingIndicator';
-import OrderDetailBox from '../../components/OrderDetailBox';
+import OrderBox from '../../../components/OrderBox';
+import Colors from '../../../constants/Colors';
+import LoadingIndicator from '../../../components/LoadingIndicator';
+import OrderDetailBox from '../../../components/OrderDetailBox';
 import { Table, Row, Rows } from 'react-native-table-component';
-import Server from '../../constants/server';
+import Server from '../../../constants/server';
 
 const Center = ({ children }) => (
 	<View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#ffffff' }}>{children}</View>
@@ -13,10 +13,10 @@ const Center = ({ children }) => (
 export default class CurrentOrders extends React.Component {
 	return_image = (status) => {
 		if (status == 0) {
-			return require('../../assets/images/not-accepted.png');
+			return require('../../../assets/images/not-accepted.png');
 		}
 		else {
-			return require('../../assets/images/delevering.png');
+			return require('../../../assets/images/delevering.png');
 		}
 	}
 
@@ -81,7 +81,7 @@ export default class CurrentOrders extends React.Component {
 			}
 		);
 	}
-	
+
 	componentWillUnmount() {
 		// Remove the listener when you are done
 		this.didFocusSubscription.remove();

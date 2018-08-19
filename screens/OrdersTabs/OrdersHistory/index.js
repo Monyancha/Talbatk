@@ -1,9 +1,9 @@
 import React from 'react';
 import { Text, View, SafeAreaView, FlatList, TouchableOpacity, AsyncStorage } from 'react-native';
-import OrderBox from '../../components/OrderBox';
-import Colors from '../../constants/Colors';
-import LoadingIndicator from '../../components/LoadingIndicator';
-import Server from '../../constants/server';
+import OrderBox from '../../../components/OrderBox';
+import Colors from '../../../constants/Colors';
+import LoadingIndicator from '../../../components/LoadingIndicator';
+import Server from '../../../constants/server';
 
 const Center = ({ children }) => (
 	<View style={{ alignItems: 'center', justifyContent: 'center', flex: 1, backgroundColor: '#ffffff' }}>{children}</View>
@@ -98,7 +98,7 @@ export default class OrdersHistory extends React.Component {
 										idkey={item.key}
 										status={item.status}
 										desc='تم التوصيل'
-										image={require('../../assets/images/delivered.png')}
+										image={require('../../../assets/images/delivered.png')}
 										price={item.price}
 									/>
 								</TouchableOpacity>
