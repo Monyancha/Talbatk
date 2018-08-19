@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, AsyncStorage, Text, FlatList, TouchableOpacity, View, Dimensions } from 'react-native';
+import { Image, AsyncStorage, Text, FlatList, TouchableOpacity, View, Dimensions, StatusBar, Platform } from 'react-native';
 import Colors from '../constants/Colors';
 import SingleCategory1 from '../components/SingleCategory1';
 import LoadingIndicator from '../components/LoadingIndicator';
@@ -61,6 +61,14 @@ export default class Intro extends React.Component {
 			SpecialOrderStatus: 0,
 			//image: 'https://pbs.twimg.com/media/DkXAIiKWsAAMRVJ.jpg:large'
 			image: 'http://'
+		}
+	}
+
+	componentWillMount() {
+		StatusBar.setBarStyle('light-content')
+
+		if (Platform.OS === 'android') {
+			StatusBar.setBackgroundColor(Colors.mainColor, true)
 		}
 	}
 

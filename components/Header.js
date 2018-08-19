@@ -6,7 +6,8 @@ import {
 	StyleSheet,
 	Text,
 	AsyncStorage,
-	TouchableOpacity
+	TouchableOpacity,
+	StatusBar
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
@@ -17,6 +18,14 @@ const iconCol = 'rgba(255,255,255,0.8)';
 const bgCol = Colors.mainColor;
 
 export default class Header extends React.Component {
+	componentWillMount() {
+		StatusBar.setBarStyle('light-content')
+
+		if (Platform.OS === 'android') {
+			StatusBar.setBackgroundColor(Colors.mainColor, true)
+		}
+	}
+
 	componentDidMount() {
 		fetch(
 			Server.dest +
