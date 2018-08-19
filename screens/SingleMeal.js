@@ -17,6 +17,7 @@ import LoadingIndicator from '../components/LoadingIndicator';
 // import { NavigationActions } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons'
 import RadioButton from 'radio-button-react-native';
+import LazyContainer from '../components/LazyContainer';
 
 export default class SingleMeal extends React.Component {
 	addcart = () => {
@@ -176,7 +177,7 @@ export default class SingleMeal extends React.Component {
 		return (
 
 
-			<View>
+			<LazyContainer>
 				<Modal
 					visible={this.state.modalVisible}
 					animationType={'slide'}
@@ -365,7 +366,7 @@ export default class SingleMeal extends React.Component {
 						)}
 					/>
 				</ScrollView>
-			</View>
+			</LazyContainer>
 		);
 	}
 }

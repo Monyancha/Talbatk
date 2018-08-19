@@ -5,9 +5,9 @@ import MealBox from '../components/MealBox';
 import RestaurantBox from '../components/RestaurantBox';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Server from '../constants/server';
+import LazyContainer from '../components/LazyContainer';
 
 export default class Meals extends React.Component {
-
 	static navigationOptions = () => ({
 		title: 'الاصناف',
 		headerTintColor: Colors.smoothGray,
@@ -60,7 +60,7 @@ export default class Meals extends React.Component {
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
 		return (
-			<View>
+			<LazyContainer>
 				<View>
 					<FlatList
 						automaticallyAdjustContentInsets={false}
@@ -102,7 +102,7 @@ export default class Meals extends React.Component {
 						</TouchableOpacity>
 					)}
 				/>
-			</View>
+			</LazyContainer>
 		);
 	}
 }

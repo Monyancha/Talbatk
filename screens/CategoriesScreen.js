@@ -2,13 +2,12 @@ import React from 'react';
 import { FlatList, TouchableOpacity, View } from 'react-native';
 import Colors from '../constants/Colors';
 import SingleCategory from '../components/SingleCategory';
+import LazyContainer from '../components/LazyContainer';
 import RestaurantBox from '../components/RestaurantBox';
 import LoadingIndicator from '../components/LoadingIndicator';
-
 import Server from '../constants/server';
 
 export default class Meals extends React.Component {
-
 	static navigationOptions = () => ({
 		title: 'الاقسام',
 		headerTintColor: Colors.smoothGray,
@@ -25,6 +24,7 @@ export default class Meals extends React.Component {
 			fontSize: 16
 		},
 	});
+	
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -60,10 +60,10 @@ export default class Meals extends React.Component {
 		const { params } = this.props.navigation.state;
 		const { navigate } = this.props.navigation;
 		if (this.state.doneFetches == 0)
-			return <LoadingIndicator size="large" color="#B6E3C6" />;
+			return <View style={{ flex: 1, backgroundColor: 'white' }}><LoadingIndicator size="large" color="#B6E3C6" /></View>;
 
 		return (
-			<View style={{ backgroundColor: Colors.smoothGray }}>
+			<LazyContainer style={{ backgroundColor: Colors.smoothGray }}>
 				<View>
 					<FlatList
 						automaticallyAdjustContentInsets={false}
@@ -100,8 +100,7 @@ export default class Meals extends React.Component {
 						</TouchableOpacity>
 					)}
 				/>
-
-			</View>
+			</LazyContainer>
 		);
 	}
 }
