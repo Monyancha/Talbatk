@@ -180,7 +180,7 @@ export default class SingleMeal extends React.Component {
 				<Modal
 					visible={this.state.modalVisible}
 					animationType={'slide'}
-					onRequestClose={() => this.closeModal()}
+					onRequestClose={() => this.setState({ modalVisible: false })}
 				>
 					<View style={styles.modalContainer}>
 						<View style={styles.innerContainer}>
