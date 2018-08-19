@@ -22,12 +22,12 @@ import SpecialOrderScreen from '../screens/SpecialOrderScreen';
 
 export default RootStackNavigator = createStackNavigator(
 	{
-		LocationSetting: { screen: LocationSetting },
-		Signin: { screen: Signin },
-		Signup: { screen: Signup },
-		CodeVerification: { screen: CodeVerification },
-		ResetPassword: { screen: ResetPassword },
-		Home: { screen: MainTabNavigator },
+		LocationSetting: { screen: LocationSetting, navigationOptions: { header: null } },
+		Signin: { screen: Signin, navigationOptions: { header: null } },
+		Signup: { screen: Signup, navigationOptions: { header: null } },
+		CodeVerification: { screen: CodeVerification, navigationOptions: { header: null } },
+		ResetPassword: { screen: ResetPassword, navigationOptions: { header: null } },
+		Home: { screen: MainTabNavigator, navigationOptions: { header: null } },
 		Restaurant: { screen: Restaurant },
 		MealsScreen: { screen: MealsScreen },
 		SingleMeal: { screen: SingleMeal },
@@ -40,11 +40,10 @@ export default RootStackNavigator = createStackNavigator(
 		AboutUs: { screen: AboutUs },
 		SpecialOrderScreen: { screen: SpecialOrderScreen },
 		CategoriesScreen: { screen: CategoriesScreen },
-		Main: { screen: IntroScreen },
+		Main: { screen: IntroScreen, navigationOptions: { header: null } },
 	},
 	{
 		navigationOptions: () => ({
-			header: null,
 			headerTitleStyle: {
 				fontWeight: 'normal'
 			}
