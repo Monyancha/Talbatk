@@ -56,7 +56,7 @@ export default class Meals extends React.Component {
 			Tickets: [{}]
 		};
 	}
-	_keyExtractor = (item) => item.ticket_id;
+	_keyExtractor = (item) => String(item.ticket_id);
 
 	render() {
 		const { navigate } = this.props.navigation;
