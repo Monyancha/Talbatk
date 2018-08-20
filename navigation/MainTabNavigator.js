@@ -1,7 +1,8 @@
 import React from 'react';
 import { Platform, View, Text, AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createBottomTabNavigator, BottomTabBar } from 'react-navigation-tabs';
+import { createBottomTabNavigator } from 'react-navigation';
+import {  BottomTabBar } from 'react-navigation-tabs';
 
 import Colors from '../constants/Colors';
 
