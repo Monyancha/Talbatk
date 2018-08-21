@@ -26,14 +26,37 @@ export default class Meals extends React.Component {
 	});
 	constructor(props) {
 		super(props);
+		const {params} = this.props.navigation.state
 		this.state = {
-			Restaurant: [
+			Restaurant: [{
 
+
+				key: params.key,
+			 name: params.name,
+			 image:params.image,
+			 time: params.time,
+			 desc: params.desc,
+			 stars: params.stars,
+			 deliver_price: params.deliver_price
+		 }
 			],
 			Meals: [
-
+				{
+key: 10,
+name: "جاري تحميل ..",
+image: "http://132.148.244.83:90/assets/static/images/uploaded_images/store_images/products/product_10.jpg",
+price: 60,
+desc: "جاري تحميل .."
+},
+{
+key: 9,
+name: "جاري تحميل ..",
+image: "http://132.148.244.83:90/assets/static/images/uploaded_images/store_images/products/product_9.jpg",
+price: 40,
+desc: "جاري تحميل .."
+}
 			],
-			doneFetches: 0
+			doneFetches: 1
 		}
 	}
 	componentDidMount() {
@@ -44,20 +67,18 @@ export default class Meals extends React.Component {
 			})
 
 		})
-		fetch(Server.dest + '/api/store-info?store_id=' + this.props.navigation.state.params.restaurant_id).then((res) => res.json()).then((restaurants) => {
-			this.setState({
-				Restaurant: [restaurants.response],
-				doneFetches: 1,
-
-			})
-
-		});
+		// fetch(Server.dest + '/api/store-info?store_id=' + this.props.navigation.state.params.restaurant_id).then((res) => res.json()).then((restaurants) => {
+		// 	this.setState({
+		// 		Restaurant: [restaurants.response],
+		// 		doneFetches: 1,
+		//
+		// 	})
+		//
+		// });
 	}
 	render() {
 		const { params } = this.props.navigation.state;
 		const { navigate } = this.props.navigation;
-		if (this.state.doneFetches == 0)
-			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
 		return (
 			<LazyContainer>
@@ -91,7 +112,20 @@ export default class Meals extends React.Component {
 					data={this.state.Meals}
 					renderItem={({ item }) => (
 						<TouchableOpacity onPress={() =>
-							navigate('SingleMeal', { meal_id: item.key, restaurant_id: params.restaurant_id })} >
+							navigate('SingleMeal', {
+								 meal_id: item.key,
+								 meal_name:item.name,
+								 meal_image:item.image,
+								 meal_price:item.price,
+								 meal_desc:item.desc,
+								 key: params.key,
+				          name: params.name,
+				          image:params.image,
+				          time: params.time,
+				          desc: params.desc,
+				          stars: params.stars,
+				          deliver_price: params.deliver_price
+								 })} >
 							<MealBox
 								name={item.name}
 								time={item.time}

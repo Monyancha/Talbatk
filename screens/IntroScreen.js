@@ -138,7 +138,7 @@ export default class Intro extends React.Component {
 							textAlign: 'center',
 							backgroundColor: 'transparent',
 							color: 'white',
-							fontFamily: 'myfont',
+							fontFamily: 'Droid Arabic Kufi',
 							fontSize: 16
 						}}>تسجيل الدخول</Text>
 					</View>

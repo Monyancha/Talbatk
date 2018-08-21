@@ -4461,6 +4461,12 @@ react-native-elements@^0.19.1:
     opencollective "^1.0.3"
     prop-types "^15.5.8"
 
+react-native-fast-image@^4.0.14:
+  version "4.0.14"
+  resolved "https://registry.yarnpkg.com/react-native-fast-image/-/react-native-fast-image-4.0.14.tgz#1e84c9a01b1471793e294ef4e7c3cc20e09562a0"
+  dependencies:
+    prop-types "^15.5.10"
+
 react-native-gifted-chat@^0.4.3:
   version "0.4.3"
   resolved "https://registry.yarnpkg.com/react-native-gifted-chat/-/react-native-gifted-chat-0.4.3.tgz#25b4da866c802e407c06e589495f421f7dcdf70a"
@@ -4511,6 +4517,12 @@ react-native-material-textfield@^0.12.0:
   resolved "https://registry.yarnpkg.com/react-native-material-textfield/-/react-native-material-textfield-0.12.0.tgz#3fba19d76ab89f67052c81e082152fc243d82a3f"
   dependencies:
     prop-types "^15.5.9"
+
+react-native-onesignal@^3.2.6:
+  version "3.2.6"
+  resolved "https://registry.yarnpkg.com/react-native-onesignal/-/react-native-onesignal-3.2.6.tgz#b28f874451c39d421a824209512a113a7aa8f24e"
+  dependencies:
+    invariant "^2.2.2"
 
 react-native-parsed-text@^0.0.20:
   version "0.0.20"

@@ -106,11 +106,28 @@ export default class SingleMeal extends React.Component {
 	});
 	constructor(props) {
 		super(props);
-
+		const {params} = this.props.navigation.state
 		this.state = {
 			doneFetches: 0,
-			Restaurant: [],
-			Meal: [],
+			Restaurant: [
+				{
+				key: params.key,
+			 name: params.name,
+			 image:params.image,
+			 time: params.time,
+			 desc: params.desc,
+			 stars: params.stars,
+			 deliver_price: params.deliver_price
+		 	}
+			],
+			Meal: [{
+				key: params.meal_id,
+				name: params.meal_name,
+				image: params.meal_image,
+				price: params.meal_price,
+				desc: params.meal_desc
+			}
+			],
 			num: 1,
 			modalVisible: false,
 			childs: [],
@@ -135,18 +152,18 @@ export default class SingleMeal extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch(
-			Server.dest +
-			'/api/store-info?store_id=' +
-			this.props.navigation.state.params.restaurant_id
-		)
-			.then(res => res.json())
-			.then(restaurants => {
-				this.setState({
-					Restaurant: [restaurants.response],
-					// check:meals.check
-				});
-			});
+		// fetch(
+		// 	Server.dest +
+		// 	'/api/store-info?store_id=' +
+		// 	this.props.navigation.state.params.restaurant_id
+		// )
+		// 	.then(res => res.json())
+		// 	.then(restaurants => {
+		// 		this.setState({
+		// 			Restaurant: [restaurants.response],
+		// 			// check:meals.check
+		// 		});
+		// 	});
 		fetch(
 			Server.dest +
 			'/api/product-info?product_id=' +
@@ -155,10 +172,7 @@ export default class SingleMeal extends React.Component {
 			.then(res => res.json())
 			.then(meals => {
 				this.setState({
-					doneFetches: 1,
-					Meal: [meals.response],
 					childs: meals.childs,
-					// check:meals.check
 				});
 			});
 	}
@@ -171,8 +185,6 @@ export default class SingleMeal extends React.Component {
 		}
 	}
 	render() {
-		if (this.state.doneFetches == 0)
-			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
 		return (
 

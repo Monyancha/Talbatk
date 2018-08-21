@@ -14,7 +14,6 @@ target 'Talbatk' do
   rn_path = '../node_modules/react-native'
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'React', :path => '../node_modules/react-native'
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
   # See http://facebook.github.io/react-native/docs/integration-with-existing-apps.html#configuring-cocoapods-dependencies
   pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"
@@ -48,6 +47,8 @@ target 'Talbatk' do
   pod 'react-native-google-maps', path: rn_maps_path  # Remove this line if you don't want to support GoogleMaps on iOS
   pod 'GoogleMaps'  # Remove this line if you don't want to support GoogleMaps on iOS
   pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
+
+  pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
 
 end
 

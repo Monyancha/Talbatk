@@ -24,11 +24,22 @@ export default class Meals extends React.Component {
 			fontSize: 16
 		},
 	});
-	
+
 	constructor(props) {
 		super(props);
+		const {params} = this.props.navigation.state
 		this.state = {
-			doneFetches: 0,
+			doneFetches: 1,
+			Restaurant: [
+        {
+          key: params.key,
+          name: params.name,
+          image:params.image,
+          time: params.time,
+          desc: params.desc,
+          stars: params.stars,
+          deliver_price: params.deliver_price
+        }],
 			tabs: [{
 				key: 5,
 				screenName: 'تحميل ...'
@@ -44,12 +55,12 @@ export default class Meals extends React.Component {
 		fetch(Server.dest + '/api/store-categories?store_id=' + this.props.navigation.state.params.key).then((res) => res.json()).then((categories) => {
 			this.setState({ tabs: categories.response });
 		});
-		fetch(Server.dest + '/api/store-info?store_id=' + this.props.navigation.state.params.key).then((res) => res.json()).then((restaurants) => {
-			this.setState({
-				Restaurant: [restaurants.response],
-				doneFetches: 1
-			})
-		})
+		// fetch(Server.dest + '/api/store-info?store_id=' + this.props.navigation.state.params.key).then((res) => res.json()).then((restaurants) => {
+		// 	this.setState({
+		// 		Restaurant: [restaurants.response],
+		// 		doneFetches: 1
+		// 	})
+		// })
 
 
 		// Inneed      onPress={() => onPressHandler(page)
@@ -59,8 +70,7 @@ export default class Meals extends React.Component {
 	render() {
 		const { params } = this.props.navigation.state;
 		const { navigate } = this.props.navigation;
-		if (this.state.doneFetches == 0)
-			return <View style={{ flex: 1, backgroundColor: 'white' }}><LoadingIndicator size="large" color="#B6E3C6" /></View>;
+
 
 		return (
 			<LazyContainer style={{ backgroundColor: Colors.smoothGray }}>
@@ -93,7 +103,13 @@ export default class Meals extends React.Component {
 					keyExtractor={item => String(item.key)}
 					renderItem={({ item }) => (
 						<TouchableOpacity onPress={() =>
-							navigate('MealsScreen', { category_id: item.key, restaurant_id: params.key })} >
+							navigate('MealsScreen', { category_id: item.key, restaurant_id: params.key,
+		          name: params.name,
+		          image:params.image,
+		          time: params.time,
+		          desc: params.desc,
+		          stars: params.stars,
+		          deliver_price: params.deliver_price })} >
 							<SingleCategory
 								name={item.screenName}
 							/>

@@ -201,9 +201,9 @@ export default class HomeScreen extends React.Component {
 		}
 	}
 
-	navigate_home = (key) => {
+	navigate_home = (key,status,stars,name,time,desc,image,deliver_price,min_delivery_price) => {
 
-		this.props.navigation.navigate('CategoriesScreen', { key: key })
+		this.props.navigation.navigate('CategoriesScreen', { key,status,stars,name,time,desc,image,deliver_price,min_delivery_price })
 
 	}
 
@@ -239,7 +239,7 @@ export default class HomeScreen extends React.Component {
 					keyExtractor={item => String(item.key)}
 					renderItem={({ item }) => (
 						<TouchableOpacity
-							onPress={() => this.navigate_home(item.key, item.status)}>
+							onPress={() => this.navigate_home(item.key,item.status,item.stars,item.name,item.time,item.desc,item.image,item.deliver_price,item.min_delivery_cost)}>
 							<RestaurantBox
 								style={styles.restaurant}
 								stars={item.stars}
