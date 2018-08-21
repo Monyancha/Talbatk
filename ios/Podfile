@@ -14,7 +14,6 @@ target 'Talbatk' do
   rn_path = '../node_modules/react-native'
   rn_maps_path = '../node_modules/react-native-maps'
   pod 'React', :path => '../node_modules/react-native'
-  pod 'BVLinearGradient', :path => '../node_modules/react-native-linear-gradient'
 
   # See http://facebook.github.io/react-native/docs/integration-with-existing-apps.html#configuring-cocoapods-dependencies
   pod 'yoga', path: "#{rn_path}/ReactCommon/yoga/yoga.podspec"

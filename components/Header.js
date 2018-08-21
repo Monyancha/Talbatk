@@ -6,19 +6,26 @@ import {
 	StyleSheet,
 	Text,
 	AsyncStorage,
-	TouchableOpacity
+	TouchableOpacity,
+	StatusBar
 } from 'react-native';
-import Ionicons from 'react-native-vector-icons'
-import MaterialCommunityIcons from 'react-native-vector-icons'
-import SimpleLineIcons from 'react-native-vector-icons'
+import Ionicons from 'react-native-vector-icons/Ionicons'
+import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
 
-const fontCol = 'white';
 const iconCol = 'rgba(255,255,255,0.8)';
 const bgCol = Colors.mainColor;
 
 export default class Header extends React.Component {
+	componentWillMount() {
+		StatusBar.setBarStyle('light-content')
+
+		if (Platform.OS === 'android') {
+			StatusBar.setBackgroundColor(Colors.mainColor, true)
+		}
+	}
+
 	componentDidMount() {
 		fetch(
 			Server.dest +
@@ -109,7 +116,7 @@ export default class Header extends React.Component {
 						returnKeyType={'search'}
 						underlineColorAndroid="transparent"
 						onChangeText={text => this.setState({ searchText: text })}
-						onSubmitEditing={event => this.doSearch()}
+						onSubmitEditing={() => this.doSearch()}
 					/>
 				</View>
 			);

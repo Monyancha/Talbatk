@@ -1,23 +1,16 @@
 import React from 'react';
 import {
-	Text,
 	View,
 	StyleSheet,
 	FlatList,
 	TouchableOpacity,
-	AsyncStorage,
-	Image,
-	Button
+	AsyncStorage
 } from 'react-native';
 import RestaurantBox from '../components/RestaurantBox';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
-import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Header from '../components/Header';
-import { TabNavigator, NavigationActions } from 'react-navigation';
 
 var styles = StyleSheet.create({
 	box: {
@@ -64,13 +57,9 @@ var styles = StyleSheet.create({
 });
 
 export default class HomeScreen extends React.Component {
-	static navigationOptions = ({ navigation }) => ({
-    header: <Header navigation={navigation} />,
-
-	});
 	componentDidMount() {
 
-				AsyncStorage.getItem('userid').then(id => {
+		AsyncStorage.getItem('userid').then(id => {
 			// this._shouldRenderOffer(id);
 			if (id == null) {
 				var id = -1;
@@ -89,11 +78,11 @@ export default class HomeScreen extends React.Component {
 						}
 						fetch(
 							Server.dest +
-								'/api/stores?user_id=8' +
-								'&maxcost=300' +
-								'&maxtime=300' +
-								'&sortby=2'+
-								'&id='+this.props.navigation.state.params.id
+							'/api/stores?user_id=8' +
+							'&maxcost=300' +
+							'&maxtime=300' +
+							'&sortby=2' +
+							'&id=' + this.props.home_id
 						)
 							.then(res => res.json())
 							.then(restaurants => {
@@ -181,40 +170,40 @@ export default class HomeScreen extends React.Component {
 	// };
 
 	constructor(props) {
-
 		super(props);
+
 		this.state = {
 			doneFetches: 0,
 			Restaurants: [],
 			userid: null,
 			offer: {},
-			SpecialOrderStatus:0
+			SpecialOrderStatus: 0
 		};
-		AsyncStorage.getItem('hot_request').then((value)=>{
-			if(value == '1'){
-				AsyncStorage.setItem('hot_request','0').then(()=>{
+		AsyncStorage.getItem('hot_request').then((value) => {
+			if (value == '1') {
+				AsyncStorage.setItem('hot_request', '0').then(() => {
 					this.props.navigation.navigate('طلبات')
 				})
 			}
 		})
-
 	}
-	SpecialOrderNavigate = () =>{
-		if(this.state.SpecialOrderStatus == 0){
+
+	SpecialOrderNavigate = () => {
+		if (this.state.SpecialOrderStatus == 0) {
 			alert('الخدمه متوقفه الان')
 		}
 		else {
 			this.props.navigation.navigate('SpecialOrderScreen')
 		}
 	}
-	navigate_home = (key,status)=>{
 
-			this.props.navigation.navigate('CategoriesScreen', { key: key })
+	navigate_home = (key,status,stars,name,time,desc,image,deliver_price,min_delivery_price) => {
+
+		this.props.navigation.navigate('CategoriesScreen', { key,status,stars,name,time,desc,image,deliver_price,min_delivery_price })
 
 	}
 
 	render() {
-		const { navigate } = this.props.navigation;
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
@@ -229,12 +218,10 @@ export default class HomeScreen extends React.Component {
 						<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
 					)}
 					data={this.state.Restaurants}
-
+					keyExtractor={item => String(item.key)}
 					renderItem={({ item }) => (
 						<TouchableOpacity
-
-							onPress={() => this.navigate_home(item.key,item.status)}
-						>
+							onPress={() => this.navigate_home(item.key,item.status,item.stars,item.name,item.time,item.desc,item.image,item.deliver_price,item.min_delivery_cost)}>
 							<RestaurantBox
 								style={styles.restaurant}
 								stars={item.stars}
@@ -244,7 +231,6 @@ export default class HomeScreen extends React.Component {
 								image={item.image}
 								price={item.deliver_price}
 								min_delivery_cost={item.min_delivery_cost}
-
 								status={item.status}
 							/>
 						</TouchableOpacity>

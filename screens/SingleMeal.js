@@ -1,12 +1,9 @@
 import React from 'react';
 import {
 	ScrollView,
-	KeyboardAvoidingView,
-	TextInput,
 	StyleSheet,
 	Text,
 	FlatList,
-	TouchableOpacity,
 	View,
 	AsyncStorage,
 	Modal
@@ -19,80 +16,79 @@ import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
 // import { NavigationActions } from 'react-navigation';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
- import RadioButton from 'radio-button-react-native';
+import RadioButton from 'radio-button-react-native';
+import LazyContainer from '../components/LazyContainer';
 
 export default class SingleMeal extends React.Component {
 	addcart = () => {
-		if(this.state.currentId == 0){
+		if (this.state.currentId == 0) {
 			var meal = this.state.Meal[0];
 		}
 		else {
 			var meal = this.state.childs.find(obj => {
-  		return obj.key == this.state.currentId
-		})
+				return obj.key == this.state.currentId
+			})
 
 		}
 		var num = this.state.num || 1;
-		AsyncStorage.getItem('userid').then((userid)=>{
-      if(userid != 'null' && userid != null ){
-				if(this.state.Restaurant[0].status ==  1){
-	AsyncStorage.getItem('CartResturantId').then((CartResturantId)=>{
-		if(CartResturantId || CartResturantId == ''){ // if resturant id saved
-			if(CartResturantId == this.props.navigation.state.params.restaurant_id){ //if resturant in cart is the same one here
-				AsyncStorage.getItem('cart').then(cart => {
-					AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
-						if (num > 1) {
-							this.setState({
-								num: num - 1
+		AsyncStorage.getItem('userid').then((userid) => {
+			if (userid != 'null' && userid != null) {
+				if (this.state.Restaurant[0].status == 1) {
+					AsyncStorage.getItem('CartResturantId').then((CartResturantId) => {
+						if (CartResturantId || CartResturantId == '') { // if resturant id saved
+							if (CartResturantId == this.props.navigation.state.params.restaurant_id) { //if resturant in cart is the same one here
+								AsyncStorage.getItem('cart').then(cart => {
+									AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
+										if (num > 1) {
+											this.setState({
+												num: num - 1
+											});
+											this.addcart();
+										} else {
+											this.setState({ modalVisible: true });
+										}
+									});
+								});
+								AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.restaurant_id)
+							} //end if resturant in cart is the same one here
+							else {
+								alert('لديك طلبات ب السله لمحل تجاري اخر الرجاء تنفيذ الطلب او الغاءه اولا')
+							}
+						} // end if resturant id saved
+						else {
+							AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.restaurant_id)
+							AsyncStorage.getItem('cart').then(cart => {
+								AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
+									if (num > 1) {
+										this.setState({
+											num: num - 1
+										});
+										this.addcart();
+									} else {
+										this.setState({ modalVisible: true });
+									}
+								});
 							});
-							this.addcart();
-						} else {
-							this.setState({ modalVisible: true });
 						}
-					});
-				});
-				AsyncStorage.setItem('CartResturantId',''+this.props.navigation.state.params.restaurant_id)
-			} //end if resturant in cart is the same one here
-			else {
-				alert('لديك طلبات ب السله لمحل تجاري اخر الرجاء تنفيذ الطلب او الغاءه اولا')
+
+					})
+				}
+				else {
+					alert('عملينا الكريم : لا يمكنك الطلب حاليا لأن المحل التجاري مغلق')
+					console.log(this.state.Restaurant);
+
+				}
 			}
-		} // end if resturant id saved
-		else{
-			AsyncStorage.setItem('CartResturantId',''+this.props.navigation.state.params.restaurant_id)
-			AsyncStorage.getItem('cart').then(cart => {
-				AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
-					if (num > 1) {
-						this.setState({
-							num: num - 1
-						});
-						this.addcart();
-					} else {
-						this.setState({ modalVisible: true });
-					}
-				});
-			});
-		}
 
-	})
-	}
-	else {
-		alert('عملينا الكريم : لا يمكنك الطلب حاليا لأن المحل التجاري مغلق')
-		console.log(this.state.Restaurant);
-
-	}
-}
-
-else {
-	alert('الزائر الكريم : يجب عليك التسجيل قبل إضافة أي طلب بالسلة و ذلك لإتمام عملية الشراء')
-}
-});
+			else {
+				alert('الزائر الكريم : يجب عليك التسجيل قبل إضافة أي طلب بالسلة و ذلك لإتمام عملية الشراء')
+			}
+		});
 
 
 	};
 
-	static navigationOptions = ({ navigation }) => ({
+	static navigationOptions = () => ({
 		title: 'المنتج',
 		headerTintColor: Colors.smoothGray,
 		fontFamily: 'Droid Arabic Kufi',
@@ -110,266 +106,279 @@ else {
 	});
 	constructor(props) {
 		super(props);
-
+		const {params} = this.props.navigation.state
 		this.state = {
 			doneFetches: 0,
-			Restaurant: [],
-			Meal: [],
+			Restaurant: [
+				{
+				key: params.key,
+			 name: params.name,
+			 image:params.image,
+			 time: params.time,
+			 desc: params.desc,
+			 stars: params.stars,
+			 deliver_price: params.deliver_price
+		 	}
+			],
+			Meal: [{
+				key: params.meal_id,
+				name: params.meal_name,
+				image: params.meal_image,
+				price: params.meal_price,
+				desc: params.meal_desc
+			}
+			],
 			num: 1,
-			modalVisible:false,
-			childs:[],
-			check:[],
-			currentId:0,
-			price:0
+			modalVisible: false,
+			childs: [],
+			check: [],
+			currentId: 0,
+			price: 0
 		};
 	}
-	cart = ()=>{
+	cart = () => {
 		this.props.navigation.navigate('السله');
 		this.setState({ modalVisible: false });
 	}
-	handleOnPress(value){
+	handleOnPress(value) {
 
-			var meal = this.state.childs.find(obj => {
-  		return obj.key == value
-			})
+		var meal = this.state.childs.find(obj => {
+			return obj.key == value
+		})
 
 
-    this.setState({currentId:value,price:meal.price})
+		this.setState({ currentId: value, price: meal.price })
 
 	}
 
 	componentDidMount() {
+		// fetch(
+		// 	Server.dest +
+		// 	'/api/store-info?store_id=' +
+		// 	this.props.navigation.state.params.restaurant_id
+		// )
+		// 	.then(res => res.json())
+		// 	.then(restaurants => {
+		// 		this.setState({
+		// 			Restaurant: [restaurants.response],
+		// 			// check:meals.check
+		// 		});
+		// 	});
 		fetch(
 			Server.dest +
-				'/api/store-info?store_id=' +
-				this.props.navigation.state.params.restaurant_id
+			'/api/product-info?product_id=' +
+			this.props.navigation.state.params.meal_id
 		)
 			.then(res => res.json())
-			.then(restaurants => {
+			.then(meals => {
 				this.setState({
-					Restaurant: [restaurants.response],
-					// check:meals.check
+					childs: meals.childs,
 				});
 			});
-			fetch(
-				Server.dest +
-					'/api/product-info?product_id=' +
-					this.props.navigation.state.params.meal_id
-			)
-				.then(res => res.json())
-				.then(meals => {
-					this.setState({
-						doneFetches: 1,
-						Meal: [meals.response],
-						childs: meals.childs,
-						// check:meals.check
-					});
-				});
 	}
-	handlePrice = ()=>{
-		if(this.state.price != 0){
-			return Math.round((this.state.num * this.state.price)*100) / 100
+	handlePrice = () => {
+		if (this.state.price != 0) {
+			return Math.round((this.state.num * this.state.price) * 100) / 100
 
-		}else {
-			return Math.round((this.state.num * this.state.Meal[0].price)*100) / 100
+		} else {
+			return Math.round((this.state.num * this.state.Meal[0].price) * 100) / 100
 		}
 	}
 	render() {
-		const { params } = this.props.navigation.state;
-		if (this.state.doneFetches == 0)
-			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
 		return (
 
 
-			<View>
-			<Modal
-				visible={this.state.modalVisible}
-				animationType={'slide'}
-				onRequestClose={() => this.closeModal()}
-			>
-				<View style={styles.modalContainer}>
-					<View style={styles.innerContainer}>
-						<Text style={{ fontFamily: 'Droid Arabic Kufi', fontSize: 25 }}>
-							تم إضافة المنتج للسلة
+			<LazyContainer>
+				<Modal
+					visible={this.state.modalVisible}
+					animationType={'slide'}
+					onRequestClose={() => this.setState({ modalVisible: false })}
+				>
+					<View style={styles.modalContainer}>
+						<View style={styles.innerContainer}>
+							<Text style={{ fontFamily: 'Droid Arabic Kufi', fontSize: 25 }}>
+								تم إضافة المنتج للسلة
 						</Text>
-						<View style={styles.buttons}>
+							<View style={styles.buttons}>
 
-							<Button onPress={() => 	this.setState({ modalVisible: false })}
-							color='white'
-							backgroundColor={Colors.mainColor}
-							containerViewStyle={{borderRadius:15}}
-							borderRadius={15}
-							buttonStyle={{ padding: 15 }}
-							textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
-							title="اكمل التسوق"/>
-							<Button onPress={() => this.cart() }
-							color='white'
-							backgroundColor={Colors.mainColor}
-							containerViewStyle={{borderRadius:15}}
-							borderRadius={15}
-							buttonStyle={{ padding: 15 }}
-							textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
-							title="الذهاب للسلة"/>
+								<Button onPress={() => this.setState({ modalVisible: false })}
+									color='white'
+									backgroundColor={Colors.mainColor}
+									containerViewStyle={{ borderRadius: 15 }}
+									borderRadius={15}
+									buttonStyle={{ padding: 15 }}
+									textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
+									title="اكمل التسوق" />
+								<Button onPress={() => this.cart()}
+									color='white'
+									backgroundColor={Colors.mainColor}
+									containerViewStyle={{ borderRadius: 15 }}
+									borderRadius={15}
+									buttonStyle={{ padding: 15 }}
+									textStyle={{ fontFamily: 'Droid Arabic Kufi' }}
+									title="الذهاب للسلة" />
 
+							</View>
 						</View>
 					</View>
-				</View>
-			</Modal>
-			<ScrollView>
+				</Modal>
+				<ScrollView>
 
-				<FlatList
-					automaticallyAdjustContentInsets={false}
-					style={{
-						backgroundColor: 'white',
-						borderBottomWidth: 0.3,
-						borderBottomColor: 'black'
-					}}
-					removeClippedSubviews={false}
-					ItemSeparatorComponent={() => (
-						<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
-					)}
-					data={this.state.Restaurant}
-					renderItem={({ item }) => (
-						<RestaurantBox
-							stars={item.stars}
-							name={item.name}
-							time={item.time}
-							desc={item.desc}
-							image={item.image}
-							price={item.deliver_price}
-						/>
-					)}
-				/>
+					<FlatList
+						automaticallyAdjustContentInsets={false}
+						style={{
+							backgroundColor: 'white',
+							borderBottomWidth: 0.3,
+							borderBottomColor: 'black'
+						}}
+						removeClippedSubviews={false}
+						ItemSeparatorComponent={() => (
+							<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
+						)}
+						keyExtractor={item => String(item.key)}
+						data={this.state.Restaurant}
+						renderItem={({ item }) => (
+							<RestaurantBox
+								stars={item.stars}
+								name={item.name}
+								time={item.time}
+								desc={item.desc}
+								image={item.image}
+								price={item.deliver_price}
+							/>
+						)}
+					/>
 
-				<FlatList
-					automaticallyAdjustContentInsets={false}
-					style={{ backgroundColor: 'white' }}
-					removeClippedSubviews={false}
-					ListFooterComponent={() => (
-						<View>
-						<View>
-						{
-							this.state.childs.map((child)=>{
-								return (
-									<RadioButton
-								outerCircleColor={Colors.mainColor}
-								style={{justifyContent:'center',padding:20}}
-outerCircleSize={35}
-outerCircleWidth={2}
-innerCircleColor={Colors.mainColor}
-innerCircleSize={20}
-currentValue={this.state.currentId} value={child.key} onPress={this.handleOnPress.bind(this)}>
-<Text style={{color:Colors.mainColor,textAlign:'left',flex:.8,paddingHorizontal:15,fontFamily:'Droid Arabic Kufi',fontSize:17,marginBottom:20}}>{child.price} رس</Text>
+					<FlatList
+						automaticallyAdjustContentInsets={false}
+						style={{ backgroundColor: 'white' }}
+						removeClippedSubviews={false}
+						ListFooterComponent={() => (
+							<View>
+								<View>
+									{
+										this.state.childs.map((child) => {
+											return (
+												<RadioButton
+													outerCircleColor={Colors.mainColor}
+													style={{ justifyContent: 'center', padding: 20 }}
+													outerCircleSize={35}
+													outerCircleWidth={2}
+													innerCircleColor={Colors.mainColor}
+													innerCircleSize={20}
+													currentValue={this.state.currentId} value={child.key} onPress={this.handleOnPress.bind(this)}>
+													<Text style={{ color: Colors.mainColor, textAlign: 'left', flex: .8, paddingHorizontal: 15, fontFamily: 'Droid Arabic Kufi', fontSize: 17, marginBottom: 20 }}>{child.price} رس</Text>
 
-                <Text style={{color:Colors.mainColor,textAlign:'right',flex:.2,paddingHorizontal:15,fontFamily:'Droid Arabic Kufi',fontSize:17,marginBottom:20}}>{child.name}</Text>
-                 </RadioButton>)
-							})
-						}
-
-
+													<Text style={{ color: Colors.mainColor, textAlign: 'right', flex: .2, paddingHorizontal: 15, fontFamily: 'Droid Arabic Kufi', fontSize: 17, marginBottom: 20 }}>{child.name}</Text>
+												</RadioButton>)
+										})
+									}
 
 
-</View>
-
-							<View
-								style={{
-									flex: 1,
-									flexDirection: 'row',
-									borderColor: Colors.mainColor,
-									borderWidth: 1,
-									margin: 18,
-									borderRadius: 18,
-									padding: 10
-								}}
-							>
 
 
-								<View
-									style={{
-										flex: 1.5,
-										alignItems: 'center',
-										justifyContent: 'center'
-									}}
-								>
-
-									<Ionicons
-										onPress={() => {
-											if (this.state.num != 1) {
-												this.setState({ num: this.state.num - 1 });
-											}
-										}}
-										name="ios-remove-circle-outline"
-										size={40}
-										color={Colors.mainColor}
-									/>
 								</View>
+
 								<View
 									style={{
-										flex: 3,
-										alignItems: 'center',
-										justifyContent: 'center'
+										flex: 1,
+										flexDirection: 'row',
+										borderColor: Colors.mainColor,
+										borderWidth: 1,
+										margin: 18,
+										borderRadius: 18,
+										padding: 10
 									}}
 								>
-									<Text
+
+
+									<View
 										style={{
+											flex: 1.5,
 											alignItems: 'center',
-											color: Colors.mainColor,
-											fontSize: 18
+											justifyContent: 'center'
 										}}
 									>
-										{this.state.num}
-									</Text>
+
+										<Ionicons
+											onPress={() => {
+												if (this.state.num != 1) {
+													this.setState({ num: this.state.num - 1 });
+												}
+											}}
+											name="ios-remove-circle-outline"
+											size={40}
+											color={Colors.mainColor}
+										/>
+									</View>
+									<View
+										style={{
+											flex: 3,
+											alignItems: 'center',
+											justifyContent: 'center'
+										}}
+									>
+										<Text
+											style={{
+												alignItems: 'center',
+												color: Colors.mainColor,
+												fontSize: 18
+											}}
+										>
+											{this.state.num}
+										</Text>
+									</View>
+
+									<View
+										style={{
+											flex: 1.5,
+											alignItems: 'center',
+											justifyContent: 'center'
+										}}
+									>
+										<Ionicons
+											onPress={() => this.setState({ num: this.state.num + 1 })}
+											name="ios-add-circle-outline"
+											size={40}
+											color={Colors.mainColor}
+										/>
+									</View>
 								</View>
 
-								<View
-									style={{
-										flex: 1.5,
-										alignItems: 'center',
-										justifyContent: 'center'
+								<Button
+									onPress={() => {
+										this.addcart();
 									}}
-								>
-									<Ionicons
-										onPress={() => this.setState({ num: this.state.num + 1 })}
-										name="ios-add-circle-outline"
-										size={40}
-										color={Colors.mainColor}
-									/>
-								</View>
+									color="white"
+									backgroundColor={Colors.mainColor}
+									containerViewStyle={{ borderRadius: 15 }}
+									borderRadius={15}
+									buttonStyle={{ padding: 10 }}
+									textStyle={{ fontFamily: 'Droid Arabic Kufi', fontSize: 15 }}
+									title={"اضف الى السله " + this.handlePrice() + " ريال سعودي"}
+								/>
 							</View>
+						)}
+						ItemSeparatorComponent={() => (
+							<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
+						)}
+						keyExtractor={item => String(item.key)}
+						data={this.state.Meal}
+						renderItem={({ item }) => (
+							<MealBox
+								name={item.name}
+								time={item.time}
+								desc={item.desc}
+								image={item.image}
+								price={item.price}
 
-							<Button
-								onPress={() => {
-									this.addcart();
-								}}
-								color="white"
-								backgroundColor={Colors.mainColor}
-								containerViewStyle={{ borderRadius: 15 }}
-								borderRadius={15}
-								buttonStyle={{ padding: 10 }}
-								textStyle={{ fontFamily: 'Droid Arabic Kufi',fontSize:15 }}
-								title={ "اضف الى السله " +this.handlePrice() + " ريال سعودي" }
 							/>
-						</View>
-					)}
-					ItemSeparatorComponent={() => (
-						<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
-					)}
-					data={this.state.Meal}
-					renderItem={({ item }) => (
-						<MealBox
-							name={item.name}
-							time={item.time}
-							desc={item.desc}
-							image={item.image}
-							price={item.price}
 
-						/>
-
-					)}
-				/>
+						)}
+					/>
 				</ScrollView>
-			</View>
+			</LazyContainer>
 		);
 	}
 }

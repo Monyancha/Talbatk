@@ -2,6 +2,8 @@ const tintColor = '#000000';
 const secondCol = '#2b4a62';
 const secondColFaded = 'rgba(46, 76, 98, 0.3)';
 
+export const mainColor = '#EBB70A'
+
 export default {
 	tintColor,
 	tabIconDefault: secondColFaded,
@@ -13,7 +15,7 @@ export default {
 	warningText: '#666804',
 	noticeBackground: tintColor,
 	noticeText: '#fff',
-	mainColor: '#EBB70A',
+	mainColor,
 	fadedMainColor: '#F5D97D',
 	secondaryColor: secondCol,
 	smoothGray: '#F2F3F5'

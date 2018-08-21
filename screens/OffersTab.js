@@ -73,7 +73,7 @@ export default class OffersTab extends React.Component {
 		};
 	}
 
-	_keyExtractor = (item) => item.id;
+	_keyExtractor = (item) => String(item.id);
 
 	render() {
 		if (this.state.doneFetches == 0)

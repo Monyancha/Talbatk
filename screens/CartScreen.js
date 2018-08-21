@@ -1,7 +1,6 @@
 import React from 'react';
 import {
 	ScrollView,
-	DeviceEventEmitter,
 	Modal,
 	StyleSheet,
 	Text,
@@ -41,37 +40,21 @@ const Center = ({ children }) => (
 I18nManager.allowRTL(true);
 
 export default class Meals extends React.Component {
-	static navigationOptions = ({ navigation }) => {
-
-		return {
-			header: null,
-			tabBarOnPress: ({ previousScene, scene, jumpToIndex }) => {
-				// Inject event
-				DeviceEventEmitter.emit('ReloadMyLibraryBooks', { empty: 0 });
-
-				// Keep original behaviour
-				jumpToIndex(scene.index);
-
-			}
-		};
-	};
-
-	listeners = {
-		update: DeviceEventEmitter.addListener(
-			'ReloadMyLibraryBooks',
-			({ empty }) => {
+	componentWillMount() {
+		this.didFocusSubscription = this.props.navigation.addListener(
+			'didFocus',
+			() => {
 				this.setState({ doneFetches: 0 });
 				this.doTheFetching();
 			}
-		)
-	};
-	componentWillUnmount() {
-		// cleaning up listeners
-		// I am using lodash
-		_.each(this.listeners, listener => {
-			listener.remove();
-		});
+		);
 	}
+
+	componentWillUnmount() {
+		// Remove the listener when you are done
+		this.didFocusSubscription.remove();
+	}
+
 	CheckIfBannedThenOrder = () => {
 		this.setState({
 			ordering: true
@@ -87,11 +70,8 @@ export default class Meals extends React.Component {
 										AsyncStorage.getItem('token').then(token => {
 											fetch(Server.dest + '/api/add-user-token?user_id=' + userid +
 												'&token=' + token, { headers: { 'Cache-Control': 'no-cache' } }).
-												then((res) => res.json()).then((resJson) => {
-													//console.log("reJson"+resJson.response);
-													//console.log("token"+token);
-													//console.log("userid"+userid);
-												})
+												then((res) => res.json()).then(() => {
+													})
 										})
 									})
 									fetch(Server.dest + '/api/store-info?store_id=' + this.state.store_id).then((res) => res.json()).then((restaurants) => {
@@ -150,16 +130,16 @@ export default class Meals extends React.Component {
 						this.state.discounted
 						, { headers: { 'Cache-Control': 'no-cache' } })
 						.then(res => res.json())
-						.then(meals => {
-							AsyncStorage.setItem('cart', '').then(() => {
-								AsyncStorage.setItem('CartResturantId', '').then(() => {
-									AsyncStorage.setItem('hot_request', '1').then(() => {
-										this.props.navigation.navigate('Main');
-										this.closeModal();
-									})
-								})
+						.then(() => {
+								AsyncStorage.setItem('cart', '').then(() => {
+									AsyncStorage.setItem('CartResturantId', '').then(() => {
+										AsyncStorage.setItem('hot_request', '1').then(() => {
+											this.props.navigation.navigate('Main');
+											this.closeModal();
+										});
+									});
+								});
 							})
-						})
 				})
 			})
 		})
@@ -292,8 +272,6 @@ export default class Meals extends React.Component {
 			['' + Math.round((this.state.after_cost - this.state.discounted) * 100) / 100, 'السعر الاجمالى مع الضريبه']
 
 		];
-		const { params } = this.props.navigation.state;
-		const { navigate } = this.props.navigation;
 		if (this.state.doneFetches == 0)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
@@ -361,6 +339,7 @@ export default class Meals extends React.Component {
 						ItemSeparatorComponent={() => (
 							<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
 						)}
+						keyExtractor={item => String(item.id)}
 						data={this.state.meals}
 						ListHeaderComponent={() => (
 							<Image

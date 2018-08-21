@@ -1,7 +1,6 @@
 import React from 'react';
 import {
 	View,
-	TextInput,
 	StyleSheet,
 	AsyncStorage,
 	Platform,
@@ -9,10 +8,7 @@ import {
 	TouchableOpacity
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons'
-import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
-import SimpleLineIcons from 'react-native-vector-icons/SimpleLineIcons'
 import Colors from '../constants/Colors';
-import { NavigationActions } from 'react-navigation';
 import Server from '../constants/server';
 
 export default class SettingsScreen extends React.Component {
@@ -39,8 +35,7 @@ export default class SettingsScreen extends React.Component {
 				else if (i == 2) {
 					if (store[i][1] != 'null') {
 						AsyncStorage.getItem('login').then(value => {
-							if(value === '1')
-							{
+							if (value === '1') {
 								fetch(`${Server.dest}/api/user-by-id?user_id=${store[i][1]}`)
 									.then(res => res.json())
 									.then(res =>
@@ -115,41 +110,41 @@ export default class SettingsScreen extends React.Component {
 		} else {
 			return (
 				<View style={{ flex: 1.8, width: '100%' }}>
-				<TouchableOpacity
-					style={styles.singleInputContainer}
-					onPress={() => {
-						AsyncStorage.setItem('SkippedLogin', '0');
-						AsyncStorage.setItem('login', '0');
-						this.props.navigation.navigate('Signin', {});
-					}}
-				>
-					<Ionicons
-						name={
-							Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-dropleft'
-						}
-						size={26}
-						color={Colors.secondaryColor}
-						style={styles.inputIcon}
-					/>
+					<TouchableOpacity
+						style={styles.singleInputContainer}
+						onPress={() => {
+							AsyncStorage.setItem('SkippedLogin', '0');
+							AsyncStorage.setItem('login', '0');
+							this.props.navigation.navigate('Signin', {});
+						}}
+					>
+						<Ionicons
+							name={
+								Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-dropleft'
+							}
+							size={26}
+							color={Colors.secondaryColor}
+							style={styles.inputIcon}
+						/>
 
-					<Text style={styles.inputOpenOutside}>تسجيل دخول</Text>
-				</TouchableOpacity>
-				<TouchableOpacity
-					style={styles.singleInputContainer}
-					onPress={() => {
-						this.props.navigation.navigate('AboutUs', {});
-					}}
-				>
-					<Ionicons
-						name={
-							Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-dropleft'
-						}
-						size={26}
-						color={Colors.secondaryColor}
-						style={styles.inputIcon}
-					/>
-					<Text style={styles.inputOpenOutside}>عن التطبيق</Text>
-				</TouchableOpacity>
+						<Text style={styles.inputOpenOutside}>تسجيل دخول</Text>
+					</TouchableOpacity>
+					<TouchableOpacity
+						style={styles.singleInputContainer}
+						onPress={() => {
+							this.props.navigation.navigate('AboutUs', {});
+						}}
+					>
+						<Ionicons
+							name={
+								Platform.OS === 'ios' ? 'ios-arrow-back' : 'md-arrow-dropleft'
+							}
+							size={26}
+							color={Colors.secondaryColor}
+							style={styles.inputIcon}
+						/>
+						<Text style={styles.inputOpenOutside}>عن التطبيق</Text>
+					</TouchableOpacity>
 				</View>
 			);
 		}

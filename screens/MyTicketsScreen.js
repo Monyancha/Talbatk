@@ -12,7 +12,7 @@ import Colors from '../constants/Colors';
 import TicketBox from '../components/TicketBox';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
-import Ionicons from 'react-native-vector-icons/Ionicons';
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 
 export default class Meals extends React.Component {
 	static navigationOptions = ({ navigation }) => ({
@@ -56,7 +56,7 @@ export default class Meals extends React.Component {
 			Tickets: [{}]
 		};
 	}
-	_keyExtractor = (item) => item.ticket_id;
+	_keyExtractor = (item) => String(item.ticket_id);
 
 	render() {
 		const { navigate } = this.props.navigation;

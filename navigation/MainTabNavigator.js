@@ -1,8 +1,9 @@
 import React from 'react';
 import { Platform, View, Text, AsyncStorage } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
-import { createBottomTabNavigator } from 'react-navigation';
 import {  BottomTabBar } from 'react-navigation-tabs';
+
+import { createBottomTabNavigator, createStackNavigator } from 'react-navigation';
 
 import Colors from '../constants/Colors';
 
@@ -10,7 +11,8 @@ import HomeScreen from '../screens/HomeScreen';
 import OffersTab from '../screens/OffersTab';
 import SettingsScreen from '../screens/SettingsScreen';
 import CartScreen from '../screens/CartScreen';
-import OrderTabs from '../navigation/OrderTabsNavigator';
+import OrdersTabs from '../screens/OrdersTabs';
+import Header from '../components/Header';
 
 function cart() {
 	AsyncStorage.getItem('cart').then((cart) => {
@@ -23,22 +25,71 @@ function cart() {
 	})
 }
 
+const HomeStack = (props) => {
+	const HomeStackNavigator = createStackNavigator({
+		HomeScreen: {
+			screen: () => <HomeScreen home_id={props.home_id} {...props} />,
+			navigationOptions: {
+				header: <Header navigation={props.navigation} />
+			}
+		}
+	});
+
+	return <HomeStackNavigator />;
+}
+
+const OffersStack = createStackNavigator({
+	OffersTab: {
+		screen: OffersTab,
+		navigationOptions: ({ navigation }) => ({
+			header: <Header navigation={navigation} />
+		})
+	}
+});
+
+const CartStack = createStackNavigator({
+	CartScreen: {
+		screen: CartScreen,
+		navigationOptions: ({ navigation }) => ({
+			header: <Header navigation={navigation} />
+		})
+	}
+});
+
+const SettingsStack = createStackNavigator({
+	SettingsScreen: {
+		screen: SettingsScreen,
+		navigationOptions: ({ navigation }) => ({
+			header: <Header navigation={navigation} />
+		})
+	}
+});
+
+const OrdersStack = createStackNavigator({
+	OrdersTabs: {
+		screen: OrdersTabs,
+		navigationOptions: ({ navigation }) => ({
+			header: <Header navigation={navigation} />
+		})
+	}
+});
+
 export default createBottomTabNavigator(
 	{
 		مطاعم: {
-			screen: HomeScreen
+			screen: (props) => <HomeStack home_id={props.navigation.state.params.id} {...props} />,
 		},
 		السله: {
-			screen: CartScreen
+			screen: CartStack,
 		},
 		طلبات: {
-			screen: OrderTabs
+			screen: OrdersStack,
 		},
 		العروض: {
-			screen: OffersTab
+			screen: OffersStack,
 		},
 		اعدادات: {
-			screen: SettingsScreen
+			screen: SettingsStack,
 		}
 	},
 	{
@@ -51,7 +102,7 @@ export default createBottomTabNavigator(
 					case 'مطاعم':
 						iconName =
 							Platform.OS === 'ios'
-								? `ios-restaurant${focused ? '' : '-outline'}`
+								? `ios-restaurant${focused ? '-outline' : '-outline'}`
 								: 'ios-restaurant';
 						break;
 					case 'طلبات':
@@ -138,7 +189,6 @@ export default createBottomTabNavigator(
 			}
 		}),
 		tabBarOptions: { showLabel: false },
-		tabBarComponent: BottomTabBar,
 		animationEnabled: false,
 		swipeEnabled: true
 	}

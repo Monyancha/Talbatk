@@ -3,16 +3,10 @@ import {
 	Text,
 	View,
 	Image,
-	Dimensions,
-	FlatList,
-	TouchableOpacity,
 	StyleSheet
 } from 'react-native';
-import { TabNavigator } from 'react-navigation'; // 1.0.0-beta.27
-import MealBox from '../components/MealBox';
 import Colors from '../constants/Colors';
 import { AnimatedCircularProgress } from 'react-native-circular-progress';
-import Timeline from 'react-native-timeline-listview';
 import StarRating from 'react-native-star-rating';
 import { Button } from 'react-native-elements';
 
@@ -88,15 +82,14 @@ export default class SingleOrderScreen extends React.Component {
 		};
 	}
 	getStatusAsStr = (status) => {
-			switch(status)
-			{
-					case 0:
-							return ("قيد القبول");
-					case 1:
-							return ("جاري التوصيل");
-					case 2:
-							return ("تم التوصيل");
-			}
+		switch (status) {
+			case 0:
+				return ("قيد القبول");
+			case 1:
+				return ("جاري التوصيل");
+			case 2:
+				return ("تم التوصيل");
+		}
 	};
 	componentWillMount() {
 		/*orders status
@@ -121,7 +114,7 @@ export default class SingleOrderScreen extends React.Component {
 		});
 	}
 
-	renderDetail(rowData, sectionID, rowID) {
+	renderDetail(rowData) {
 		return (
 			<View style={{ flex: 1 }}>
 				<Text style={styles.title}>{rowData.title}</Text>
@@ -133,7 +126,7 @@ export default class SingleOrderScreen extends React.Component {
 	render() {
 		return (
 			<Center>
-			{(this.props.navigation.state.params.status !=0)?
+				{(this.props.navigation.state.params.status != 0) ?
 					(
 						<AnimatedCircularProgress
 							style={{ marginTop: 40 }}
@@ -143,32 +136,28 @@ export default class SingleOrderScreen extends React.Component {
 							tintColor={Colors.mainColor}
 							backgroundColor="#3d5875"
 						>
-							{fill => (
-								<Text
-									style={{
-										backgroundColor: 'transparent',
-										position: 'absolute',
-										top: 60,
-										left: 56,
-										width: 90,
-										textAlign: 'center',
-										color: '#7591af',
-										fontSize: 35,
-										fontWeight: '100'
-									}}
-								>
-									{parseInt(this.state.timeLeft)}
-									<Text style={{ fontSize: 20 }}> Sec</Text>
-								</Text>
-							)}
+							{() => (<Text style={{
+								backgroundColor: 'transparent',
+								position: 'absolute',
+								top: 60,
+								left: 56,
+								width: 90,
+								textAlign: 'center',
+								color: '#7591af',
+								fontSize: 35,
+								fontWeight: '100'
+							}}>
+								{parseInt(this.state.timeLeft)}
+								<Text style={{ fontSize: 20 }}> Sec</Text>
+							</Text>)}
 						</AnimatedCircularProgress>
-					):(<Image
-							style={{ flex: 1, height: '20%', width: '100%' }}
-							resizeMode='cover'
-							source={require('../assets/images/not-accepted.png')} />)
-			}
+					) : (<Image
+						style={{ flex: 1, height: '20%', width: '100%' }}
+						resizeMode='cover'
+						source={require('../assets/images/not-accepted.png')} />)
+				}
 
-			<Text>{this.getStatusAsStr(this.props.navigation.state.params.status)}</Text>
+				<Text>{this.getStatusAsStr(this.props.navigation.state.params.status)}</Text>
 				<StarRating
 					style={{ flex: 1 }}
 					disabled={false}
