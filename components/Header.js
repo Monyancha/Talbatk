@@ -27,20 +27,20 @@ export default class Header extends React.Component {
 	}
 
 	componentDidMount() {
-		fetch(
-			Server.dest +
-				'/api/special_orders_status'
-		)	.then(res => res.json())
-			.then(status => {
-				this.setState({SpecialOrderStatus:status.status})
-			})
-		this.setState({ fontLoaded: '1' });
-
-		AsyncStorage.getItem('location').then(value => {
-			this.setState({
-				location: value === null ? 'لم يتم تحديد مكان' : value
-			});
-		});
+		// fetch(
+		// 	Server.dest +
+		// 		'/api/special_orders_status'
+		// )	.then(res => res.json())
+		// 	.then(status => {
+		// 		this.setState({SpecialOrderStatus:status.status})
+		// 	})
+		// this.setState({ fontLoaded: '1' });
+		//
+		// AsyncStorage.getItem('location').then(value => {
+		// 	this.setState({
+		// 		location: value === null ? 'لم يتم تحديد مكان' : value
+		// 	});
+		// });
 	}
 
 	constructor(props) {
@@ -154,7 +154,6 @@ export default class Header extends React.Component {
 					<TouchableOpacity style={{
 						flex: 1,
 						justifyContent: 'flex-end',
-						padding: 10,
 						flexDirection: 'row',
 					}} onPress={() => this.SpecialOrderNavigate()}>
 
@@ -166,7 +165,6 @@ export default class Header extends React.Component {
 									textAlign:'right',
 									color:'white',
 									justifyContent:'center',
-									marginTop:5
 								}}
 							>
 							الرئيسية

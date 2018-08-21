@@ -48,6 +48,8 @@ target 'Talbatk' do
   pod 'GoogleMaps'  # Remove this line if you don't want to support GoogleMaps on iOS
   pod 'Google-Maps-iOS-Utils' # Remove this line if you don't want to support GoogleMaps on iOS
 
+  pod 'react-native-fast-image', :path => '../node_modules/react-native-fast-image'
+
 end
 
 post_install do |installer|

@@ -102,19 +102,19 @@ export default createBottomTabNavigator(
 					case 'مطاعم':
 						iconName =
 							Platform.OS === 'ios'
-								? `ios-restaurant${focused ? '-outline' : '-outline'}`
+								? `ios-restaurant`
 								: 'ios-restaurant';
 						break;
 					case 'طلبات':
 						iconName =
 							Platform.OS === 'ios'
-								? `ios-paper${focused ? '' : '-outline'}`
+								? `ios-paper`
 								: 'md-paper';
 						break;
 					case 'اعدادات':
 						iconName =
 							Platform.OS === 'ios'
-								? `ios-contact${focused ? '' : '-outline'}`
+								? `ios-contact`
 								: 'md-contact';
 						break;
 					case 'السله':
@@ -131,7 +131,7 @@ export default createBottomTabNavigator(
 								<Ionicons
 									name={
 										Platform.OS === 'ios'
-											? `ios-cart${focused ? '' : '-outline'}`
+											? `ios-cart`
 											: 'md-cart'
 									}
 									size={32}
@@ -174,7 +174,7 @@ export default createBottomTabNavigator(
 					case 'العروض':
 						iconName =
 							Platform.OS === 'ios'
-								? `ios-beer${focused ? '' : '-outline'}`
+								? `ios-beer`
 								: 'md-beer';
 						break;
 				}
