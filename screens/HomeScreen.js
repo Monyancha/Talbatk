@@ -10,55 +10,78 @@ import RestaurantBox from '../components/RestaurantBox';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
-import Header from '../components/Header';
-
-var styles = StyleSheet.create({
-	box: {
-		height: 45,
-		backgroundColor: '#FFF',
-		shadowColor: '#000000',
-		shadowOpacity: 2,
-		shadowOffset: {
-			height: 2,
-			width: 0
-		},
-		borderColor: 'gray',
-		borderWidth: 0.3,
-		flexDirection: 'row',
-		flexWrap: 'wrap',
-		alignItems: 'center'
-	},
-
-	input: {
-		justifyContent: 'center',
-		height: 22,
-		fontFamily: 'Droid Arabic Kufi',
-		marginTop: 5,
-		backgroundColor: '#fff',
-		fontSize: 13,
-		alignItems: 'center',
-		marginRight: 7,
-		marginLeft: 7,
-		flex: 1
-	},
-
-	topbox: {
-		alignItems: 'center',
-		height: 55,
-		justifyContent: 'center',
-		backgroundColor: '#fff'
-	},
-
-	restaurant: {
-		backgroundColor: 'white',
-		flex: 1,
-		padding: 100
-	}
-});
 
 export default class HomeScreen extends React.Component {
-	componentDidMount() {
+	constructor(props) {
+		super(props);
 
+		this.state = {
+			isFetching: false,
+			Restaurants: [],
+			userid: null,
+			offer: {},
+			SpecialOrderStatus: 0
+		};
+
+		this.currPage = 0;
+		this.isLastPage = false;
+
+		AsyncStorage.getItem('hot_request').then((value) => {
+			if (value == '1') {
+				AsyncStorage.setItem('hot_request', '0').then(() => {
+					this.props.navigation.navigate('طلبات')
+				})
+			}
+		})
+	}
+
+	componentDidMount() {
+		this.fetchData();
+	}
+
+	fetchData = () => {
+		fetch(
+			Server.dest +
+			'/api/stores?user_id=8' +
+			'&maxcost=300' +
+			'&maxtime=300' +
+			'&sortby=2' +
+			'&id=' + this.props.home_id +
+			'&page=0'
+		)
+			.then(res => res.json())
+			.then(restaurants => {
+				this.setState({
+					isFetching: false,
+					Restaurants: restaurants.stores
+				});
+			});
+	}
+
+	fetchNextPage = (page) => {
+		this.setState({ isFetching: true })
+
+		fetch(
+			Server.dest +
+			'/api/stores?user_id=8' +
+			'&maxcost=300' +
+			'&maxtime=300' +
+			'&sortby=2' +
+			'&id=' + this.props.home_id +
+			'&page=' + page
+		)
+			.then(res => res.json())
+			.then(restaurants => {
+				this.isLastPage = restaurants.stores.length < 6 ? true : false
+
+				this.setState({
+					isFetching: false,
+					Restaurants: [...this.state.Restaurants, ...restaurants.stores]
+				});
+			});
+	}
+
+	/*componentDidMount() {
 		AsyncStorage.getItem('userid').then(id => {
 			// this._shouldRenderOffer(id);
 			if (id == null) {
@@ -87,7 +110,7 @@ export default class HomeScreen extends React.Component {
 							.then(res => res.json())
 							.then(restaurants => {
 								this.setState({
-									doneFetches: 1,
+									isFetching: false,
 									Restaurants: restaurants.stores
 								});
 							});
@@ -95,7 +118,7 @@ export default class HomeScreen extends React.Component {
 				});
 			});
 		});
-	}
+	}*/
 
 	// _shouldRenderOffer = id => {
 	// 	fetch(`${Server.dest}/api/offers-for-me?user_id=${id}`)
@@ -169,25 +192,6 @@ export default class HomeScreen extends React.Component {
 	// 	}
 	// };
 
-	constructor(props) {
-		super(props);
-
-		this.state = {
-			doneFetches: 0,
-			Restaurants: [],
-			userid: null,
-			offer: {},
-			SpecialOrderStatus: 0
-		};
-		AsyncStorage.getItem('hot_request').then((value) => {
-			if (value == '1') {
-				AsyncStorage.setItem('hot_request', '0').then(() => {
-					this.props.navigation.navigate('طلبات')
-				})
-			}
-		})
-	}
-
 	SpecialOrderNavigate = () => {
 		if (this.state.SpecialOrderStatus == 0) {
 			alert('الخدمه متوقفه الان')
@@ -203,8 +207,16 @@ export default class HomeScreen extends React.Component {
 
 	}
 
+	renderLoadingMore = () => {
+		if(this.state.isFetching) {
+			return <LoadingIndicator size="large" color="#B6E3C6" />
+		}
+		else return null
+	}
+
+
 	render() {
-		if (this.state.doneFetches == 0)
+		if (this.state.isFetching && this.state.Restaurants.length < 1)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
 		return (
@@ -218,6 +230,12 @@ export default class HomeScreen extends React.Component {
 						<View style={{ height: 5, backgroundColor: Colors.smoothGray }} />
 					)}
 					data={this.state.Restaurants}
+					onEndReachedThreshold={0.5}
+					onEndReached={() => {
+						if (!this.isLastPage && !this.state.isFetching)
+							this.fetchNextPage(++this.currPage)
+					}}
+					ListFooterComponent={this.renderLoadingMore}
 					keyExtractor={item => String(item.key)}
 					renderItem={({ item }) => (
 						<TouchableOpacity
@@ -240,3 +258,47 @@ export default class HomeScreen extends React.Component {
 		);
 	}
 }
+
+const styles = StyleSheet.create({
+	box: {
+		height: 45,
+		backgroundColor: '#FFF',
+		shadowColor: '#000000',
+		shadowOpacity: 2,
+		shadowOffset: {
+			height: 2,
+			width: 0
+		},
+		borderColor: 'gray',
+		borderWidth: 0.3,
+		flexDirection: 'row',
+		flexWrap: 'wrap',
+		alignItems: 'center'
+	},
+
+	input: {
+		justifyContent: 'center',
+		height: 22,
+		fontFamily: 'Droid Arabic Kufi',
+		marginTop: 5,
+		backgroundColor: '#fff',
+		fontSize: 13,
+		alignItems: 'center',
+		marginRight: 7,
+		marginLeft: 7,
+		flex: 1
+	},
+
+	topbox: {
+		alignItems: 'center',
+		height: 55,
+		justifyContent: 'center',
+		backgroundColor: '#fff'
+	},
+
+	restaurant: {
+		backgroundColor: 'white',
+		flex: 1,
+		padding: 100
+	}
+});
