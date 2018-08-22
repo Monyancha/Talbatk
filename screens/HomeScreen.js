@@ -18,7 +18,8 @@ export default class HomeScreen extends React.Component {
 
 		this.state = {
 			isFetching: false,
-			Restaurants: [],
+			Restaurants: [
+			],
 			userid: null,
 			offer: {},
 			SpecialOrderStatus: 0
@@ -217,7 +218,7 @@ export default class HomeScreen extends React.Component {
 
 
 	render() {
-		if (this.state.isFetching && this.state.Restaurants.length < 1)
+		if (this.state.Restaurants.length < 1)
 			return <LoadingIndicator size="large" color="#B6E3C6" />;
 
 		return (
