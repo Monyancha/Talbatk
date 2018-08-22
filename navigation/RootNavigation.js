@@ -22,7 +22,7 @@ import SpecialOrderScreen from '../screens/SpecialOrderScreen';
 
 export default RootStackNavigator = createStackNavigator(
 	{
-		// LocationSetting: { screen: LocationSetting, navigationOptions: { header: null } },
+		LocationSetting: { screen: LocationSetting, navigationOptions: { header: null } },
 		Signin: { screen: Signin, navigationOptions: { header: null } },
 		Signup: { screen: Signup, navigationOptions: { header: null } },
 		CodeVerification: { screen: CodeVerification, navigationOptions: { header: null } },

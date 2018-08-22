@@ -12,6 +12,7 @@
 #import <Firebase.h>
 #import "RNFirebaseNotifications.h"
 #import "RNFirebaseMessaging.h"
+@import GoogleMaps;
 
 @implementation AppDelegate
 
@@ -19,6 +20,7 @@
 {
   [FIRApp configure];
   [RNFirebaseNotifications configure];
+  [GMSServices provideAPIKey:@"AIzaSyB3z9skhTyEHi2T9rvhAXowhhooPpZKy40"];
   
   NSURL *jsCodeLocation;
 
