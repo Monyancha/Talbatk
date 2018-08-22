@@ -10,8 +10,73 @@ import Ionicons from 'react-native-vector-icons/Ionicons'
 import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Server from '../constants/server';
+import firebase, { RemoteMessage, Notification, NotificationOpen } from 'react-native-firebase';
 
 export default class Signin extends React.Component {
+	componentDidMount() {
+		this.notificationPermission();
+
+		firebase.notifications().getInitialNotification()
+      .then((notificationOpen: NotificationOpen) => {
+        if (notificationOpen) {
+				
+        }
+	  });
+
+		// notification listner
+		this.pushNotiListner()
+
+		// notification open
+		this.onPushNotiOpen();
+	}
+	notificationPermission = () => {
+		firebase.messaging().hasPermission()
+		.then(enabled => {
+			if (enabled) {
+				// user has permissions
+				console.log('Permission already granted.')
+			} else {
+				// user doesn't have permission
+				console.log('No permission yet, Requesting...')
+				firebase.messaging().requestPermission()
+				.then(() => {
+					// User has authorised  
+					console.log('Permission granted.')
+				})
+				.catch(error => {
+					// User has rejected permissions  
+					console.log('permission denied')
+					console.log(error)
+				});
+			} 
+		});
+}
+pushNotiListner = () => {
+  this.notificationListener = firebase.notifications().onNotification((notification: Notification) => {
+    // Process your notification as required
+    console.log('three')
+    console.log(notification)
+    // Display the notification
+    notification.android.setChannelId('test-channel');
+    firebase.notifications().displayNotification(notification)
+  });
+  const channel = new firebase.notifications.Android.Channel('test-channel', 'Test Channel', firebase.notifications.Android.Importance.Max)
+  .setDescription('My apps test channel');
+  console.log(channel)
+  // Create the channel
+  firebase.notifications().android.createChannel(channel);
+}
+onPushNotiOpen = () => {
+  this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen: NotificationOpen) => {
+    console.log('Notifications has been opend >>>>>>>>>>>>>>>>')
+    // this.props.navigation.navigate('Notifications')
+    // Get the action triggered by the notification being opened
+    const action = notificationOpen.action;
+    // Get information about the notification that was opened
+    const notification: Notification = notificationOpen.notification;
+  });
+}
+
 	setLoginStatus = (value) => {
 		AsyncStorage.setItem('login', value);
 		this.setState({ 'login': value });
@@ -82,10 +147,38 @@ export default class Signin extends React.Component {
 				else {
 					AsyncStorage.setItem('userid', resJson.response);
 					this.setLoginStatus('1');
-					this.navigateToHome();
+					this.storeFCMToken(resJson.response);
+					// this.navigateToHome();
 				}
 			})
 	};
+
+	storeFCMToken = (userid) => {
+		firebase.messaging().getToken()
+		.then(fcmToken => {
+			if (fcmToken) {
+				// user has a device token
+				console.log('Got device token.')
+				fetch(Server.dest + '/api/add-user-token?user_id=' + userid +
+				'&token=' + fcmToken, { headers: { 'Cache-Control': 'no-cache' } }).
+				then((res) => res.json()).then((res) => {
+					console.log(fcmToken);
+					console.log(res);
+					this.navigateToHome();
+				})
+			} else {
+				// user doesn't have a device token yet
+				console.log('user does not have a token')
+				fetch(Server.dest + '/api/add-user-token?user_id=' + userid +
+				'&token=' + "", { headers: { 'Cache-Control': 'no-cache' } }).
+				then((res) => res.json()).then((res) => {
+					console.log(fcmToken);
+					console.log(res);
+					this.navigateToHome();
+				})
+			} 
+		});
+	}
 
 	shouldRenderErrorMessage = () => {
 		if (this.state.errorMsg != '') {

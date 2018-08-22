@@ -10,6 +10,7 @@ import RestaurantBox from '../components/RestaurantBox';
 import Colors from '../constants/Colors';
 import Server from '../constants/server';
 import LoadingIndicator from '../components/LoadingIndicator';
+import firebase, { RemoteMessage, Notification, NotificationOpen } from 'react-native-firebase';
 
 export default class HomeScreen extends React.Component {
 	constructor(props) {
