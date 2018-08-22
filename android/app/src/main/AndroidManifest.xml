@@ -1,41 +1,43 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-	package="com.talbatk.garashsoftwarehouse">
+    package="com.talbatk.garashsoftwarehouse">
 
-	<uses-permission android:name="android.permission.INTERNET" />
-	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-	<uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW"/>
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.VIBRATE" />
 
-	<application
-		android:largeHeap="true"
-		android:name=".MainApplication"
-		android:label="@string/app_name"
-		android:icon="@mipmap/ic_launcher"
-		android:allowBackup="false"
-		android:theme="@style/AppTheme"
-		android:supportsRtl="true">
-		<meta-data
+    <application
+      android:name=".MainApplication"
+      android:label="@string/app_name"
+      android:icon="@mipmap/ic_launcher"
+      android:allowBackup="false"
+      android:theme="@style/AppTheme">
+      <meta-data
 			android:name="com.google.android.geo.API_KEY"
 			android:value="AIzaSyBlHeAYsIYUgLiM1iMJAPyDQjXy2YUkgAg"/>
-
-		<activity
-			android:name=".MainActivity"
-			android:label="@string/app_name"
-			android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
-			android:windowSoftInputMode="adjustResize"
-			android:exported="true"
-			android:launchMode="singleTask">
-			<intent-filter>
-				<action android:name="android.intent.action.MAIN" />
-				<category android:name="android.intent.category.LAUNCHER" />
-			</intent-filter>
-		</activity>
-		<activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-
-		<activity
-			android:name=".SplashActivity"
-			android:theme="@style/SplashTheme"
-			android:label="@string/app_name">
-		</activity>
-	</application>
+      <activity
+        android:name=".MainActivity"
+        android:label="@string/app_name"
+        android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+        android:windowSoftInputMode="adjustResize"
+        android:launchMode="singleTop">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity>
+      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+      <service android:name="io.invertase.firebase.messaging.RNFirebaseMessagingService">
+        <intent-filter>
+          <action android:name="com.google.firebase.MESSAGING_EVENT" />
+        </intent-filter>
+      </service>
+      <service android:name="io.invertase.firebase.messaging.RNFirebaseInstanceIdService">
+        <intent-filter>
+          <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+        </intent-filter>
+      </service>
+      <service android:name="io.invertase.firebase.messaging.RNFirebaseBackgroundMessagingService" />
+    </application>
 
 </manifest>
