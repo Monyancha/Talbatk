@@ -16,10 +16,10 @@ export default class App extends Component {
 		// this.notificationDisplayedListener();
 		this.notificationListener();
 		// this.resetNotiOpen()
-		SplashScreen.hide()
 	  }
 	  
 		  componentDidMount() {
+			SplashScreen.hide()
 			  this.notificationPermission();
 	  
 			  firebase.notifications().getInitialNotification()

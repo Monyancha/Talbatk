@@ -24,6 +24,7 @@ import LoadingIndicator from '../../../components/LoadingIndicator';
 import OrderDetailBox from '../../../components/OrderDetailBox';
 import Server from '../../../constants/server';
 import { Select, Option } from "react-native-chooser";
+import firebase, { RemoteMessage, Notification, NotificationOpen } from 'react-native-firebase';
 
 const selectLabels = [
 	'قيد القبول',
@@ -67,6 +68,72 @@ export default class AdminOrders extends React.Component {
 		};
 	}
 
+	componentDidMount() {
+		this.notificationPermission();
+
+		firebase.notifications().getInitialNotification()
+      .then((notificationOpen: NotificationOpen) => {
+        if (notificationOpen) {
+				
+        }
+	  });
+
+		// notification listner
+		this.pushNotiListner()
+
+		// notification open
+		this.onPushNotiOpen();
+	}
+
+	notificationPermission = () => {
+		firebase.messaging().hasPermission()
+		.then(enabled => {
+			if (enabled) {
+				// user has permissions
+				console.log('Permission already granted.')
+			} else {
+				// user doesn't have permission
+				console.log('No permission yet, Requesting...')
+				firebase.messaging().requestPermission()
+				.then(() => {
+					// User has authorised  
+					console.log('Permission granted.')
+				})
+				.catch(error => {
+					// User has rejected permissions  
+					console.log('permission denied')
+					console.log(error)
+				});
+			} 
+		});
+}
+pushNotiListner = () => {
+  this.notificationListener = firebase.notifications().onNotification((notification: Notification) => {
+    // Process your notification as required
+    console.log('three')
+    console.log(notification)
+    // Display the notification
+    notification.android.setChannelId('test-channel');
+    firebase.notifications().displayNotification(notification)
+  });
+  const channel = new firebase.notifications.Android.Channel('test-channel', 'Test Channel', firebase.notifications.Android.Importance.Max)
+  .setDescription('My apps test channel');
+  console.log(channel)
+  // Create the channel
+  firebase.notifications().android.createChannel(channel);
+}
+onPushNotiOpen = () => {
+  this.notificationOpenedListener = firebase.notifications().onNotificationOpened((notificationOpen: NotificationOpen) => {
+    console.log('Notifications has been opend >>>>>>>>>>>>>>>>')
+    // this.props.navigation.navigate('Notifications')
+    // Get the action triggered by the notification being opened
+    const action = notificationOpen.action;
+    // Get information about the notification that was opened
+    const notification: Notification = notificationOpen.notification;
+  });
+}
+
+
 	componentWillMount() {
 		this.didFocusSubscription = this.props.navigation.addListener(
 			'didFocus',
@@ -87,11 +154,11 @@ export default class AdminOrders extends React.Component {
 		);
 	}
 
-	componentDidMount() {
+	// componentDidMount() {
 		/*AsyncStorage.getItem('storeid', (err, storeid) => {
 			if(storeid) this.fetchStoreOrders(parseInt(storeid));
 		})*/
-	}
+	// }
 
 	componentWillUnmount() {
 		// Remove the listener when you are done
@@ -193,23 +260,32 @@ export default class AdminOrders extends React.Component {
 						errorMsg: 'هذا المحل التجاري غير مُسجل عندنا او كلمة مرور غير صحيحة'
 					});
 				else {
+					this.storeFCMToken(resJson.response);
 					AsyncStorage.setItem('storeid', resJson.response);
 					this.fetchStoreOrders(parseInt(resJson.response));
-					AsyncStorage.getItem('token', (err, result) => {
-						if (result) {
-							fetch(
-								Server.dest +
-								'/api/store-push-tokens?store_id=' +
-								resJson.response +
-								'&token=' +
-								result,
-								{ headers: { 'Cache-Control': 'no-cache' } }
-							);
-						}
-					});
 				}
 			});
 	};
+
+	storeFCMToken = (userid) => {
+		firebase.messaging().getToken()
+		.then(fcmToken => {
+			if (fcmToken) {
+				// user has a device token
+				fetch(
+					Server.dest +
+					'/api/store-push-tokens?store_id=' +
+					userid +
+					'&token=' +
+					fcmToken,
+					{ headers: { 'Cache-Control': 'no-cache' } }
+				);
+			} else {
+				// user doesn't have a device token yet
+				console.log('user does not have a token')
+			} 
+		});
+	}
 
 	shouldRenderErrorMessage = () => {
 		if (this.state.errorMsg != '') {
