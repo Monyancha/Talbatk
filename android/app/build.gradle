@@ -137,7 +137,6 @@ android {
 }
 
 dependencies {
-    compile project(':react-native-fast-image')
     compile fileTree(dir: "libs", include: ["*.sjar"])
     compile "com.android.support:appcompat-v7:${rootProject.ext.supportLibVersion}"
     compile "com.facebook.react:react-native:+"  // From node_modules
