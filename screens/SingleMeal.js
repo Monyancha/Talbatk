@@ -116,6 +116,7 @@ export default class SingleMeal extends React.Component {
 			 image:params.image,
 			 time: params.time,
 			 desc: params.desc,
+			 status:params.status,
 			 stars: params.stars,
 			 deliver_price: params.deliver_price
 		 	}
