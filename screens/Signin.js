@@ -19,7 +19,7 @@ export default class Signin extends React.Component {
 		firebase.notifications().getInitialNotification()
       .then((notificationOpen: NotificationOpen) => {
         if (notificationOpen) {
-				
+
         }
 	  });
 
@@ -40,15 +40,15 @@ export default class Signin extends React.Component {
 				console.log('No permission yet, Requesting...')
 				firebase.messaging().requestPermission()
 				.then(() => {
-					// User has authorised  
+					// User has authorised
 					console.log('Permission granted.')
 				})
 				.catch(error => {
-					// User has rejected permissions  
+					// User has rejected permissions
 					console.log('permission denied')
 					console.log(error)
 				});
-			} 
+			}
 		});
 }
 pushNotiListner = () => {
@@ -89,8 +89,8 @@ onPushNotiOpen = () => {
 	constructor(props) {
 		super(props);
 		this.state = {
-			'login': '1',
-			'SkippedLogin': '1',
+			login: '1',
+			SkippedLogin: '1',
 			identifier: '',
 			password: '',
 			errorMsg: '',
@@ -100,10 +100,7 @@ onPushNotiOpen = () => {
 			(value) => {
 				this.setState({ 'SkippedLogin': value })
 
-				if (value == '1') {
-					this.navigateToHome();
-				}
-				else {
+
 					AsyncStorage.getItem('login').then(
 						(logged) => {
 							this.setState({ 'login': logged })
@@ -113,7 +110,7 @@ onPushNotiOpen = () => {
 							}
 						}
 					);
-				}
+
 			}
 		);
 	}
@@ -148,7 +145,7 @@ onPushNotiOpen = () => {
 					AsyncStorage.setItem('userid', resJson.response);
 					this.setLoginStatus('1');
 					this.storeFCMToken(resJson.response);
-					// this.navigateToHome();
+					 // this.navigateToHome();
 				}
 			})
 	};
@@ -176,7 +173,7 @@ onPushNotiOpen = () => {
 					console.log(res);
 					this.navigateToHome();
 				})
-			} 
+			}
 		});
 	}
 
@@ -197,7 +194,7 @@ onPushNotiOpen = () => {
 	render() {
 		const { navigate } = this.props.navigation;
 
-		if (this.state.login == '1' || this.state.SkippedLogin == '1') {
+		if (this.state.login == '1' ) {
 			return (
 				<LoadingIndicator size="large" />
 			);

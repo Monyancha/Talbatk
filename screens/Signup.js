@@ -4,7 +4,7 @@ import {
 	StyleSheet, TextInput, View, Text, Platform, TouchableOpacity, Linking
 } from "react-native";
 import { Button } from "react-native-elements";
-//import Ionicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Server from '../constants/server';
@@ -138,12 +138,7 @@ export default class Signup extends React.Component {
 	};
 
 	render() {
-		if (this.state.login == '1') {
-			return (
-				<LoadingIndicator size="large" />
-			);
-		}
-		else {
+
 			return (
 				<View style={{
 					backgroundColor: '#FFFFFF', marginTop: 15,
@@ -311,7 +306,7 @@ export default class Signup extends React.Component {
 					</View>
 				</View>
 			);
-		}
+
 	}
 }
 
