@@ -38,6 +38,7 @@ export default class Meals extends React.Component {
           time: params.time,
           desc: params.desc,
           stars: params.stars,
+					status: params.status,
           deliver_price: params.deliver_price
         }],
 			tabs: [{
@@ -103,13 +104,17 @@ export default class Meals extends React.Component {
 					keyExtractor={item => String(item.key)}
 					renderItem={({ item }) => (
 						<TouchableOpacity onPress={() =>
-							navigate('MealsScreen', { category_id: item.key, restaurant_id: params.key,
+							navigate('MealsScreen', {
+							category_id: item.key,
+							key: params.key,
 		          name: params.name,
 		          image:params.image,
 		          time: params.time,
 		          desc: params.desc,
 		          stars: params.stars,
-		          deliver_price: params.deliver_price })} >
+		          deliver_price: params.deliver_price ,
+							status:params.status
+					})} >
 							<SingleCategory
 								name={item.screenName}
 							/>

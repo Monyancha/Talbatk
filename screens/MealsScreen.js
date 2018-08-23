@@ -37,6 +37,7 @@ export default class Meals extends React.Component {
 			 time: params.time,
 			 desc: params.desc,
 			 stars: params.stars,
+			 status: params.status,
 			 deliver_price: params.deliver_price
 		 }
 			],
@@ -60,7 +61,7 @@ desc: "جاري تحميل .."
 		}
 	}
 	componentDidMount() {
-		fetch(Server.dest + '/api/store-products?category_id=' + this.props.navigation.state.params.category_id + '&store_id=' + this.props.navigation.state.params.restaurant_id).then((res) => res.json()).then((meals) => {
+		fetch(Server.dest + '/api/store-products?category_id=' + this.props.navigation.state.params.category_id + '&store_id=' + this.props.navigation.state.params.key).then((res) => res.json()).then((meals) => {
 			this.setState({
 				doneFetches: 1,
 				Meals: meals.response
@@ -124,7 +125,9 @@ desc: "جاري تحميل .."
 				          time: params.time,
 				          desc: params.desc,
 				          stars: params.stars,
-				          deliver_price: params.deliver_price
+				          deliver_price: params.deliver_price,
+									status: params.status
+
 								 })} >
 							<MealBox
 								name={item.name}
