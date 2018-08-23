@@ -23,7 +23,6 @@
 		140ED2AC1D01E1AD002B40FF /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		146834051AC3E58100842450 /* libReact.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 146834041AC3E56700842450 /* libReact.a */; };
 		1D0FED83F372BD6FDE9AEF79 /* libPods-Talbatk.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B44CB51F4E569EF92AF54033 /* libPods-Talbatk.a */; };
-		29874D9D212E1284008603A9 /* DroidKufi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 29874D75212E1284008603A9 /* DroidKufi-Regular.ttf */; };
 		2D02E4BC1E0B4A80006451C7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		2D02E4BD1E0B4A84006451C7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		2D02E4BF1E0B4AB3006451C7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
@@ -54,6 +53,7 @@
 		7554FEA8212E0024007DFAC8 /* Octicons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7554FE9A212E0024007DFAC8 /* Octicons.ttf */; };
 		7554FEA9212E0024007DFAC8 /* SimpleLineIcons.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7554FE9B212E0024007DFAC8 /* SimpleLineIcons.ttf */; };
 		7554FEAA212E0024007DFAC8 /* Zocial.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7554FE9C212E0024007DFAC8 /* Zocial.ttf */; };
+		75717260212F179200F7F64D /* DroidKufi-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7571725F212F179200F7F64D /* DroidKufi-Regular.ttf */; };
 		75A085C0212DE16D00CAC53D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */; };
 		75A085C1212DE16D00CAC53D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */; };
 		75A085C2212DE16D00CAC53D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */; };
@@ -381,7 +381,6 @@
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Talbatk/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Talbatk/main.m; sourceTree = "<group>"; };
 		146833FF1AC3E56700842450 /* React.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = React.xcodeproj; path = "../node_modules/react-native/React/React.xcodeproj"; sourceTree = "<group>"; };
-		29874D75212E1284008603A9 /* DroidKufi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "DroidKufi-Regular.ttf"; sourceTree = "<group>"; };
 		2D02E47B1E0B4A5D006451C7 /* Talbatk-tvOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Talbatk-tvOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D02E4901E0B4A5D006451C7 /* Talbatk-tvOSTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Talbatk-tvOSTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2D16E6891FA4F8E400B85C8A /* libReact.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; path = libReact.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -406,7 +405,7 @@
 		7554FE9A212E0024007DFAC8 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
 		7554FE9B212E0024007DFAC8 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
 		7554FE9C212E0024007DFAC8 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
-		7554FEC0212E0370007DFAC8 /* DroidKufi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DroidKufi-Regular.ttf"; path = "../../../DroidKufi-Regular.ttf"; sourceTree = "<group>"; };
+		7571725F212F179200F7F64D /* DroidKufi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DroidKufi-Regular.ttf"; path = "../assets/fonts/DroidKufi-Regular.ttf"; sourceTree = "<group>"; };
 		75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Talbatk/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		78BA4640A2446670DB8A24F7 /* Pods-Talbatk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Talbatk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Talbatk/Pods-Talbatk.release.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
@@ -643,8 +642,6 @@
 		7554FE8E212E0024007DFAC8 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				7554FEC0212E0370007DFAC8 /* DroidKufi-Regular.ttf */,
-				29874D75212E1284008603A9 /* DroidKufi-Regular.ttf */,
 				7554FE8F212E0024007DFAC8 /* Entypo.ttf */,
 				7554FE90212E0024007DFAC8 /* EvilIcons.ttf */,
 				7554FE91212E0024007DFAC8 /* Feather.ttf */,
@@ -723,6 +720,7 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				7571725F212F179200F7F64D /* DroidKufi-Regular.ttf */,
 				7554FE8E212E0024007DFAC8 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Talbatk */,
 				832341AE1AAA6A7D00B99B32 /* Libraries */,
@@ -1250,6 +1248,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
+				75717260212F179200F7F64D /* DroidKufi-Regular.ttf in Resources */,
 				7554FEA1212E0024007DFAC8 /* FontAwesome5_Brands.ttf in Resources */,
 				7554FEA5212E0024007DFAC8 /* Ionicons.ttf in Resources */,
 				7554FEA0212E0024007DFAC8 /* FontAwesome.ttf in Resources */,
@@ -1258,7 +1257,6 @@
 				7554FEA7212E0024007DFAC8 /* MaterialIcons.ttf in Resources */,
 				7554FEA4212E0024007DFAC8 /* Foundation.ttf in Resources */,
 				7554FEA3212E0024007DFAC8 /* FontAwesome5_Solid.ttf in Resources */,
-				29874D9D212E1284008603A9 /* DroidKufi-Regular.ttf in Resources */,
 				13B07FBD1A68108700A75B9A /* LaunchScreen.xib in Resources */,
 				7554FEA8212E0024007DFAC8 /* Octicons.ttf in Resources */,
 				7554FEA2212E0024007DFAC8 /* FontAwesome5_Regular.ttf in Resources */,
@@ -1508,10 +1506,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Talbatk/Talbatk.entitlements;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = 3NGGT5P4S8;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/../node_modules/react-native-firebase/ios/RNFirebase/**",
@@ -1525,8 +1523,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tazawaq.tazawaqapp;
 				PRODUCT_NAME = Talbatk;
-				PROVISIONING_PROFILE = "";
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				PROVISIONING_PROFILE = "1bec35a5-2aee-4e77-a608-c6aab1890eba";
+				PROVISIONING_PROFILE_SPECIFIER = "com.tazawaq.tazawaqapp AppStore";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
