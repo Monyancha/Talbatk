@@ -2,6 +2,26 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIRequiresFullScreen</key>
+	<true/>
+	<key>CFBundleIconFiles</key>
+	<array>
+		<string>Icon-App-20x20@1x.png</string>
+		<string>Icon-App-20x20@2x.png</string>
+		<string>Icon-App-20x20@3x.png</string>
+		<string>Icon-App-29x29@1x.png</string>
+		<string>Icon-App-29x29@2x.png</string>
+		<string>Icon-App-29x29@3x.png</string>
+		<string>Icon-App-40x40@1x.png</string>
+		<string>Icon-App-40x40@2x.png</string>
+		<string>Icon-App-40x40@3x.png</string>
+		<string>Icon-App-60x60@2x.png</string>
+		<string>Icon-App-60x60@3x.png</string>
+		<string>Icon-App-76x76@1x.png</string>
+		<string>Icon-App-76x76@2x.png</string>
+		<string>Icon-App-83.5x83.5@2x.png</string>
+		<string>ItunesArtwork@2x.png</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleDisplayName</key>
@@ -17,11 +37,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>7.0</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>7</string>
 	<key>LSApplicationCategoryType</key>
 	<string></string>
 	<key>LSRequiresIPhoneOS</key>
@@ -29,13 +49,7 @@
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSExceptionDomains</key>
-		<dict>
-			<key>localhost</key>
-			<dict>
-				<key>NSExceptionAllowsInsecureHTTPLoads</key>
-				<true/>
-			</dict>
-		</dict>
+		<dict/>
 	</dict>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string></string>

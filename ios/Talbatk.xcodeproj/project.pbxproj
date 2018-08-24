@@ -58,6 +58,21 @@
 		75A085C1212DE16D00CAC53D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */; };
 		75A085C2212DE16D00CAC53D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */; };
 		75A085C3212DE16D00CAC53D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */; };
+		75E078DE212F6A7D003096D2 /* Icon-App-83.5x83.5@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078CC212F6A77003096D2 /* Icon-App-83.5x83.5@2x.png */; };
+		75E078DF212F6A7D003096D2 /* Icon-App-40x40@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078CD212F6A78003096D2 /* Icon-App-40x40@2x.png */; };
+		75E078E1212F6A7D003096D2 /* Icon-App-76x76@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078CF212F6A78003096D2 /* Icon-App-76x76@1x.png */; };
+		75E078E2212F6A7D003096D2 /* Icon-App-40x40@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D0212F6A79003096D2 /* Icon-App-40x40@3x.png */; };
+		75E078E3212F6A7D003096D2 /* Icon-App-20x20@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D1212F6A79003096D2 /* Icon-App-20x20@1x.png */; };
+		75E078E4212F6A7D003096D2 /* ItunesArtwork@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D2212F6A79003096D2 /* ItunesArtwork@2x.png */; };
+		75E078E5212F6A7D003096D2 /* Icon-App-20x20@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D3212F6A79003096D2 /* Icon-App-20x20@3x.png */; };
+		75E078E6212F6A7D003096D2 /* Icon-App-29x29@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D4212F6A7A003096D2 /* Icon-App-29x29@1x.png */; };
+		75E078E7212F6A7D003096D2 /* Icon-App-29x29@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D5212F6A7A003096D2 /* Icon-App-29x29@3x.png */; };
+		75E078E8212F6A7D003096D2 /* Icon-App-76x76@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D6212F6A7A003096D2 /* Icon-App-76x76@2x.png */; };
+		75E078EA212F6A7D003096D2 /* Icon-App-40x40@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D8212F6A7B003096D2 /* Icon-App-40x40@1x.png */; };
+		75E078EB212F6A7D003096D2 /* Icon-App-60x60@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078D9212F6A7B003096D2 /* Icon-App-60x60@3x.png */; };
+		75E078EC212F6A7D003096D2 /* Icon-App-20x20@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078DA212F6A7C003096D2 /* Icon-App-20x20@2x.png */; };
+		75E078EE212F6A7D003096D2 /* Icon-App-29x29@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078DC212F6A7C003096D2 /* Icon-App-29x29@2x.png */; };
+		75E078EF212F6A7D003096D2 /* Icon-App-60x60@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 75E078DD212F6A7D003096D2 /* Icon-App-60x60@2x.png */; };
 		832341BD1AAA6AB300B99B32 /* libRCTText.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 832341B51AAA6A8300B99B32 /* libRCTText.a */; };
 		ADBDB9381DFEBF1600ED6528 /* libRCTBlob.a in Frameworks */ = {isa = PBXBuildFile; fileRef = ADBDB9271DFEBF0700ED6528 /* libRCTBlob.a */; };
 		B8B559D774D245BA931E5139 /* libRNFirebase.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 3CC835720ECC453882EF0E72 /* libRNFirebase.a */; };
@@ -407,6 +422,21 @@
 		7554FE9C212E0024007DFAC8 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
 		7571725F212F179200F7F64D /* DroidKufi-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = "DroidKufi-Regular.ttf"; path = "../assets/fonts/DroidKufi-Regular.ttf"; sourceTree = "<group>"; };
 		75A085BF212DE16D00CAC53D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "Talbatk/GoogleService-Info.plist"; sourceTree = "<group>"; };
+		75E078CC212F6A77003096D2 /* Icon-App-83.5x83.5@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-83.5x83.5@2x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-83.5x83.5@2x.png"; sourceTree = "<group>"; };
+		75E078CD212F6A78003096D2 /* Icon-App-40x40@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-40x40@2x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-40x40@2x.png"; sourceTree = "<group>"; };
+		75E078CF212F6A78003096D2 /* Icon-App-76x76@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-76x76@1x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-76x76@1x.png"; sourceTree = "<group>"; };
+		75E078D0212F6A79003096D2 /* Icon-App-40x40@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-40x40@3x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-40x40@3x.png"; sourceTree = "<group>"; };
+		75E078D1212F6A79003096D2 /* Icon-App-20x20@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-20x20@1x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-20x20@1x.png"; sourceTree = "<group>"; };
+		75E078D2212F6A79003096D2 /* ItunesArtwork@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "ItunesArtwork@2x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/ItunesArtwork@2x.png"; sourceTree = "<group>"; };
+		75E078D3212F6A79003096D2 /* Icon-App-20x20@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-20x20@3x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-20x20@3x.png"; sourceTree = "<group>"; };
+		75E078D4212F6A7A003096D2 /* Icon-App-29x29@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-29x29@1x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-29x29@1x.png"; sourceTree = "<group>"; };
+		75E078D5212F6A7A003096D2 /* Icon-App-29x29@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-29x29@3x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-29x29@3x.png"; sourceTree = "<group>"; };
+		75E078D6212F6A7A003096D2 /* Icon-App-76x76@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-76x76@2x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-76x76@2x.png"; sourceTree = "<group>"; };
+		75E078D8212F6A7B003096D2 /* Icon-App-40x40@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-40x40@1x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-40x40@1x.png"; sourceTree = "<group>"; };
+		75E078D9212F6A7B003096D2 /* Icon-App-60x60@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-60x60@3x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-60x60@3x.png"; sourceTree = "<group>"; };
+		75E078DA212F6A7C003096D2 /* Icon-App-20x20@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-20x20@2x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-20x20@2x.png"; sourceTree = "<group>"; };
+		75E078DC212F6A7C003096D2 /* Icon-App-29x29@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-29x29@2x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-29x29@2x.png"; sourceTree = "<group>"; };
+		75E078DD212F6A7D003096D2 /* Icon-App-60x60@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Icon-App-60x60@2x.png"; path = "Talbatk/Images.xcassets/AppIcon.appiconset/Icon-App-60x60@2x.png"; sourceTree = "<group>"; };
 		78BA4640A2446670DB8A24F7 /* Pods-Talbatk.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Talbatk.release.xcconfig"; path = "Pods/Target Support Files/Pods-Talbatk/Pods-Talbatk.release.xcconfig"; sourceTree = "<group>"; };
 		78C398B01ACF4ADC00677621 /* RCTLinking.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTLinking.xcodeproj; path = "../node_modules/react-native/Libraries/LinkingIOS/RCTLinking.xcodeproj"; sourceTree = "<group>"; };
 		832341B01AAA6A8300B99B32 /* RCTText.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = RCTText.xcodeproj; path = "../node_modules/react-native/Libraries/Text/RCTText.xcodeproj"; sourceTree = "<group>"; };
@@ -720,6 +750,21 @@
 		83CBB9F61A601CBA00E9B192 = {
 			isa = PBXGroup;
 			children = (
+				75E078D1212F6A79003096D2 /* Icon-App-20x20@1x.png */,
+				75E078DA212F6A7C003096D2 /* Icon-App-20x20@2x.png */,
+				75E078D3212F6A79003096D2 /* Icon-App-20x20@3x.png */,
+				75E078D4212F6A7A003096D2 /* Icon-App-29x29@1x.png */,
+				75E078DC212F6A7C003096D2 /* Icon-App-29x29@2x.png */,
+				75E078D5212F6A7A003096D2 /* Icon-App-29x29@3x.png */,
+				75E078D8212F6A7B003096D2 /* Icon-App-40x40@1x.png */,
+				75E078CD212F6A78003096D2 /* Icon-App-40x40@2x.png */,
+				75E078D0212F6A79003096D2 /* Icon-App-40x40@3x.png */,
+				75E078DD212F6A7D003096D2 /* Icon-App-60x60@2x.png */,
+				75E078D9212F6A7B003096D2 /* Icon-App-60x60@3x.png */,
+				75E078CF212F6A78003096D2 /* Icon-App-76x76@1x.png */,
+				75E078D6212F6A7A003096D2 /* Icon-App-76x76@2x.png */,
+				75E078CC212F6A77003096D2 /* Icon-App-83.5x83.5@2x.png */,
+				75E078D2212F6A79003096D2 /* ItunesArtwork@2x.png */,
 				7571725F212F179200F7F64D /* DroidKufi-Regular.ttf */,
 				7554FE8E212E0024007DFAC8 /* Fonts */,
 				13B07FAE1A68108700A75B9A /* Talbatk */,
@@ -1265,6 +1310,21 @@
 				7554FE9E212E0024007DFAC8 /* EvilIcons.ttf in Resources */,
 				7554FEAA212E0024007DFAC8 /* Zocial.ttf in Resources */,
 				75A085C0212DE16D00CAC53D /* GoogleService-Info.plist in Resources */,
+				75E078DE212F6A7D003096D2 /* Icon-App-83.5x83.5@2x.png in Resources */,
+				75E078DF212F6A7D003096D2 /* Icon-App-40x40@2x.png in Resources */,
+				75E078E1212F6A7D003096D2 /* Icon-App-76x76@1x.png in Resources */,
+				75E078E2212F6A7D003096D2 /* Icon-App-40x40@3x.png in Resources */,
+				75E078E3212F6A7D003096D2 /* Icon-App-20x20@1x.png in Resources */,
+				75E078E4212F6A7D003096D2 /* ItunesArtwork@2x.png in Resources */,
+				75E078E5212F6A7D003096D2 /* Icon-App-20x20@3x.png in Resources */,
+				75E078E6212F6A7D003096D2 /* Icon-App-29x29@1x.png in Resources */,
+				75E078E7212F6A7D003096D2 /* Icon-App-29x29@3x.png in Resources */,
+				75E078E8212F6A7D003096D2 /* Icon-App-76x76@2x.png in Resources */,
+				75E078EA212F6A7D003096D2 /* Icon-App-40x40@1x.png in Resources */,
+				75E078EB212F6A7D003096D2 /* Icon-App-60x60@3x.png in Resources */,
+				75E078EC212F6A7D003096D2 /* Icon-App-20x20@2x.png in Resources */,
+				75E078EE212F6A7D003096D2 /* Icon-App-29x29@2x.png in Resources */,
+				75E078EF212F6A7D003096D2 /* Icon-App-60x60@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1496,6 +1556,7 @@
 				PRODUCT_NAME = Talbatk;
 				PROVISIONING_PROFILE = "4fdaec19-3ae3-444a-852f-29a220872537";
 				PROVISIONING_PROFILE_SPECIFIER = "Garash Development";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -1525,6 +1586,7 @@
 				PRODUCT_NAME = Talbatk;
 				PROVISIONING_PROFILE = "1bec35a5-2aee-4e77-a608-c6aab1890eba";
 				PROVISIONING_PROFILE_SPECIFIER = "com.tazawaq.tazawaqapp AppStore";
+				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
