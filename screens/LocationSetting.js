@@ -10,7 +10,8 @@ import {
 	Platform,
 	TextInput,
 	StyleSheet,
-	TouchableOpacity
+	TouchableOpacity,
+	PermissionsAndroid
 } from 'react-native';
 import Colors from '../constants/Colors';
 import LoadingIndicator from '../components/LoadingIndicator';
@@ -25,6 +26,14 @@ export default class LocationSetting extends React.Component {
 
 	constructor(props) {
 		super(props);
+		const granted = PermissionsAndroid.check( PermissionsAndroid.PERMISSIONS.ACCESS_FINE_LOCATION );
+
+		if (granted) {
+		  console.log( "You can use the ACCESS_FINE_LOCATION" )
+		}
+		else {
+		  console.log( "ACCESS_FINE_LOCATION permission denied" )
+		}
 
 		this.state = {
 			display: 0,
