@@ -8,6 +8,37 @@
   "client": [
     {
       "client_info": {
+        "mobilesdk_app_id": "1:190820425173:android:e99b167204831b6b",
+        "android_client_info": {
+          "package_name": "com.Talbatk.GarashSoftwareHouse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "190820425173-rlpgmt1n4maf88c6j01t1bfj2g47078u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDpV-aPHmPPswtlyEC6vCsuqYRDlthssBM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
         "mobilesdk_app_id": "1:190820425173:android:9bae533b2ac8aa00",
         "android_client_info": {
           "package_name": "com.talbatk.garashsoftwarehouse"
