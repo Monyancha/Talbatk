@@ -11,7 +11,7 @@ import io.invertase.firebase.RNFirebasePackage;
 import io.invertase.firebase.messaging.RNFirebaseMessagingPackage;
 import io.invertase.firebase.notifications.RNFirebaseNotificationsPackage;
 import com.airbnb.android.react.maps.MapsPackage;
-import com.talbatk.garashsoftwarehouse.BuildConfig;
+import com.Talbatk.GarashSoftwareHouse.BuildConfig;
 
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
 import java.util.Arrays;
