@@ -156,6 +156,7 @@ onPushNotiOpen = () => {
 			if (fcmToken) {
 				// user has a device token
 				console.log('Got device token.')
+				AsyncStorage.setItem('token',''+fcmToken);
 				fetch(Server.dest + '/api/add-user-token?user_id=' + userid +
 				'&token=' + fcmToken, { headers: { 'Cache-Control': 'no-cache' } }).
 				then((res) => res.json()).then((res) => {

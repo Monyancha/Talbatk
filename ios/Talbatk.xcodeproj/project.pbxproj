@@ -1554,8 +1554,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tazawaq.tazawaqapp;
 				PRODUCT_NAME = Talbatk;
-				PROVISIONING_PROFILE = "4fdaec19-3ae3-444a-852f-29a220872537";
-				PROVISIONING_PROFILE_SPECIFIER = "Garash Development";
+				PROVISIONING_PROFILE = "9b9ef9f7-0a3d-48f0-aa50-ee036b51c209";
+				PROVISIONING_PROFILE_SPECIFIER = "Am's mac";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
@@ -1584,7 +1584,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.tazawaq.tazawaqapp;
 				PRODUCT_NAME = Talbatk;
-				PROVISIONING_PROFILE = "1bec35a5-2aee-4e77-a608-c6aab1890eba";
+				PROVISIONING_PROFILE = "d390285b-b518-4458-a7cd-6a9286706508";
 				PROVISIONING_PROFILE_SPECIFIER = "com.tazawaq.tazawaqapp AppStore";
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";

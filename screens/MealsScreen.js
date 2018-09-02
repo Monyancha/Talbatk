@@ -38,7 +38,9 @@ export default class Meals extends React.Component {
 			 desc: params.desc,
 			 stars: params.stars,
 			 status: params.status,
-			 deliver_price: params.deliver_price
+			 deliver_price: params.deliver_price,
+			 min_delivery_cost:params.min_delivery_price
+
 		 }
 			],
 			Meals: [
@@ -93,13 +95,14 @@ desc: "جاري تحميل .."
 						data={this.state.Restaurant}
 						renderItem={({ item }) => (
 							<RestaurantBox
-								stars={item.stars}
-								name={item.name}
-								time={item.time}
-								desc={item.desc}
-								image={item.image}
-								price={item.deliver_price}
-								min_delivery_cost={item.min_delivery_cost}
+							stars={item.stars}
+							name={item.name}
+							time={item.time}
+							desc={item.desc}
+							image={item.image}
+							price={item.deliver_price}
+							min_delivery_cost={item.min_delivery_cost}
+							status={item.status}
 							/>
 						)}
 					/>
@@ -126,7 +129,8 @@ desc: "جاري تحميل .."
 				          desc: params.desc,
 				          stars: params.stars,
 				          deliver_price: params.deliver_price,
-									status: params.status
+									status: params.status,
+									min_delivery_price:params.min_delivery_price,
 
 								 })} >
 							<MealBox

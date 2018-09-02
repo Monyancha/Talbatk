@@ -1,3 +1,3 @@
 export default {
-    dest: 'http://132.148.244.83:90'
+    dest: 'http://66.45.240.101:90'
 };

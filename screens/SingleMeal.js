@@ -269,9 +269,9 @@ export default class SingleMeal extends React.Component {
 													innerCircleColor={Colors.mainColor}
 													innerCircleSize={20}
 													currentValue={this.state.currentId} value={child.key} onPress={this.handleOnPress.bind(this)}>
-													<Text style={{ color: Colors.mainColor, textAlign: 'left', flex: .8, paddingHorizontal: 15, fontFamily: 'Droid Arabic Kufi', fontSize: 17, marginBottom: 20 }}>{child.price} رس</Text>
+													<Text style={{ color: Colors.mainColor, textAlign: 'left', flex: .2, paddingHorizontal: 15, fontFamily: 'Droid Arabic Kufi', fontSize: 17, marginBottom: 20 }}>{child.price} رس</Text>
 
-													<Text style={{ color: Colors.mainColor, textAlign: 'right', flex: .2, paddingHorizontal: 15, fontFamily: 'Droid Arabic Kufi', fontSize: 17, marginBottom: 20 }}>{child.name}</Text>
+													<Text style={{ color: Colors.mainColor, textAlign: 'right', flex: .8, paddingHorizontal: 15, fontFamily: 'Droid Arabic Kufi', fontSize: 17, marginBottom: 20 }}>{child.name}</Text>
 												</RadioButton>)
 										})
 									}

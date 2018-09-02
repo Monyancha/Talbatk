@@ -39,7 +39,8 @@ export default class Meals extends React.Component {
           desc: params.desc,
           stars: params.stars,
 					status: params.status,
-          deliver_price: params.deliver_price
+          deliver_price: params.deliver_price,
+					min_delivery_cost:params.min_delivery_price
         }],
 			tabs: [{
 				key: 5,
@@ -85,13 +86,15 @@ export default class Meals extends React.Component {
 						keyExtractor={item => String(item.key)}
 						renderItem={({ item }) => (
 							<RestaurantBox
-								stars={item.stars}
-								name={item.name}
-								time={item.time}
-								desc={item.desc}
-								image={item.image}
-								price={item.deliver_price}
-								min_delivery_cost={item.min_delivery_cost}
+							stars={item.stars}
+							name={item.name}
+							time={item.time}
+							desc={item.desc}
+							image={item.image}
+							price={item.deliver_price}
+							min_delivery_cost={item.min_delivery_cost}
+							status={item.status}
+
 							/>
 						)}
 					/>
@@ -113,6 +116,7 @@ export default class Meals extends React.Component {
 		          desc: params.desc,
 		          stars: params.stars,
 		          deliver_price: params.deliver_price ,
+							min_delivery_price:params.min_delivery_price,
 							status:params.status
 					})} >
 							<SingleCategory

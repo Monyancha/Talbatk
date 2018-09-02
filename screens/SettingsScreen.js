@@ -56,11 +56,15 @@ export default class SettingsScreen extends React.Component {
 					<TouchableOpacity
 						style={styles.singleInputContainer}
 						onPress={() => {
-							AsyncStorage.setItem('SkippedLogin', '0');
-							AsyncStorage.setItem('userid', 'null');
-							AsyncStorage.setItem('login', '0');
-							AsyncStorage.removeItem('hint');
-							this.props.navigation.navigate('Signin', {});
+							AsyncStorage.setItem('SkippedLogin', '0').then(()=>{
+								AsyncStorage.setItem('userid', 'null').then(()=>{
+									AsyncStorage.setItem('login', '0').then(()=>{
+										AsyncStorage.removeItem('hint').then(()=>{
+											this.props.navigation.navigate('Signup', {});
+										})
+									})
+								})
+							})
 						}}
 					>
 						<Ionicons

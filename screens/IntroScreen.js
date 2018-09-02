@@ -4,6 +4,7 @@ import Colors from '../constants/Colors';
 import SingleCategory1 from '../components/SingleCategory1';
 import LoadingIndicator from '../components/LoadingIndicator';
 import Server from '../constants/server';
+import firebase, { RemoteMessage, Notification, NotificationOpen } from 'react-native-firebase';
 
 export default class Intro extends React.Component {
 	static navigationOptions = () => ({
@@ -26,6 +27,34 @@ export default class Intro extends React.Component {
 
 	constructor(props) {
 		super(props);
+		firebase.messaging().getToken()
+		.then(fcmToken => {
+			if (fcmToken) {
+				// user has a device token
+				console.log('Got device token.')
+				AsyncStorage.setItem('token',''+fcmToken);
+				AsyncStorage.getItem('userid').then((userid)=>{
+					fetch(Server.dest + '/api/add-user-token?user_id=' + userid +
+					'&token=' + fcmToken, { headers: { 'Cache-Control': 'no-cache' } }).
+					then((res) => res.json()).then((res) => {
+						console.log(fcmToken);
+						console.log(res);
+						alert(JSON.stringify(res) );
+					})
+				})
+
+			} else {
+				// user doesn't have a device token yet
+				console.log('user does not have a token')
+				fetch(Server.dest + '/api/add-user-token?user_id=' + userid +
+				'&token=' + "", { headers: { 'Cache-Control': 'no-cache' } }).
+				then((res) => res.json()).then((res) => {
+					console.log(fcmToken);
+					console.log(res);
+					// this.navigateToHome();
+				})
+			}
+		});
 
 		this.state = {
 			doneFetches: 1,
