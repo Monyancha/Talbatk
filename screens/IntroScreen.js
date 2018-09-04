@@ -39,7 +39,6 @@ export default class Intro extends React.Component {
 					then((res) => res.json()).then((res) => {
 						console.log(fcmToken);
 						console.log(res);
-						alert(JSON.stringify(res) );
 					})
 				})
 

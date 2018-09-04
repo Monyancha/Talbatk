@@ -66,7 +66,7 @@ export default class Contact extends React.Component {
 							.then(res => res.json())
 							.then(meals => {
 								AsyncStorage.setItem('hot_request', '1').then(() => {
-									this.props.navigation.navigate('Main');
+									this.props.navigation.navigate('Home',{id:1});
 								})
 							})
 					})

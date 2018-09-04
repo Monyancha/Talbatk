@@ -74,7 +74,7 @@ export default class AdminOrders extends React.Component {
 		firebase.notifications().getInitialNotification()
       .then((notificationOpen: NotificationOpen) => {
         if (notificationOpen) {
-				
+
         }
 	  });
 
@@ -96,15 +96,15 @@ export default class AdminOrders extends React.Component {
 				console.log('No permission yet, Requesting...')
 				firebase.messaging().requestPermission()
 				.then(() => {
-					// User has authorised  
+					// User has authorised
 					console.log('Permission granted.')
 				})
 				.catch(error => {
-					// User has rejected permissions  
+					// User has rejected permissions
 					console.log('permission denied')
 					console.log(error)
 				});
-			} 
+			}
 		});
 }
 pushNotiListner = () => {
@@ -283,7 +283,7 @@ onPushNotiOpen = () => {
 			} else {
 				// user doesn't have a device token yet
 				console.log('user does not have a token')
-			} 
+			}
 		});
 	}
 
@@ -306,7 +306,7 @@ onPushNotiOpen = () => {
 	};
 	share_order = () => {
 		Share.share({
-			message: 'Order here http://talbatk.net:90/share-order-data?id=' + this.state.orderId,
+			message: 'Order here http://talbatkapp.com:90/share-order-data?id=' + this.state.orderId,
 
 			title: 'Order Share'
 		}, {

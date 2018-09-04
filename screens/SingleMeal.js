@@ -241,12 +241,14 @@ export default class SingleMeal extends React.Component {
 						data={this.state.Restaurant}
 						renderItem={({ item }) => (
 							<RestaurantBox
-								stars={item.stars}
-								name={item.name}
-								time={item.time}
-								desc={item.desc}
-								image={item.image}
-								price={item.deliver_price}
+							stars={item.stars}
+							name={item.name}
+							time={item.time}
+							desc={item.desc}
+							image={item.image}
+							price={item.deliver_price}
+							min_delivery_cost={item.min_delivery_cost}
+							status={item.status}
 							/>
 						)}
 					/>

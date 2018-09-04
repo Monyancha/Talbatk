@@ -295,8 +295,8 @@ onPushNotiOpen = () => {
 
 						<TouchableOpacity style={{ flex: 1, marginTop: 7 }}
 							onPress={() => {
-								if (this.state.identifier.length != 9) {
-									this.setState({ errorMsg: 'يجب ادخال رقم الجوال فى اول خانة لاسترجاع كلمة المرور عن طريقه' });
+								if (this.state.identifier.length != 10) {
+									this.setState({ errorMsg: 'يجب ادخال رقم الجوال في أول خانة فقط بصيغة 0503455556 ثم اضغط نسيت كلمة المرور' });
 									return;
 								}
 								if (/\s/g.test(this.state.identifier)) {
@@ -306,7 +306,7 @@ onPushNotiOpen = () => {
 
 								Alert.alert(
 									'كلمة مرور جديدة',
-									'سيتم ارسال رسالة على جوالك ' + this.state.identifier + ' توجهك الى وضع كلمة مرور جديدة',
+									'سيتم ارسال رسالة على جوالك ' + this.state.identifier.substr(1) + ' توجهك الى وضع كلمة مرور جديدة',
 									[
 										{
 											text: 'موافق', onPress: () => {

@@ -60,7 +60,7 @@ export default class SettingsScreen extends React.Component {
 								AsyncStorage.setItem('userid', 'null').then(()=>{
 									AsyncStorage.setItem('login', '0').then(()=>{
 										AsyncStorage.removeItem('hint').then(()=>{
-											this.props.navigation.navigate('Signup', {});
+											this.props.navigation.navigate('Main', {});
 										})
 									})
 								})

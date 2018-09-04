@@ -73,14 +73,12 @@ export default class Meals extends React.Component {
 									{
 										AsyncStorage.getItem('userid').then((userid)=>{
 										AsyncStorage.getItem('token').then(token => {
-											alert(token)
 											fetch(Server.dest + '/api/add-user-token?user_id='+userid+
 									            '&token='+token, {headers: {'Cache-Control': 'no-cache'}}).
 												then((res) => res.json()).then((resJson) => {
 													//console.log("reJson"+resJson.response);
 													//console.log("token"+token);
 													//console.log("userid"+userid);
-													alert(JSON.stringify(resJson))
 												})
 											})
 										})
@@ -147,7 +145,7 @@ export default class Meals extends React.Component {
 									AsyncStorage.setItem('cart', '').then(() => {
 										AsyncStorage.setItem('CartResturantId','').then(()=>{
 										AsyncStorage.setItem('hot_request','1').then(()=>{
-											this.props.navigation.navigate('Home');
+											this.props.navigation.navigate('طلبات');
 											this.closeModal();
 										})
 									})
