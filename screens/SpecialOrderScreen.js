@@ -8,7 +8,8 @@ import {
 	Alert,
 	ActivityIndicator,
 	AsyncStorage,
-	KeyboardAvoidingView
+	KeyboardAvoidingView,
+	ScrollView
 } from 'react-native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons'
 import Colors from '../constants/Colors';
@@ -80,7 +81,7 @@ export default class Contact extends React.Component {
 	}
 	renderBtn() {
 		if (this.state.sending == false) {
-			return <Text style={{ backgroundColor: Colors.mainColor, borderRadius: 20, color: 'white', fontWeight: 'bold', textAlign: 'center', padding: 18 }}>ارسل طلبك للمندوب</Text>
+			return <Text style={{ fontFamily: 'Droid Arabic Kufi',backgroundColor: Colors.mainColor, borderRadius: 20, color: 'white', fontWeight: 'bold', textAlign: 'center', padding: 18 }}>ارسل طلبك للمندوب</Text>
 		} else {
 			return <ActivityIndicator size='large' />
 		}
@@ -111,25 +112,32 @@ export default class Contact extends React.Component {
 	render() {
 		const { navigate } = this.props.navigation;
 		return (
+			<ScrollView>
 			<KeyboardAvoidingView
 				behavior='padding'
-				keyboardVerticalOffset={60}
+				keyboardVerticalOffset={20}
 				style={{ flex: 1 }}
 				contentContainerStyle={{ flex: 1, flexDirection: 'column', justifyContent: 'flex-end', alignItems: 'center', width: Dimensions.get('window').width }}>
+
 				<View style={{ flex: 1, paddingTop: 1, backgroundColor: "white" }} onLayout={this._onLayoutDidChange}>
+
 					<View style={{ marginHorizontal: 10 }}>
+					<View  style={{borderColor: Colors.mainColor, borderWidth: 2, marginVertical: 7, borderRadius: 20, width: '100%', height: 50,justifyContent:'center' }}>
+					<Text style={{fontFamily:'Droid Arabic Kufi',textAlign: 'center', color: Colors.secondaryColor, fontWeight: 'bold', color: '#11284b'}}>الأسعار تبدأ من 15 ريال</Text>
+						</View>
+
 						<TextInput style={{ borderColor: Colors.mainColor, borderWidth: 2, marginVertical: 7, borderRadius: 20, width: '100%', textAlign: 'center', color: Colors.secondaryColor, height: 50, fontWeight: 'bold', color: '#11284b' }}
 							onChangeText={(name) => this.setState({ name })}
 							placeholder="اسم المحل ( اختياري )"
 							selectionColor="#11284b"
 							underlineColorAndroid="transparent" />
-						<TextInput style={{ borderColor: Colors.mainColor, borderWidth: 2, marginVertical: 7, borderRadius: 20, width: '100%', textAlign: 'center', color: Colors.secondaryColor, height: 50, fontWeight: 'bold', color: '#11284b' }}
+						<TextInput style={{ fontFamily:'Droid Arabic Kufi',borderColor: Colors.mainColor, borderWidth: 2, marginVertical: 7, borderRadius: 20, width: '100%', textAlign: 'center', color: Colors.secondaryColor, height: 50, fontWeight: 'bold', color: '#11284b' }}
 							onChangeText={(email) => this.setState({ email })}
 							underlineColorAndroid="transparent"
 							keyboardType='phone-pad'
-							placeholder="السعر المتوقع ( إجباري )" />
+							placeholder="السعر المتوقع ( إجباري )  " />
 
-						<TextInput style={{ borderColor: Colors.mainColor, borderWidth: 2, marginVertical: 7, borderRadius: 20, width: '100%', textAlign: 'center', color: Colors.secondaryColor, padding: 10, height: 150, fontWeight: 'bold', color: '#11284b' }}
+						<TextInput style={{ fontFamily:'Droid Arabic Kufi',borderColor: Colors.mainColor, borderWidth: 2, marginVertical: 7, borderRadius: 20, width: '100%', textAlign: 'center', color: Colors.secondaryColor, padding: 10, height: 150, fontWeight: 'bold', color: '#11284b' }}
 							onChangeText={(message) => this.setState({ message })}
 							placeholder="تفاصيل الطلب ( إجباري)"
 							multiline={true}
@@ -143,12 +151,14 @@ export default class Contact extends React.Component {
 							<TouchableOpacity
 								onPress={this._cancel}
 								style={{}}>
-								<Text style={{ backgroundColor: Colors.mainColor, borderRadius: 20, width: 180, color: 'white', fontWeight: 'bold', textAlign: 'center', padding: 18, marginHorizontal: 10 }}>إلغاء الطلب</Text>
+								<Text style={{ fontFamily:'Droid Arabic Kufi',backgroundColor: Colors.mainColor, borderRadius: 20, width: 180, color: 'white', fontWeight: 'bold', textAlign: 'center', padding: 18, marginHorizontal: 10 }}>إلغاء الطلب</Text>
 							</TouchableOpacity>
 						</View>
 					</View>
+
 				</View>
-			</KeyboardAvoidingView>
+				</KeyboardAvoidingView>
+</ScrollView>
 		);
 	}
 }

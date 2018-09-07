@@ -116,7 +116,7 @@ onPushNotiOpen = () => {
 	}
 
 	loginUser = () => {
-		if (this.state.password.length < 8) {
+		if (this.state.password.length < 6) {
 			this.setState({ errorMsg: 'كلمة المرور قصيرة جداً' });
 			return;
 		}
@@ -310,7 +310,7 @@ onPushNotiOpen = () => {
 									[
 										{
 											text: 'موافق', onPress: () => {
-												fetch(Server.dest + '/api/requestnewpass?phone=' + this.state.identifier,
+												fetch(Server.dest + '/api/requestnewpass?phone=' + this.state.identifier.substr(1),
 													{ headers: { 'Cache-Control': 'no-cache' } }).
 													then((res) => res.json()).then((resJson) => {
 														if (resJson.response == 0) {
@@ -319,7 +319,7 @@ onPushNotiOpen = () => {
 														else {
 															this.props.navigation.navigate("CodeVerification", {
 																process: 1 /* means RESET PASS*/,
-																device: this.state.identifier
+																device: this.state.identifier.substr(1)
 															});
 														}
 													})

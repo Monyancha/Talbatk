@@ -209,9 +209,10 @@ export default class SettingsScreen extends React.Component {
 							<TouchableOpacity
 								style={styles.singleInputContainer}
 								onPress={() => {
-									AsyncStorage.removeItem('location');
+									AsyncStorage.removeItem('location').then(()=>{
+										this.props.navigation.navigate('LocationSetting');
+									})
 
-									this.props.navigation.navigate('LocationSetting');
 								}}
 							>
 								<Ionicons

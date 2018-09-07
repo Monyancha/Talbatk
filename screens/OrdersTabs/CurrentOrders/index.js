@@ -80,6 +80,7 @@ export default class CurrentOrders extends React.Component {
 				this.fetch_data();
 			}
 		);
+		this.fetch_data();
 	}
 
 	componentWillUnmount() {

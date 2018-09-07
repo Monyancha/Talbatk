@@ -116,7 +116,11 @@ export default class Meals extends React.Component {
 }
 
 	make_order = () => {
-
+		AsyncStorage.getItem('location').then((value) => {
+			if (value === null) {
+				this.props.navigation.navigate('LocationSetting')
+			}
+			else {
 					AsyncStorage.getItem('userid').then((userid)=>{
 					AsyncStorage.getItem('location').then(location => {
 						AsyncStorage.getItem('hint').then(hint => {
@@ -154,8 +158,9 @@ export default class Meals extends React.Component {
 						})
 					})
 				})
-
 			}
+		});
+		}
 
 
 

@@ -58,6 +58,7 @@ export default class OrdersHistory extends React.Component {
 				this.fetch_data();
 			}
 		);
+		this.fetch_data();
 	}
 
 	componentWillUnmount() {

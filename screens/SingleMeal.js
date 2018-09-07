@@ -36,7 +36,7 @@ export default class SingleMeal extends React.Component {
 				if (this.state.Restaurant[0].status == 1) {
 					AsyncStorage.getItem('CartResturantId').then((CartResturantId) => {
 						if (CartResturantId || CartResturantId == '') { // if resturant id saved
-							if (CartResturantId == this.props.navigation.state.params.restaurant_id) { //if resturant in cart is the same one here
+							if (CartResturantId == this.props.navigation.state.params.key) { //if resturant in cart is the same one here
 								AsyncStorage.getItem('cart').then(cart => {
 									AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
 										if (num > 1) {
@@ -49,14 +49,14 @@ export default class SingleMeal extends React.Component {
 										}
 									});
 								});
-								AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.restaurant_id)
+								AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.key)
 							} //end if resturant in cart is the same one here
 							else {
 								alert('لديك طلبات ب السله لمحل تجاري اخر الرجاء تنفيذ الطلب او الغاءه اولا')
 							}
 						} // end if resturant id saved
 						else {
-							AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.restaurant_id)
+							AsyncStorage.setItem('CartResturantId', '' + this.props.navigation.state.params.key)
 							AsyncStorage.getItem('cart').then(cart => {
 								AsyncStorage.setItem('cart', cart + ',' + meal.key).then(() => {
 									if (num > 1) {

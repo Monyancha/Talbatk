@@ -47,13 +47,6 @@ export default class LocationSetting extends React.Component {
 			pickerData: [],
 
 		};
-
-		Saudi_Governorates.regions.map((data) => {
-			this.state.pickerData.push({ value: data, label: data });
-		});
-	}
-
-	componentDidMount() {
 		AsyncStorage.getItem('location').then(value => {
 			if (value === null) {
 				this.loadScreen();
@@ -61,6 +54,19 @@ export default class LocationSetting extends React.Component {
 				this.props.navigation.navigate('Signin', {});
 			}
 		});
+		Saudi_Governorates.regions.map((data) => {
+			this.state.pickerData.push({ value: data, label: data });
+		});
+	}
+
+	componentDidMount() {
+		// AsyncStorage.getItem('location').then(value => {
+		// 	if (value === null) {
+		// 		this.loadScreen();
+		// 	} else {
+		// 		this.props.navigation.navigate('Signin', {});
+		// 	}
+		// });
 	}
 	set_location = (location) => {
 		fetch(
@@ -227,6 +233,8 @@ export default class LocationSetting extends React.Component {
 									error.code === 'E_LOCATION_SERVICES_DISABLED' ||
 									error.code === undefined
 								) {
+									// this.props.navigation.navigate('Main');
+
 									Alert.alert(
 										'خدمة الموقع',
 										'من فضلك قم بتفعيل خدمة الموقع على جوالك لاستخدام افضل. بعد التفعيل اعد المحاولة',
@@ -237,17 +245,22 @@ export default class LocationSetting extends React.Component {
 											},
 											{
 												text: 'الغاء',
-												onPress: () =>
+												onPress: () => {
 													this.setState({
 														display: 1,
 														fetchedLocationData: true
-													}),
+													})
+													this.props.navigation.navigate('Main');
+
+												},
 												style: 'cancel'
 											}
 										],
 										{ cancelable: false }
 									);
-								} else alert(JSON.stringify(error));
+								} else{
+									this.props.navigation.navigate('Main');
+								}
 							},
 							{
 								enableHighAccuracy: false,
@@ -260,8 +273,11 @@ export default class LocationSetting extends React.Component {
 				},
 				{
 					text: 'الغاء',
-					onPress: () =>
-						alert('عليك بتفعيل خدمة الموقع على جهازك لكي تستخدم التطبيق'),
+					onPress: () =>{
+						this.props.navigation.navigate('Main');
+
+						alert('عليك بتفعيل خدمة الموقع على جهازك لكي تستخدم التطبيق')
+					},
 					style: 'cancel'
 				}
 			],
@@ -357,7 +373,7 @@ export default class LocationSetting extends React.Component {
 	};
 
 	render() {
-		if (this.state.display == 0) return <LoadingIndicator size="large" />;
+		// if (this.state.display == 0) return <LoadingIndicator size="large" />;
 
 		return (
 			<View

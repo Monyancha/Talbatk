@@ -20,17 +20,12 @@ export default class ResetPassword extends React.Component {
 	}
 
 	navigateToHome = () => {
-		this.props.navigation.dispatch(NavigationActions.reset({
-			index: 0,
-			actions: [
-				NavigationActions.navigate({ routeName: 'Main' })
-			]
-		}));
+		this.props.navigation.navigate('Main')
 	};
 
 	setLoginStatus = (value) => {
-		AsyncStorage.setItem('login', value);
-		this.setState({ 'login': value });
+		AsyncStorage.setItem('login', ''+value);
+		this.setState({ 'login': ''+value });
 	}
 
 	setNewPass = () => {
@@ -44,7 +39,7 @@ export default class ResetPassword extends React.Component {
 				{ headers: { 'Cache-Control': 'no-cache' } }).
 				then((res) => res.json()).then((resJson) => {
 					if (resJson.response == 1) {
-						AsyncStorage.setItem('userid', resJson.id);
+						AsyncStorage.setItem('userid', ''+resJson.id);
 						this.setLoginStatus('1');
 						this.navigateToHome();
 					}
